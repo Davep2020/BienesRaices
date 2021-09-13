@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_a3cb5b_webbienesraicesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categoria_CA">
+          <Key>
+            <PropertyRef Name="Id_Categoria_CA" />
+          </Key>
+          <Property Name="Id_Categoria_CA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_CA" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contacto_CO">
+          <Key>
+            <PropertyRef Name="Id_Contacto_CO" />
+          </Key>
+          <Property Name="Id_Contacto_CO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCompleto_CO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono_CO" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Correo_CO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Propiedad_CO" Type="int" Nullable="false" />
+          <Property Name="Estado_CO" Type="varchar" MaxLength="50" />
+          <Property Name="Comentario_CO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Credenciales_CR">
+          <Key>
+            <PropertyRef Name="Id_Credenciales_CR" />
+          </Key>
+          <Property Name="Id_Credenciales_CR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario_CR" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Usuario_CR" Type="int" Nullable="false" />
+          <Property Name="Estado_CR" Type="varchar" MaxLength="50" />
+          <Property Name="Contrasena_CR" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Imagen_I">
+          <Key>
+            <PropertyRef Name="Id_Imagen_I" />
+          </Key>
+          <Property Name="Id_Imagen_I" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ruta_I" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Propiedad_I" Type="int" />
+        </EntityType>
+        <EntityType Name="Propiedad_P">
+          <Key>
+            <PropertyRef Name="Id_Propiedad_P" />
+          </Key>
+          <Property Name="Id_Propiedad_P" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_P" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Precio_P" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Can_Cuarto_P" Type="int" />
+          <Property Name="Can_Baños_P" Type="int" />
+          <Property Name="Estado_P" Type="varchar" MaxLength="50" />
+          <Property Name="Can_Garaje_P" Type="int" />
+          <Property Name="Id_Categoria_P" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario_U">
+          <Key>
+            <PropertyRef Name="Id_Usuario_U" />
+          </Key>
+          <Property Name="Id_Usuario_U" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_U" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipo_U" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Contacto_CO_Propiedad_P">
+          <End Role="Propiedad_P" Type="Self.Propiedad_P" Multiplicity="1" />
+          <End Role="Contacto_CO" Type="Self.Contacto_CO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedad_P">
+              <PropertyRef Name="Id_Propiedad_P" />
+            </Principal>
+            <Dependent Role="Contacto_CO">
+              <PropertyRef Name="Id_Propiedad_CO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credenciales_CR_Usuario_U">
+          <End Role="Usuario_U" Type="Self.Usuario_U" Multiplicity="1" />
+          <End Role="Credenciales_CR" Type="Self.Credenciales_CR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario_U">
+              <PropertyRef Name="Id_Usuario_U" />
+            </Principal>
+            <Dependent Role="Credenciales_CR">
+              <PropertyRef Name="Id_Usuario_CR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imagen_I_Propiedad_P">
+          <End Role="Propiedad_P" Type="Self.Propiedad_P" Multiplicity="0..1" />
+          <End Role="Imagen_I" Type="Self.Imagen_I" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedad_P">
+              <PropertyRef Name="Id_Propiedad_P" />
+            </Principal>
+            <Dependent Role="Imagen_I">
+              <PropertyRef Name="Id_Propiedad_I" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Propiedad_P_Categoria_CA">
+          <End Role="Categoria_CA" Type="Self.Categoria_CA" Multiplicity="1" />
+          <End Role="Propiedad_P" Type="Self.Propiedad_P" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria_CA">
+              <PropertyRef Name="Id_Categoria_CA" />
+            </Principal>
+            <Dependent Role="Propiedad_P">
+              <PropertyRef Name="Id_Categoria_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_a3cb5b_webbienesraicesModelStoreContainer">
+          <EntitySet Name="Categoria_CA" EntityType="Self.Categoria_CA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacto_CO" EntityType="Self.Contacto_CO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Credenciales_CR" EntityType="Self.Credenciales_CR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Imagen_I" EntityType="Self.Imagen_I" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Propiedad_P" EntityType="Self.Propiedad_P" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario_U" EntityType="Self.Usuario_U" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Contacto_CO_Propiedad_P" Association="Self.FK_Contacto_CO_Propiedad_P">
+            <End Role="Propiedad_P" EntitySet="Propiedad_P" />
+            <End Role="Contacto_CO" EntitySet="Contacto_CO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credenciales_CR_Usuario_U" Association="Self.FK_Credenciales_CR_Usuario_U">
+            <End Role="Usuario_U" EntitySet="Usuario_U" />
+            <End Role="Credenciales_CR" EntitySet="Credenciales_CR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imagen_I_Propiedad_P" Association="Self.FK_Imagen_I_Propiedad_P">
+            <End Role="Propiedad_P" EntitySet="Propiedad_P" />
+            <End Role="Imagen_I" EntitySet="Imagen_I" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Propiedad_P_Categoria_CA" Association="Self.FK_Propiedad_P_Categoria_CA">
+            <End Role="Categoria_CA" EntitySet="Categoria_CA" />
+            <End Role="Propiedad_P" EntitySet="Propiedad_P" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_a3cb5b_webbienesraicesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoria_CA">
+          <Key>
+            <PropertyRef Name="Id_Categoria_CA" />
+          </Key>
+          <Property Name="Id_Categoria_CA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_CA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Propiedad_P" Relationship="Self.FK_Propiedad_P_Categoria_CA" FromRole="Categoria_CA" ToRole="Propiedad_P" />
+        </EntityType>
+        <EntityType Name="Contacto_CO">
+          <Key>
+            <PropertyRef Name="Id_Contacto_CO" />
+          </Key>
+          <Property Name="Id_Contacto_CO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompleto_CO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono_CO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo_CO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Propiedad_CO" Type="Int32" Nullable="false" />
+          <Property Name="Estado_CO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Comentario_CO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Propiedad_P" Relationship="Self.FK_Contacto_CO_Propiedad_P" FromRole="Contacto_CO" ToRole="Propiedad_P" />
+        </EntityType>
+        <EntityType Name="Credenciales_CR">
+          <Key>
+            <PropertyRef Name="Id_Credenciales_CR" />
+          </Key>
+          <Property Name="Id_Credenciales_CR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario_CR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Usuario_CR" Type="Int32" Nullable="false" />
+          <Property Name="Estado_CR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena_CR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuario_U" Relationship="Self.FK_Credenciales_CR_Usuario_U" FromRole="Credenciales_CR" ToRole="Usuario_U" />
+        </EntityType>
+        <EntityType Name="Imagen_I">
+          <Key>
+            <PropertyRef Name="Id_Imagen_I" />
+          </Key>
+          <Property Name="Id_Imagen_I" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ruta_I" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Propiedad_I" Type="Int32" />
+          <NavigationProperty Name="Propiedad_P" Relationship="Self.FK_Imagen_I_Propiedad_P" FromRole="Imagen_I" ToRole="Propiedad_P" />
+        </EntityType>
+        <EntityType Name="Propiedad_P">
+          <Key>
+            <PropertyRef Name="Id_Propiedad_P" />
+          </Key>
+          <Property Name="Id_Propiedad_P" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_P" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Precio_P" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Can_Cuarto_P" Type="Int32" />
+          <Property Name="Can_Baños_P" Type="Int32" />
+          <Property Name="Estado_P" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Can_Garaje_P" Type="Int32" />
+          <Property Name="Id_Categoria_P" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria_CA" Relationship="Self.FK_Propiedad_P_Categoria_CA" FromRole="Propiedad_P" ToRole="Categoria_CA" />
+          <NavigationProperty Name="Contacto_CO" Relationship="Self.FK_Contacto_CO_Propiedad_P" FromRole="Propiedad_P" ToRole="Contacto_CO" />
+          <NavigationProperty Name="Imagen_I" Relationship="Self.FK_Imagen_I_Propiedad_P" FromRole="Propiedad_P" ToRole="Imagen_I" />
+        </EntityType>
+        <EntityType Name="Usuario_U">
+          <Key>
+            <PropertyRef Name="Id_Usuario_U" />
+          </Key>
+          <Property Name="Id_Usuario_U" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_U" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo_U" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Credenciales_CR" Relationship="Self.FK_Credenciales_CR_Usuario_U" FromRole="Usuario_U" ToRole="Credenciales_CR" />
+        </EntityType>
+        <Association Name="FK_Propiedad_P_Categoria_CA">
+          <End Role="Categoria_CA" Type="Self.Categoria_CA" Multiplicity="1" />
+          <End Role="Propiedad_P" Type="Self.Propiedad_P" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria_CA">
+              <PropertyRef Name="Id_Categoria_CA" />
+            </Principal>
+            <Dependent Role="Propiedad_P">
+              <PropertyRef Name="Id_Categoria_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacto_CO_Propiedad_P">
+          <End Role="Propiedad_P" Type="Self.Propiedad_P" Multiplicity="1" />
+          <End Role="Contacto_CO" Type="Self.Contacto_CO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedad_P">
+              <PropertyRef Name="Id_Propiedad_P" />
+            </Principal>
+            <Dependent Role="Contacto_CO">
+              <PropertyRef Name="Id_Propiedad_CO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credenciales_CR_Usuario_U">
+          <End Role="Usuario_U" Type="Self.Usuario_U" Multiplicity="1" />
+          <End Role="Credenciales_CR" Type="Self.Credenciales_CR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario_U">
+              <PropertyRef Name="Id_Usuario_U" />
+            </Principal>
+            <Dependent Role="Credenciales_CR">
+              <PropertyRef Name="Id_Usuario_CR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imagen_I_Propiedad_P">
+          <End Role="Propiedad_P" Type="Self.Propiedad_P" Multiplicity="0..1" />
+          <End Role="Imagen_I" Type="Self.Imagen_I" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedad_P">
+              <PropertyRef Name="Id_Propiedad_P" />
+            </Principal>
+            <Dependent Role="Imagen_I">
+              <PropertyRef Name="Id_Propiedad_I" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_a3cb5b_webbienesraicesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria_CA" EntityType="Self.Categoria_CA" />
+          <EntitySet Name="Contacto_CO" EntityType="Self.Contacto_CO" />
+          <EntitySet Name="Credenciales_CR" EntityType="Self.Credenciales_CR" />
+          <EntitySet Name="Imagen_I" EntityType="Self.Imagen_I" />
+          <EntitySet Name="Propiedad_P" EntityType="Self.Propiedad_P" />
+          <EntitySet Name="Usuario_U" EntityType="Self.Usuario_U" />
+          <AssociationSet Name="FK_Propiedad_P_Categoria_CA" Association="Self.FK_Propiedad_P_Categoria_CA">
+            <End Role="Categoria_CA" EntitySet="Categoria_CA" />
+            <End Role="Propiedad_P" EntitySet="Propiedad_P" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacto_CO_Propiedad_P" Association="Self.FK_Contacto_CO_Propiedad_P">
+            <End Role="Propiedad_P" EntitySet="Propiedad_P" />
+            <End Role="Contacto_CO" EntitySet="Contacto_CO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credenciales_CR_Usuario_U" Association="Self.FK_Credenciales_CR_Usuario_U">
+            <End Role="Usuario_U" EntitySet="Usuario_U" />
+            <End Role="Credenciales_CR" EntitySet="Credenciales_CR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imagen_I_Propiedad_P" Association="Self.FK_Imagen_I_Propiedad_P">
+            <End Role="Propiedad_P" EntitySet="Propiedad_P" />
+            <End Role="Imagen_I" EntitySet="Imagen_I" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_a3cb5b_webbienesraicesModelStoreContainer" CdmEntityContainer="db_a3cb5b_webbienesraicesEntities">
+          <EntitySetMapping Name="Categoria_CA">
+            <EntityTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.Categoria_CA">
+              <MappingFragment StoreEntitySet="Categoria_CA">
+                <ScalarProperty Name="Id_Categoria_CA" ColumnName="Id_Categoria_CA" />
+                <ScalarProperty Name="Nombre_CA" ColumnName="Nombre_CA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacto_CO">
+            <EntityTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.Contacto_CO">
+              <MappingFragment StoreEntitySet="Contacto_CO">
+                <ScalarProperty Name="Id_Contacto_CO" ColumnName="Id_Contacto_CO" />
+                <ScalarProperty Name="NombreCompleto_CO" ColumnName="NombreCompleto_CO" />
+                <ScalarProperty Name="Telefono_CO" ColumnName="Telefono_CO" />
+                <ScalarProperty Name="Correo_CO" ColumnName="Correo_CO" />
+                <ScalarProperty Name="Id_Propiedad_CO" ColumnName="Id_Propiedad_CO" />
+                <ScalarProperty Name="Estado_CO" ColumnName="Estado_CO" />
+                <ScalarProperty Name="Comentario_CO" ColumnName="Comentario_CO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Credenciales_CR">
+            <EntityTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.Credenciales_CR">
+              <MappingFragment StoreEntitySet="Credenciales_CR">
+                <ScalarProperty Name="Id_Credenciales_CR" ColumnName="Id_Credenciales_CR" />
+                <ScalarProperty Name="Usuario_CR" ColumnName="Usuario_CR" />
+                <ScalarProperty Name="Id_Usuario_CR" ColumnName="Id_Usuario_CR" />
+                <ScalarProperty Name="Estado_CR" ColumnName="Estado_CR" />
+                <ScalarProperty Name="Contrasena_CR" ColumnName="Contrasena_CR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imagen_I">
+            <EntityTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.Imagen_I">
+              <MappingFragment StoreEntitySet="Imagen_I">
+                <ScalarProperty Name="Id_Imagen_I" ColumnName="Id_Imagen_I" />
+                <ScalarProperty Name="Ruta_I" ColumnName="Ruta_I" />
+                <ScalarProperty Name="Id_Propiedad_I" ColumnName="Id_Propiedad_I" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Propiedad_P">
+            <EntityTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.Propiedad_P">
+              <MappingFragment StoreEntitySet="Propiedad_P">
+                <ScalarProperty Name="Id_Propiedad_P" ColumnName="Id_Propiedad_P" />
+                <ScalarProperty Name="Nombre_P" ColumnName="Nombre_P" />
+                <ScalarProperty Name="Precio_P" ColumnName="Precio_P" />
+                <ScalarProperty Name="Can_Cuarto_P" ColumnName="Can_Cuarto_P" />
+                <ScalarProperty Name="Can_Baños_P" ColumnName="Can_Baños_P" />
+                <ScalarProperty Name="Estado_P" ColumnName="Estado_P" />
+                <ScalarProperty Name="Can_Garaje_P" ColumnName="Can_Garaje_P" />
+                <ScalarProperty Name="Id_Categoria_P" ColumnName="Id_Categoria_P" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario_U">
+            <EntityTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.Usuario_U">
+              <MappingFragment StoreEntitySet="Usuario_U">
+                <ScalarProperty Name="Id_Usuario_U" ColumnName="Id_Usuario_U" />
+                <ScalarProperty Name="Nombre_U" ColumnName="Nombre_U" />
+                <ScalarProperty Name="Tipo_U" ColumnName="Tipo_U" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
