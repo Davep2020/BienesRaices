@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db_a3cb5b_webbienesraicesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="db_a3cb5b_webbienesraicesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria_CA">
           <Key>
             <PropertyRef Name="Id_Categoria_CA" />
@@ -111,6 +111,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="RetornaUsuarioCorreoPwd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="contrasena" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RetornaUsuarioID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Usuario" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="db_a3cb5b_webbienesraicesModelStoreContainer">
           <EntitySet Name="Categoria_CA" EntityType="Self.Categoria_CA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacto_CO" EntityType="Self.Contacto_CO" Schema="dbo" store:Type="Tables" />
@@ -135,8 +142,7 @@
             <End Role="Propiedad_P" EntitySet="Propiedad_P" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db_a3cb5b_webbienesraicesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -277,7 +283,28 @@
             <End Role="Propiedad_P" EntitySet="Propiedad_P" />
             <End Role="Imagen_I" EntitySet="Imagen_I" />
           </AssociationSet>
+          <FunctionImport Name="RetornaUsuarioID" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.RetornaUsuarioID_Result)">
+          <Parameter Name="id_Usuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RetornaUsuarioCorreoPwd" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.RetornaUsuarioCorreoPwd_Result)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="contrasena" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="RetornaUsuarioID_Result">
+          <Property Type="Int32" Name="Id_Credenciales_CR" Nullable="false" />
+          <Property Type="String" Name="Usuario_CR" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Usuario_CR" Nullable="false" />
+          <Property Type="String" Name="Estado_CR" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Contrasena_CR" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="RetornaUsuarioCorreoPwd_Result">
+          <Property Type="Int32" Name="Id_Credenciales_CR" Nullable="false" />
+          <Property Type="String" Name="Usuario_CR" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Usuario_CR" Nullable="false" />
+          <Property Type="String" Name="Estado_CR" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Contrasena_CR" Nullable="false" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -348,6 +375,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="RetornaUsuarioID" FunctionName="db_a3cb5b_webbienesraicesModel.Store.RetornaUsuarioID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.RetornaUsuarioID_Result">
+                <ScalarProperty Name="Id_Credenciales_CR" ColumnName="Id_Credenciales_CR" />
+                <ScalarProperty Name="Usuario_CR" ColumnName="Usuario_CR" />
+                <ScalarProperty Name="Id_Usuario_CR" ColumnName="Id_Usuario_CR" />
+                <ScalarProperty Name="Estado_CR" ColumnName="Estado_CR" />
+                <ScalarProperty Name="Contrasena_CR" ColumnName="Contrasena_CR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RetornaUsuarioCorreoPwd" FunctionName="db_a3cb5b_webbienesraicesModel.Store.RetornaUsuarioCorreoPwd">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.RetornaUsuarioCorreoPwd_Result">
+                <ScalarProperty Name="Id_Credenciales_CR" ColumnName="Id_Credenciales_CR" />
+                <ScalarProperty Name="Usuario_CR" ColumnName="Usuario_CR" />
+                <ScalarProperty Name="Id_Usuario_CR" ColumnName="Id_Usuario_CR" />
+                <ScalarProperty Name="Estado_CR" ColumnName="Estado_CR" />
+                <ScalarProperty Name="Contrasena_CR" ColumnName="Contrasena_CR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

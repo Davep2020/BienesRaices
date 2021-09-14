@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+
+    string urlMetodoFormulario = Url.Action("VerificaLogin", "Login");
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    
+    <form action="@urlMetodoFormulario" method="post">
+
+        <h2>Inicio Sesión</h2>
+
+        <div>
+            <label>Usuario</label>
+            <input type="text" id="Usuario_CR" name="Usuario_CR" placeholder="Usuario" />
+        </div>
+
+        <div>
+            <label>Contraseña</label>
+            <input type="text" id="Contrasena_CR" name="Contrasena_CR" placeholder="Contraseña" />
+        </div>
+
+        <div>
+            <button type="submit">Ingresar</button>
+        </div>
+
+
+        @Html.ValidationSummary(true)
+    </form>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>

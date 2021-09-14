@@ -1,4 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    BienesRaices.Models.RetornaUsuarioCorreoPwd_Result modelo = (BienesRaices.Models.RetornaUsuarioCorreoPwd_Result)this.Session["datosUsuario"];
+
+    string urlLogin = this.Url.Action("Login", "Login");
+
+    string urlCierraSesion = this.Url.Action("CerrarSesion", "Login");
+
+    bool sesionIniciada = false;
+
+    if (this.Session["logueado"] != null)
+    {
+        sesionIniciada = Convert.ToBoolean(this.Session["logueado"]);
+    }
+}
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -7,7 +21,9 @@
     @* Link CSS DE BOOTSTRAP 5 *@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
+    @*Estilos JQuery UI*@
+    <link href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+    @*<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>*@
 
 </head>
 <body>
@@ -53,15 +69,84 @@
                         <a class="nav-link" href="#">Cerrar Sesión</a>
                     </li>
 
+                    @{
+                        if (sesionIniciada == true)
+                        {
+                            //Comprueba si es administrador o cliente
+                            @*if (modelo.Id_TipoUsuario_S == 1)
+                            {
+                                <li>@Html.ActionLink("Atender", "#", "#")</li>
+                            }*@
+                            <li><a id="lnkCerrarSesion" href="#">Salir</a></li>
+                        }
+                    }
 
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container-fluid">
-        @RenderBody()
+        @{ if (sesionIniciada == true)
+            {
+
+@RenderBody() }
+else
+{
+this.Response.Redirect(urlLogin);
+} }
     </div>
+
+
+    <div id="cerrarSesion" hidden class="text-center">
+        <p>¿Cerrar Sesión?</p>
+        <button id="btnSi" class="btn btn-success">Sí</button>
+        <button id="btnNo" class="btn btn-default">No</button>
+    </div>
+
+
+
+
     @* Link SCRIPT DE BOOTSTRAP 5 *@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+    @*Script para cerrar sesión con UI*@
+    <script>
+            $(function () {
+                eventoCerrarSesion();
+            });
+
+            function eventoCerrarSesion() {
+                $("#cerrarSesion").dialog({
+                    autoOpen: false,
+                    height: 150,
+                    width: 200,
+                    modal: true,
+                    title: 'Cerrar Sesión',
+                    resizable: false
+                });
+
+                $("#lnkCerrarSesion").click(() => {
+                    $("#cerrarSesion").dialog("open");
+                });
+
+                $("#btnNo").click(() => {
+                    $("#cerrarSesion").dialog("close");
+                });
+
+                $("#btnSi").click(() => {
+                    window.location.href = '@urlCierraSesion';
+                });
+            }
+    </script>
+
+    @RenderSection("scripts", required: false)
+
 </body>
 </html>

@@ -13,9 +13,8 @@ namespace BienesRaices.Models
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class Credenciales_CR
+public partial class RetornaUsuarioCorreoPwd_Result
 {
 
     public int Id_Credenciales_CR { get; set; }
@@ -27,10 +26,6 @@ public partial class Credenciales_CR
     public string Estado_CR { get; set; }
 
     public string Contrasena_CR { get; set; }
-
-
-
-    public virtual Usuario_U Usuario_U { get; set; }
 
 }
 
