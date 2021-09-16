@@ -10,11 +10,46 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="~/Content/CSS/Login/Login.css" rel="stylesheet" />
+
+
     <title>Login</title>
 </head>
 <body>
     
-    <form action="@urlMetodoFormulario" method="post">
+
+
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="~/img/header.jpg" id="icon" alt="Bienes Raíces" />
+                </div>
+
+                <!-- Login Form -->
+                <form  action="@urlMetodoFormulario" method="post">
+                    <input type="text" id="Usuario_CR" class="fadeIn second" name="Usuario_CR" placeholder="Usuario">
+                    <input type="text" id="Contrasena_CR" class="fadeIn third" name="Contrasena_CR" placeholder="Contraseña">
+                    <input type="submit" class="fadeIn fourth" value="Log In">
+
+                    @Html.ValidationSummary(true)
+                </form>
+
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    @*<a class="underlineHover" href="#">Forgot Password?</a>*@
+                </div>
+
+            </div>
+        </div>
+
+    @*<form action="@urlMetodoFormulario" method="post">
+
 
         <h2>Inicio Sesión</h2>
 
@@ -34,7 +69,7 @@
 
 
         @Html.ValidationSummary(true)
-    </form>
+    </form>*@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

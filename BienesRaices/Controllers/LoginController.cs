@@ -28,7 +28,7 @@ namespace BienesRaices.Controllers
                 this.Session.Add("datosUsuario", usuarioBuscar);
 
                 //Falta agregar a la vista que va a ingresar
-                return RedirectToAction("Lista", "Propiedad");
+                return RedirectToAction("Index", "Propiedad");
             }
 
         }
@@ -38,7 +38,7 @@ namespace BienesRaices.Controllers
             return View();
         }
 
-        public ActionResult CeCerrarSesion()
+        public ActionResult CerrarSesion()
         {
             this.Session.Add("logueado", null);
 
