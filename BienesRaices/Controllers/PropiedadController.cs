@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BienesRaices.Models;
 
+
 namespace BienesRaices.Controllers
 {
     public class PropiedadController : Controller
@@ -37,6 +38,46 @@ namespace BienesRaices.Controllers
         public ActionResult Propiedades()
         {
 
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Propiedades(MostrarPropiedad_Result modelos)
+        {
+            int registros = 0;
+            string mensaje = "";
+
+            try
+            {
+                registros = Model.IngresaPropiedad(
+                    modelos.Nombre_P,
+                    modelos.Precio_P,
+                    modelos.Can_Cuarto_P,
+                    modelos.Can_Baños_P,
+                    modelos.Can_Garaje_P,
+                    modelos.Id_Categoria_P
+
+                    );
+            }
+            catch (Exception e)
+            {
+                mensaje = "Ocurrió un error: " + e.Message;
+            }
+            finally
+            {
+                if (registros > 0)
+                {
+
+                    mensaje = "Se agregó una nueva Propiedad.";
+
+                }
+                else
+                {
+                    mensaje = "No se pudo insertar.";
+                }
+            }
+
+            Response.Write("<script laguage=JavaScript>alert('" + mensaje + "');</script>");
 
             return View();
         }

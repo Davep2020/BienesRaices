@@ -3,19 +3,19 @@
     ViewBag.Title = "Propiedades";
     Layout = "~/Views/Shared/_LayoutPropiedad.cshtml";
 }
-<form action="/" method="post">
+<form  method="post">
     <div class="row">
         <div class="col-lg-3 form-group">
             <label for="">Nombre de la propiedad</label>
-            <input type="text" class="form-control" name="nombre" value="" placeholder="Ingrese el nombre de la propiedad" />
+            <input type="text" class="form-control" name="Nombre_P" value="" placeholder="Ingrese el nombre de la propiedad" />
         </div>
         <div class="col-lg-3 form-group">
             <label for="">Precio de la Propiedad</label>
-            <input type="text"  class="form-control" name="precio" value="" placeholder="Ingrese el Precio de la Propiedad" />
+            <input type="text"  class="form-control" name="Precio_P" value="" placeholder="Ingrese el Precio de la Propiedad" />
         </div>
         <div class="col-lg-3 form-group">
             <label>Cantidad de Cuartos</label>
-            <select class="form-control">
+            <select class="form-control" name="Can_Cuarto_P">
                 <option value="">Seleccione la cantidad</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -27,7 +27,7 @@
         </div>
         <div class="col-lg-3 form-group">
             <label>Cantidad de Baños</label>
-            <select class="form-control">
+            <select class="form-control" name="Can_Baños_P">
                 <option value="">Seleccione la cantidad</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-lg-3 form-group ">
             <label>Cantidad de Garajes</label>
-            <select class="form-control">
+            <select class="form-control" name="Can_Garaje_P">
                 <option value="">Seleccione la cantidad</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -53,7 +53,7 @@
         </div>
         <div class="col-lg-3 offset-lg-3 form-group">
             <label>Categoria de la propiedad</label>
-            <select class="form-control">
+            <select class="form-control" name="Id_Categoria_P">
                 <option value="">Seleccione la Categoria</option>
                 <option value="1">Venta</option>
                 <option value="2">Alquiler</option>
