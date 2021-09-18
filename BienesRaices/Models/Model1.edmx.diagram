@@ -8,11 +8,11 @@
         <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Categoria_CA" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Contacto_CO" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Imagen_I" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Credenciales_CR" Width="1.5" PointX="9" PointY="4.875" />
         <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Propiedad_P" Width="1.5" PointX="3" PointY="2.125" />
         <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Propiedad_P_Categoria_CA" />
         <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Contacto_CO_Propiedad_P" />
         <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Imagen_I_Propiedad_P" />
+        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Credenciales_CR" Width="1.5" PointX="7.75" PointY="3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

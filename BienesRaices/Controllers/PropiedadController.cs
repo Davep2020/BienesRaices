@@ -25,7 +25,7 @@ namespace BienesRaices.Controllers
 
            if(sesionIniciada==true)
            {
-                RetornaUsuarioCorreoPwd_Result modelo = (RetornaUsuarioCorreoPwd_Result)this.Session["datosUsuario"];
+                RetornaCuenta_Result modelo = (RetornaCuenta_Result)this.Session["datosUsuario"];
                 return View();
            }
            else

@@ -1,0 +1,100 @@
+﻿@model List<BienesRaices.Models.MuestraCuenta_Result>
+@{
+    ViewBag.Title = "Cuentas";
+    Layout = "~/Views/Shared/_LayoutPropiedad.cshtml";
+}
+
+<h2>Cuentas</h2>
+<table class="table">
+    <tr>
+        <td><strong>Usuario</strong> </td>
+        <td><strong>Contraseña</strong></td>
+
+
+    </tr>
+    @{
+        foreach (BienesRaices.Models.MuestraCuenta_Result posicion in this.Model)
+        {
+        <tr>
+            @Html.AntiForgeryToken()
+            <td>@posicion.Usuario_CR</td>
+            <td>@posicion.Contrasena_CR</td>
+
+            @if (posicion.Estado_CR == "Activo")
+            {
+                <td><a href="~/Perfil/Modificar?Id_Credenciales_CR=@posicion.Id_Credenciales_CR" class="btn btn-info">Modificar</a></td>
+                <td> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDesactivar" onclick="cambiarEstado(@posicion.Id_Credenciales_CR)">Desactivar</button> </td>
+                <td> <button class="btn btn-success" disabled>Activar</button> </td>
+
+                using (Html.BeginForm("Estado", "Perfil", FormMethod.Post))
+                {
+                    <!-- Modal -->
+                    <div class="modal fade" id="ModalDesactivar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Inactivar cuenta</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Está seguro que quiere inactivar la cuenta?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+
+                                    <input type="text" name="Id_Credenciales_CR" id="cuenta" value="" hidden />
+                                    <button type="submit" value="id" class="btn btn-danger" name="Id_Credenciales_CR">Inactivar</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Fin Modal-->
+                }
+
+            }
+            else
+            {
+                <td><a href="~/Perfil/Modificar?Id_Credenciales_CR=@posicion.Id_Credenciales_CR" class="btn btn-info">Modificar</a></td>
+                <td> <button class="btn btn-danger" disabled>Desactivar</button> </td>
+                <td> <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalActive" onclick="ActivarEmpresa(@posicion.Id_Credenciales_CR)">Activar</button> </td>
+
+                using (Html.BeginForm("Estado", "Perfil", FormMethod.Post))
+                {
+                    <!-- Modal -->
+                    <div class="modal fade" id="ModalActive" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Activar cuenta</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Quiere activar esta cuenta?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+
+                                    <input type="text" name="Id_Credenciales_CR" id="activar" value="" hidden />
+                                    <button type="submit" value="id" class="btn btn-success" name="Id_Credenciales_CR">Activar</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Fin Modal-->
+                }
+
+            }
+
+        </tr>
+        }
+    }
+</table>
+
+
+<script src="~/Scripts/EstadoCuenta/Estado.js"></script>

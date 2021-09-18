@@ -13,9 +13,8 @@ namespace BienesRaices.Models
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class Credenciales_CR
+public partial class MuestraCuenta_Result
 {
 
     public int Id_Credenciales_CR { get; set; }

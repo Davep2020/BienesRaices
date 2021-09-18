@@ -30,7 +30,6 @@
           </Key>
           <Property Name="Id_Credenciales_CR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Usuario_CR" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Id_Usuario_CR" Type="int" Nullable="false" />
           <Property Name="Tipo_CR" Type="nchar" MaxLength="10" />
           <Property Name="Estado_CR" Type="varchar" MaxLength="50" />
           <Property Name="Contrasena_CR" Type="varchar" MaxLength="50" Nullable="false" />
@@ -92,6 +91,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="EstadoCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCredencial" Type="int" Mode="In" />
+        </Function>
+        <Function Name="IngresaCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Credencial" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasena" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="IngresaPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NombreCompleto" Type="varchar" Mode="In" />
           <Parameter Name="Telefono" Type="varchar" Mode="In" />
@@ -108,13 +114,18 @@
           <Parameter Name="CantidadGarajes" Type="int" Mode="In" />
           <Parameter Name="CategoriaPro" Type="int" Mode="In" />
         </Function>
+        <Function Name="ModicaCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCredencial" Type="int" Mode="In" />
+          <Parameter Name="contrasena" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="MostrarPropiedad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MuestraCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MuestralosPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="RetornaUsuarioCorreoPwd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RetornaCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usuario" Type="varchar" Mode="In" />
           <Parameter Name="contrasena" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="RetornaUsuarioID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RetornaCuentaID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Usuario" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="db_a3cb5b_webbienesraicesModelStoreContainer">
@@ -174,14 +185,6 @@
           <EntitySet Name="Categoria_CA" EntityType="Self.Categoria_CA" />
           <EntitySet Name="Contacto_CO" EntityType="Self.Contacto_CO" />
           <EntitySet Name="Imagen_I" EntityType="Self.Imagen_I" />
-          <FunctionImport Name="RetornaUsuarioID" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.RetornaUsuarioID_Result)">
-          <Parameter Name="id_Usuario" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="RetornaUsuarioCorreoPwd" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.RetornaUsuarioCorreoPwd_Result)">
-            <Parameter Name="usuario" Mode="In" Type="String" />
-            <Parameter Name="contrasena" Mode="In" Type="String" />
-          </FunctionImport>
-          <EntitySet Name="Credenciales_CR" EntityType="db_a3cb5b_webbienesraicesModel.Credenciales_CR" />
           <FunctionImport Name="MostrarPropiedad" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MostrarPropiedad_Result)" />
           <EntitySet Name="Propiedad_P" EntityType="db_a3cb5b_webbienesraicesModel.Propiedad_P" />
           <AssociationSet Name="FK_Propiedad_P_Categoria_CA" Association="db_a3cb5b_webbienesraicesModel.FK_Propiedad_P_Categoria_CA">
@@ -213,32 +216,27 @@
             <Parameter Name="Comentario" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="MuestralosPedidos" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MuestralosPedidos_Result)" />
+          <FunctionImport Name="EstadoCuenta">
+          <Parameter Name="idCredencial" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="IngresaCuenta">
+            <Parameter Name="Credencial" Mode="In" Type="String" />
+            <Parameter Name="Contrasena" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModicaCuenta">
+            <Parameter Name="idCredencial" Mode="In" Type="Int32" />
+            <Parameter Name="contrasena" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MuestraCuenta" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MuestraCuenta_Result)" />
+          <FunctionImport Name="RetornaCuenta" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.RetornaCuenta_Result)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="contrasena" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RetornaCuentaID" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.RetornaCuentaID_Result)">
+          <Parameter Name="id_Usuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Credenciales_CR" EntityType="db_a3cb5b_webbienesraicesModel.Credenciales_CR" />
         </EntityContainer>
-        <ComplexType Name="RetornaUsuarioID_Result">
-          <Property Type="Int32" Name="Id_Credenciales_CR" Nullable="false" />
-          <Property Type="String" Name="Usuario_CR" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Id_Usuario_CR" Nullable="false" />
-          <Property Type="String" Name="Estado_CR" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Contrasena_CR" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="RetornaUsuarioCorreoPwd_Result">
-          <Property Type="Int32" Name="Id_Credenciales_CR" Nullable="false" />
-          <Property Type="String" Name="Usuario_CR" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Id_Usuario_CR" Nullable="false" />
-          <Property Type="String" Name="Estado_CR" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Contrasena_CR" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <EntityType Name="Credenciales_CR">
-          <Key>
-            <PropertyRef Name="Id_Credenciales_CR" />
-          </Key>
-          <Property Name="Id_Credenciales_CR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Usuario_CR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Id_Usuario_CR" Type="Int32" Nullable="false" />
-          <Property Name="Tipo_CR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Estado_CR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Contrasena_CR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <ComplexType Name="MostrarPropiedad_Result">
           <Property Type="Int32" Name="Id_Propiedad_P" Nullable="false" />
           <Property Type="String" Name="Nombre_P" Nullable="false" MaxLength="100" />
@@ -310,6 +308,37 @@
           <Property Type="String" Name="Estado_CO" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Comentario_CO" Nullable="false" MaxLength="100" />
         </ComplexType>
+        <ComplexType Name="MuestraCuenta_Result">
+          <Property Type="Int32" Name="Id_Credenciales_CR" Nullable="false" />
+          <Property Type="String" Name="Usuario_CR" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Tipo_CR" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Estado_CR" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Contrasena_CR" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="RetornaCuenta_Result">
+          <Property Type="Int32" Name="Id_Credenciales_CR" Nullable="false" />
+          <Property Type="String" Name="Usuario_CR" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Tipo_CR" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Estado_CR" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Contrasena_CR" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="RetornaCuentaID_Result">
+          <Property Type="Int32" Name="Id_Credenciales_CR" Nullable="false" />
+          <Property Type="String" Name="Usuario_CR" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Tipo_CR" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Estado_CR" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Contrasena_CR" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Credenciales_CR">
+          <Key>
+            <PropertyRef Name="Id_Credenciales_CR" />
+          </Key>
+          <Property Name="Id_Credenciales_CR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario_CR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo_CR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Estado_CR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena_CR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -343,40 +372,6 @@
                 <ScalarProperty Name="Id_Imagen_I" ColumnName="Id_Imagen_I" />
                 <ScalarProperty Name="Ruta_I" ColumnName="Ruta_I" />
                 <ScalarProperty Name="Id_Propiedad_I" ColumnName="Id_Propiedad_I" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="RetornaUsuarioID" FunctionName="db_a3cb5b_webbienesraicesModel.Store.RetornaUsuarioID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.RetornaUsuarioID_Result">
-                <ScalarProperty Name="Id_Credenciales_CR" ColumnName="Id_Credenciales_CR" />
-                <ScalarProperty Name="Usuario_CR" ColumnName="Usuario_CR" />
-                <ScalarProperty Name="Id_Usuario_CR" ColumnName="Id_Usuario_CR" />
-                <ScalarProperty Name="Estado_CR" ColumnName="Estado_CR" />
-                <ScalarProperty Name="Contrasena_CR" ColumnName="Contrasena_CR" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RetornaUsuarioCorreoPwd" FunctionName="db_a3cb5b_webbienesraicesModel.Store.RetornaUsuarioCorreoPwd">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.RetornaUsuarioCorreoPwd_Result">
-                <ScalarProperty Name="Id_Credenciales_CR" ColumnName="Id_Credenciales_CR" />
-                <ScalarProperty Name="Usuario_CR" ColumnName="Usuario_CR" />
-                <ScalarProperty Name="Id_Usuario_CR" ColumnName="Id_Usuario_CR" />
-                <ScalarProperty Name="Estado_CR" ColumnName="Estado_CR" />
-                <ScalarProperty Name="Contrasena_CR" ColumnName="Contrasena_CR" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="Credenciales_CR">
-            <EntityTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.Credenciales_CR">
-              <MappingFragment StoreEntitySet="Credenciales_CR">
-                <ScalarProperty Name="Contrasena_CR" ColumnName="Contrasena_CR" />
-                <ScalarProperty Name="Estado_CR" ColumnName="Estado_CR" />
-                <ScalarProperty Name="Tipo_CR" ColumnName="Tipo_CR" />
-                <ScalarProperty Name="Id_Usuario_CR" ColumnName="Id_Usuario_CR" />
-                <ScalarProperty Name="Usuario_CR" ColumnName="Usuario_CR" />
-                <ScalarProperty Name="Id_Credenciales_CR" ColumnName="Id_Credenciales_CR" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -423,6 +418,53 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EstadoCuenta" FunctionName="db_a3cb5b_webbienesraicesModel.Store.EstadoCuenta" />
+          <FunctionImportMapping FunctionImportName="IngresaCuenta" FunctionName="db_a3cb5b_webbienesraicesModel.Store.IngresaCuenta" />
+          <FunctionImportMapping FunctionImportName="ModicaCuenta" FunctionName="db_a3cb5b_webbienesraicesModel.Store.ModicaCuenta" />
+          <FunctionImportMapping FunctionImportName="MuestraCuenta" FunctionName="db_a3cb5b_webbienesraicesModel.Store.MuestraCuenta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.MuestraCuenta_Result">
+                <ScalarProperty Name="Id_Credenciales_CR" ColumnName="Id_Credenciales_CR" />
+                <ScalarProperty Name="Usuario_CR" ColumnName="Usuario_CR" />
+                <ScalarProperty Name="Tipo_CR" ColumnName="Tipo_CR" />
+                <ScalarProperty Name="Estado_CR" ColumnName="Estado_CR" />
+                <ScalarProperty Name="Contrasena_CR" ColumnName="Contrasena_CR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RetornaCuenta" FunctionName="db_a3cb5b_webbienesraicesModel.Store.RetornaCuenta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.RetornaCuenta_Result">
+                <ScalarProperty Name="Id_Credenciales_CR" ColumnName="Id_Credenciales_CR" />
+                <ScalarProperty Name="Usuario_CR" ColumnName="Usuario_CR" />
+                <ScalarProperty Name="Tipo_CR" ColumnName="Tipo_CR" />
+                <ScalarProperty Name="Estado_CR" ColumnName="Estado_CR" />
+                <ScalarProperty Name="Contrasena_CR" ColumnName="Contrasena_CR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RetornaCuentaID" FunctionName="db_a3cb5b_webbienesraicesModel.Store.RetornaCuentaID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.RetornaCuentaID_Result">
+                <ScalarProperty Name="Id_Credenciales_CR" ColumnName="Id_Credenciales_CR" />
+                <ScalarProperty Name="Usuario_CR" ColumnName="Usuario_CR" />
+                <ScalarProperty Name="Tipo_CR" ColumnName="Tipo_CR" />
+                <ScalarProperty Name="Estado_CR" ColumnName="Estado_CR" />
+                <ScalarProperty Name="Contrasena_CR" ColumnName="Contrasena_CR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Credenciales_CR">
+            <EntityTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.Credenciales_CR">
+              <MappingFragment StoreEntitySet="Credenciales_CR">
+                <ScalarProperty Name="Contrasena_CR" ColumnName="Contrasena_CR" />
+                <ScalarProperty Name="Estado_CR" ColumnName="Estado_CR" />
+                <ScalarProperty Name="Tipo_CR" ColumnName="Tipo_CR" />
+                <ScalarProperty Name="Usuario_CR" ColumnName="Usuario_CR" />
+                <ScalarProperty Name="Id_Credenciales_CR" ColumnName="Id_Credenciales_CR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

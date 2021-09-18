@@ -12,10 +12,10 @@ namespace BienesRaices.Controllers
         db_a3cb5b_webbienesraicesEntities Model = new db_a3cb5b_webbienesraicesEntities();
 
         [HttpPost]
-        public ActionResult VerificaLogin(RetornaUsuarioCorreoPwd_Result pModelo)
+        public ActionResult VerificaLogin(RetornaCuenta_Result pModelo)
         {
 
-            RetornaUsuarioCorreoPwd_Result usuarioBuscar = this.Model.RetornaUsuarioCorreoPwd(pModelo.Usuario_CR, pModelo.Contrasena_CR).FirstOrDefault();
+            RetornaCuenta_Result usuarioBuscar = this.Model.RetornaCuenta(pModelo.Usuario_CR, pModelo.Contrasena_CR).FirstOrDefault();
 
             if (usuarioBuscar == null)
             {
