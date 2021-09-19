@@ -1,0 +1,49 @@
+﻿@model BienesRaices.Models.MostrarPropiedadID_Result
+@{
+    ViewBag.Title = "Propiedad";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12" style="text-align:center">
+        <h1>Contacto</h1>
+    </div>
+    <div class="col-lg-3">
+        <h3>@Model.Nombre_P</h3>
+        <img src="https://images.adsttc.com/media/images/5afb/37ff/f197/cc1b/a000/00d7/medium_jpg/Janak_Mistry_residence-61.jpg?1526413290" width="100%" alt="Alternate Text" />
+
+
+        <p>Precio:@Model.Precio</p>
+        <p>Tipo: @Model.Nombre_CA</p>
+        <i class="fas fa-bed">@Model.Can_Cuarto_P</i>
+        <i class="fas fa-warehouse">@Model.Can_Garaje_P</i>
+        <i class="fas fa-toilet">@Model.Can_Baños_P</i>
+    </div>
+    <div class="col-lg-9">
+        <form method="post">
+            <div class="form-group">
+                <label for="">Nombre Completo</label>
+                <input type="text" class="form-control" name="NombreCompleto_CO" value="" placeholder="Ingrese su nombre completo" />
+            </div>
+            <div class="form-group">
+                <label for="">Teléfono</label>
+                <input type="text" class="form-control" name="Telefono_CO" value="" placeholder="Ingrese su teléfono" />
+            </div>
+            <div class="form-group">
+                <label for="">Correo Electronico</label>
+                <input type="email" class="form-control" name="Correo_CO" value="" placeholder="Ingrese su correo Electronico " />
+            </div>
+            <div class="form-group">
+                <label for="">Comentarios</label>
+                <br />
+                <textarea  class="form-control" name="Comentario_CO" rows="4" ></textarea>
+            </div>
+            <br />
+            <button type="submit" value="@Model.Id_Propiedad_P"class="btn btn-info" name="idPropiedad">Consultar Propiedad</button>
+
+        </form>
+    </div>
+           
+
+
+</div>
+

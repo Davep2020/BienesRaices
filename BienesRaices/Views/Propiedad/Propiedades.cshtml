@@ -54,9 +54,15 @@
         <div class="col-lg-3 offset-lg-3 form-group">
             <label>Categoria de la propiedad</label>
             <select class="form-control" name="Id_Categoria_P">
-                <option value="">Seleccione la Categoria</option>
-                <option value="1">Venta</option>
-                <option value="2">Alquiler</option>
+                <option>Seleccione una categoria</option>
+                @{
+                    foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
+                    {
+                        <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
+                    }
+
+
+                }
             </select>
         </div>
     </div>

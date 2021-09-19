@@ -37,7 +37,7 @@ namespace BienesRaices.Controllers
 
         public ActionResult Propiedades()
         {
-
+            CargarCategoria();
 
             return View();
         }
@@ -46,6 +46,7 @@ namespace BienesRaices.Controllers
         {
             int registros = 0;
             string mensaje = "";
+            CargarCategoria();
 
             try
             {
@@ -82,9 +83,19 @@ namespace BienesRaices.Controllers
             return View();
         }
 
+        public ActionResult Pedidos()
+        {
+            return View();
+        }
         public ActionResult Index()
         {
             return View();
+        }
+
+        void CargarCategoria()
+        {
+            this.ViewBag.CargarCategoria =
+                this.Model.MostrarCategoria().ToList();
         }
     }
 }

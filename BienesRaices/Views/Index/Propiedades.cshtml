@@ -1,0 +1,124 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<BienesRaices.Models.MostrarPropiedad_Result>
+@{
+    ViewBag.Title = "Propiedades";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+<div class="row">
+
+    <h1 style="text-align:center">Busqueda de Propiedades</h1>
+    @using (Html.BeginForm("Propiedades", "Index", FormMethod.Get))
+    {
+<div class="row">
+
+    <div class="col-lg-3 form-group">
+        <label>Cantidad de Cuartos</label>
+        <select class="form-control" name="CanCuato">
+            <option value="">Seleccione la cantidad</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+
+    <div class="col-lg-3 form-group">
+        <label>Cantidad de Baños</label>
+        <select class="form-control" name="CanBano">
+            <option value="">Seleccione la cantidad</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+
+    <div class="col-lg-3 form-group ">
+        <label>Cantidad de Garajes</label>
+        <select class="form-control" name="CanGara">
+            <option value="">Seleccione la cantidad</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+    <div class="col-lg-3 form-group">
+        <label>Categoria de la propiedad</label>
+        <select class="form-control" name="Cate">
+            <option>Seleccione una categoria</option>
+            @{
+                foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
+                {
+                    <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
+                }
+            }
+        </select>
+    </div>
+
+
+
+
+    <div class="slidecontainer">
+        <label>Precio</label>
+        <br />
+        <input type="range" min="0" name="precio02" max="20000000" value="0" step="1000000" class="slider" id="myRange">
+        <p>Precio:¢ <span id="demo"></span></p>
+    </div>
+
+    <button type="submit" class="btn btn-info">Buscar</button>
+</div>
+            }
+        </div>
+
+<div class="row">
+
+
+    @{ foreach (BienesRaices.Models.MostrarPropiedad_Result posicion in Model)
+        {
+            
+                <div class="card col-lg-3">
+                        <div class="card-body" style="text-align:center">
+                            <h1>@posicion.Nombre_P</h1>
+                            <img src="https://images.adsttc.com/media/images/5afb/37ff/f197/cc1b/a000/00d7/medium_jpg/Janak_Mistry_residence-61.jpg?1526413290" width="100%" alt="Alternate Text" />
+                            <p>Precio:@posicion.Precio</p>
+                            <p>Tipo: @posicion.Nombre_CA</p>
+                            <i class="fas fa-bed">@posicion.Can_Cuarto_P</i>
+                            <i class="fas fa-warehouse">@posicion.Can_Garaje_P</i>
+                            <i class="fas fa-toilet">@posicion.Can_Baños_P</i>
+                            @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
+                            {
+                                <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-info">Consultar Propiedad</button>
+                            }
+                            </div>
+                </div>
+         
+
+        }
+    }
+
+</div>
+
+   
+
+<script>
+
+    const formatter = new Intl.NumberFormat( {
+        style: 'currency',
+        currency: '',
+        minimumFractionDigits: 0
+    })
+
+    // "$10,000
+
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function () {
+        output.innerHTML = formatter.format(this.value);
+     
+    }
+</script>
