@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BienesRaices.Models;
+using PagedList;
 
 
 namespace BienesRaices.Controllers
@@ -86,6 +87,72 @@ namespace BienesRaices.Controllers
         public ActionResult Pedidos()
         {
             return View();
+        }
+        public ActionResult Reportes()
+        {
+            return View();
+        }
+        public ActionResult Inicio(int? pageSize, int? page, int? precio02, int? CanCuato, int? CanBano, int? CanGara, int? Cate)
+        {
+            CargarCategoria();
+
+            List<MostrarPropiedad_Result> lista = new List<MostrarPropiedad_Result>();
+            lista = Model.MostrarPropiedad(precio02, CanCuato, CanBano, CanGara, Cate).ToList();
+            pageSize = (pageSize ?? 10);
+            page = (page ?? 1);
+
+            ViewBag.PageSize = pageSize;
+
+            return View(lista.ToPagedList(page.Value, pageSize.Value));
+        }
+        public ActionResult ModificarPropiedad( int idpropiedad)
+        {
+            CargarCategoria();
+            MostrarPropiedadID_Result modelovista = new MostrarPropiedadID_Result();
+            modelovista = this.Model.MostrarPropiedadID(idpropiedad).FirstOrDefault();
+            return View(modelovista);
+        }
+        [HttpPost]
+        public ActionResult ModificarPropiedad(MostrarPropiedadID_Result modelovista, int idpropiedad)
+        {
+            CargarCategoria();
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+            try
+            {
+                cantRegistrosAfectados = this.Model.ModificarPropiedad(
+                    modelovista.Id_Propiedad_P = idpropiedad,
+                    modelovista.Nombre_P,
+                    modelovista.Precio_P,
+                    modelovista.Can_Cuarto_P,
+                    modelovista.Can_Baños_P,
+                    modelovista.Can_Garaje_P,
+                    modelovista.Estado_P,
+                     modelovista.Id_Categoria_P
+
+                    );
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un error: " + error.Message;
+            }
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                {
+                    resultado += "Registro modificado";
+                }
+                else
+                {
+                    resultado += "No se pudo modificar";
+                }
+
+            }
+            Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+
+            return View(modelovista);
+
+
         }
         public ActionResult Index()
         {

@@ -304,6 +304,8 @@
     <Content Include="Views\Shared\_LayoutCliente.cshtml" />
     <Content Include="Views\Index\Propiedades.cshtml" />
     <Content Include="Views\Index\Propiedad.cshtml" />
+    <Content Include="Views\Propiedad\ModificarPropiedad.cshtml" />
+    <Content Include="Views\Propiedad\Inicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

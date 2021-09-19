@@ -197,5 +197,42 @@ namespace BienesRaices.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadID_Result>("MostrarPropiedadID", idPropiedadParameter);
         }
+    
+        public virtual int ModificarPropiedad(Nullable<int> idPropi, string nombrePro, Nullable<decimal> precio, Nullable<int> cantidadba, Nullable<int> cantidadCuar, Nullable<int> cantidadGara, string estado, Nullable<int> categoria)
+        {
+            var idPropiParameter = idPropi.HasValue ?
+                new ObjectParameter("idPropi", idPropi) :
+                new ObjectParameter("idPropi", typeof(int));
+    
+            var nombreProParameter = nombrePro != null ?
+                new ObjectParameter("NombrePro", nombrePro) :
+                new ObjectParameter("NombrePro", typeof(string));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var cantidadbaParameter = cantidadba.HasValue ?
+                new ObjectParameter("Cantidadba", cantidadba) :
+                new ObjectParameter("Cantidadba", typeof(int));
+    
+            var cantidadCuarParameter = cantidadCuar.HasValue ?
+                new ObjectParameter("CantidadCuar", cantidadCuar) :
+                new ObjectParameter("CantidadCuar", typeof(int));
+    
+            var cantidadGaraParameter = cantidadGara.HasValue ?
+                new ObjectParameter("CantidadGara", cantidadGara) :
+                new ObjectParameter("CantidadGara", typeof(int));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarPropiedad", idPropiParameter, nombreProParameter, precioParameter, cantidadbaParameter, cantidadCuarParameter, cantidadGaraParameter, estadoParameter, categoriaParameter);
+        }
     }
 }
