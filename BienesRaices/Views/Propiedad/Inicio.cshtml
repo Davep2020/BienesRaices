@@ -10,7 +10,7 @@
 <div class="row">
 
     <h1 style="text-align:center">Busqueda de Propiedades</h1>
-    @using (Html.BeginForm("Propiedades", "Index", FormMethod.Get))
+    @using (Html.BeginForm("Inicio", "Propiedad", FormMethod.Get))
     {
         <div class="row">
 
@@ -83,19 +83,36 @@
         {
 
             <div class="card col-lg-3">
-                <div class="card-body" style="text-align:center">
-                    <h1>@posicion.Nombre_P</h1>
-                    <img src="https://images.adsttc.com/media/images/5afb/37ff/f197/cc1b/a000/00d7/medium_jpg/Janak_Mistry_residence-61.jpg?1526413290" width="100%" alt="Alternate Text" />
-                    <p>Precio:@posicion.Precio</p>
-                    <p>Tipo: @posicion.Nombre_CA</p>
-                    <i class="fas fa-bed">@posicion.Can_Cuarto_P</i>
-                    <i class="fas fa-warehouse">@posicion.Can_Garaje_P</i>
-                    <i class="fas fa-toilet">@posicion.Can_Baños_P</i>
-                    @using (Html.BeginForm("ModificarPropiedad", "Propiedad", FormMethod.Get))
-                    {
-                        <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-info">Modificar Propiedad</button>
-                    }
-                </div>
+                    <div class="card-body" style="text-align:center">
+                        <h1>@posicion.Nombre_P</h1>
+                        <img src="https://images.adsttc.com/media/images/5afb/37ff/f197/cc1b/a000/00d7/medium_jpg/Janak_Mistry_residence-61.jpg?1526413290" width="100%" alt="Alternate Text" />
+                        <p>Precio:@posicion.Precio</p>
+                        <p>Tipo: @posicion.Nombre_CA</p>
+                        <i class="fas fa-bed">@posicion.Can_Cuarto_P</i>
+                        <i class="fas fa-warehouse">@posicion.Can_Garaje_P</i>
+                        <i class="fas fa-toilet">@posicion.Can_Baños_P</i>
+                        @using (Html.BeginForm("ModificarPropiedad", "Propiedad", FormMethod.Get))
+                        {
+                            <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-info">Modificar Propiedad</button>
+                        }
+
+                        @if (posicion.Estado_P == "Oculto")
+                        {
+                            using (Html.BeginForm("OcultarPropiedad", "Propiedad", FormMethod.Post))
+                            {
+                    <input type="text" name="Estado" value="@posicion.Estado_P" style="display:none">
+                                <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-secondary">Mostrar Propiedad</button>
+                            }
+                        }
+                        else if(posicion.Estado_P == "Nuevo")
+                        {
+                            using (Html.BeginForm("OcultarPropiedad", "Propiedad", FormMethod.Post))
+                            {
+                    <input type="text" name="Estado" value="@posicion.Estado_P" style="display:none">
+                                <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-danger">Ocultar Propiedad</button>
+                            }
+                        }
+                    </div>
             </div>
 
 

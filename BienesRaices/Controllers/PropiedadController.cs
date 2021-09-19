@@ -14,6 +14,7 @@ namespace BienesRaices.Controllers
         
         db_a3cb5b_webbienesraicesEntities Model = new db_a3cb5b_webbienesraicesEntities();
 
+        #region Vista
         public ActionResult Lista()
         {
             bool sesionIniciada = false;
@@ -35,6 +36,14 @@ namespace BienesRaices.Controllers
            }
 
         }
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #region AgregaPropiedad
 
         public ActionResult Propiedades()
         {
@@ -84,14 +93,27 @@ namespace BienesRaices.Controllers
             return View();
         }
 
+        #endregion
+
+        #region Pedidos
         public ActionResult Pedidos()
         {
-            return View();
+            List<MuestralosPedidos_Result> lista = new List<MuestralosPedidos_Result>();
+            lista = Model.MuestralosPedidos().ToList();
+
+            return View(lista);
         }
+
+        #endregion
+
+        #region Reportes
         public ActionResult Reportes()
         {
             return View();
         }
+        #endregion
+
+        #region Inicio
         public ActionResult Inicio(int? pageSize, int? page, int? precio02, int? CanCuato, int? CanBano, int? CanGara, int? Cate)
         {
             CargarCategoria();
@@ -105,6 +127,48 @@ namespace BienesRaices.Controllers
 
             return View(lista.ToPagedList(page.Value, pageSize.Value));
         }
+        #endregion
+
+        #region Ocultar Propiedad
+        public ActionResult OcultarPropiedad(MostrarPropiedadID_Result modelovista, int idpropiedad , string Estado)
+        {
+   
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+            try
+            {
+                cantRegistrosAfectados = this.Model.OcultarPropiedad(
+                    modelovista.Id_Propiedad_P = idpropiedad,
+                   modelovista.Estado_P = Estado
+
+                    );
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un error: " + error.Message;
+            }
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                {
+                    resultado += "Proceso Exitoso";
+                }
+                else
+                {
+                    resultado += "Proceso Exitoso";
+                }
+
+            }
+            Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+
+            return RedirectToAction("Inicio", "Propiedad");
+
+
+        }
+        #endregion
+
+        #region ModificarPropiedad
+
         public ActionResult ModificarPropiedad( int idpropiedad)
         {
             CargarCategoria();
@@ -154,15 +218,15 @@ namespace BienesRaices.Controllers
 
 
         }
-        public ActionResult Index()
-        {
-            return View();
-        }
+        #endregion
 
+
+        #region Metodos
         void CargarCategoria()
         {
             this.ViewBag.CargarCategoria =
                 this.Model.MostrarCategoria().ToList();
         }
+        #endregion
     }
 }

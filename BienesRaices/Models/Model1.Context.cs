@@ -63,11 +63,6 @@ namespace BienesRaices.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IngresaPedido", nombreCompletoParameter, telefonoParameter, correoParameter, idPropiedadParameter, estadoParameter, comentarioParameter);
         }
     
-        public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
-        }
-    
         public virtual int EstadoCuenta(Nullable<int> idCredencial)
         {
             var idCredencialParameter = idCredencial.HasValue ?
@@ -233,6 +228,24 @@ namespace BienesRaices.Models
                 new ObjectParameter("Categoria", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarPropiedad", idPropiParameter, nombreProParameter, precioParameter, cantidadbaParameter, cantidadCuarParameter, cantidadGaraParameter, estadoParameter, categoriaParameter);
+        }
+    
+        public virtual int OcultarPropiedad(Nullable<int> idPropiedad, string estado)
+        {
+            var idPropiedadParameter = idPropiedad.HasValue ?
+                new ObjectParameter("IdPropiedad", idPropiedad) :
+                new ObjectParameter("IdPropiedad", typeof(int));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("OcultarPropiedad", idPropiedadParameter, estadoParameter);
+        }
+    
+        public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
         }
     }
 }

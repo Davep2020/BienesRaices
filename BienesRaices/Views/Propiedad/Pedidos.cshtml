@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Pedidos";
+    Layout = "~/Views/Shared/_LayoutPropiedad.cshtml";
+}
+
+<div class="row">
+<div class="col-lg-12">
+    <table class="table">
+        <tr>
+            <td><strong>Nombre del interesado</strong> </td>
+            <td><strong>Teléfono</strong></td>
+            <td><strong>Correo</strong></td>
+            <td><strong>Comentario</strong></td>
+            <td><strong>Nombre de la Propiedad</strong></td>
+            <td><strong>Categoria</strong></td>
+            <td><strong>Precio</strong></td>
+
+
+
+
+        </tr>
+        @{ foreach (BienesRaices.Models.MuestralosPedidos_Result posicion in this.Model)
+            {
+                <tr>
+
+                    <td>@posicion.NombreCompleto_CO</td>
+                    <td>@posicion.Telefono_CO</td>
+                    <td>@posicion.Correo_CO</td>
+                    <td>@posicion.Comentario_CO</td>
+                    <td>@posicion.Nombre_P</td>
+                    <td>@posicion.Nombre_CA</td>
+                    <td>@posicion.Precio_P</td>
+
+
+                </tr>
+            } }
+    </table>
+
+
+</div>
+
+    </div>

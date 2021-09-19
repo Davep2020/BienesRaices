@@ -306,6 +306,7 @@
     <Content Include="Views\Index\Propiedad.cshtml" />
     <Content Include="Views\Propiedad\ModificarPropiedad.cshtml" />
     <Content Include="Views\Propiedad\Inicio.cshtml" />
+    <Content Include="Views\Propiedad\Pedidos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

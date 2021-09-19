@@ -20,5 +20,15 @@ namespace BienesRaices.Models
         public int Id_Propiedad_CO { get; set; }
         public string Estado_CO { get; set; }
         public string Comentario_CO { get; set; }
+        public int Id_Propiedad_P { get; set; }
+        public string Nombre_P { get; set; }
+        public decimal Precio_P { get; set; }
+        public int Can_Cuarto_P { get; set; }
+        public int Can_Baños_P { get; set; }
+        public string Estado_P { get; set; }
+        public int Can_Garaje_P { get; set; }
+        public int Id_Categoria_P { get; set; }
+        public int Id_Categoria_CA { get; set; }
+        public string Nombre_CA { get; set; }
     }
 }

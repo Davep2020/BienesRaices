@@ -141,6 +141,10 @@
         </Function>
         <Function Name="MuestraCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MuestralosPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="OcultarPropiedad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPropiedad" Type="int" Mode="In" />
+          <Parameter Name="Estado" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="RetornaCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usuario" Type="varchar" Mode="In" />
           <Parameter Name="contrasena" Type="varchar" Mode="In" />
@@ -226,7 +230,6 @@
             <Parameter Name="Estado" Mode="In" Type="String" />
             <Parameter Name="Comentario" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="MuestralosPedidos" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MuestralosPedidos_Result)" />
           <FunctionImport Name="EstadoCuenta">
           <Parameter Name="idCredencial" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -276,6 +279,11 @@
             <Parameter Name="Estado" Mode="In" Type="String" />
             <Parameter Name="Categoria" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="OcultarPropiedad">
+            <Parameter Name="IdPropiedad" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MuestralosPedidos" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MuestralosPedidos_Result)" />
         </EntityContainer>
         <EntityType Name="Propiedad_P">
           <Key>
@@ -329,15 +337,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="MuestralosPedidos_Result">
-          <Property Type="Int32" Name="Id_Contacto_CO" Nullable="false" />
-          <Property Type="String" Name="NombreCompleto_CO" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Telefono_CO" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="Correo_CO" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Id_Propiedad_CO" Nullable="false" />
-          <Property Type="String" Name="Estado_CO" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Comentario_CO" Nullable="false" MaxLength="100" />
-        </ComplexType>
         <ComplexType Name="MuestraCuenta_Result">
           <Property Type="Int32" Name="Id_Credenciales_CR" Nullable="false" />
           <Property Type="String" Name="Usuario_CR" Nullable="false" MaxLength="50" />
@@ -388,6 +387,25 @@
         </ComplexType>
         <ComplexType Name="MostrarPropiedadID_Result">
           <Property Type="String" Name="Precio" Nullable="true" MaxLength="31" />
+          <Property Type="Int32" Name="Id_Propiedad_P" Nullable="false" />
+          <Property Type="String" Name="Nombre_P" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Precio_P" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Can_Cuarto_P" Nullable="false" />
+          <Property Type="Int32" Name="Can_Baños_P" Nullable="false" />
+          <Property Type="String" Name="Estado_P" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Can_Garaje_P" Nullable="false" />
+          <Property Type="Int32" Name="Id_Categoria_P" Nullable="false" />
+          <Property Type="Int32" Name="Id_Categoria_CA" Nullable="false" />
+          <Property Type="String" Name="Nombre_CA" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="MuestralosPedidos_Result">
+          <Property Type="Int32" Name="Id_Contacto_CO" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto_CO" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Telefono_CO" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Correo_CO" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Propiedad_CO" Nullable="false" />
+          <Property Type="String" Name="Estado_CO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Comentario_CO" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="Id_Propiedad_P" Nullable="false" />
           <Property Type="String" Name="Nombre_P" Nullable="false" MaxLength="100" />
           <Property Type="Decimal" Name="Precio_P" Nullable="false" Precision="18" Scale="2" />
@@ -450,19 +468,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="IngresaPedido" FunctionName="db_a3cb5b_webbienesraicesModel.Store.IngresaPedido" />
-          <FunctionImportMapping FunctionImportName="MuestralosPedidos" FunctionName="db_a3cb5b_webbienesraicesModel.Store.MuestralosPedidos">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.MuestralosPedidos_Result">
-                <ScalarProperty Name="Id_Contacto_CO" ColumnName="Id_Contacto_CO" />
-                <ScalarProperty Name="NombreCompleto_CO" ColumnName="NombreCompleto_CO" />
-                <ScalarProperty Name="Telefono_CO" ColumnName="Telefono_CO" />
-                <ScalarProperty Name="Correo_CO" ColumnName="Correo_CO" />
-                <ScalarProperty Name="Id_Propiedad_CO" ColumnName="Id_Propiedad_CO" />
-                <ScalarProperty Name="Estado_CO" ColumnName="Estado_CO" />
-                <ScalarProperty Name="Comentario_CO" ColumnName="Comentario_CO" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="EstadoCuenta" FunctionName="db_a3cb5b_webbienesraicesModel.Store.EstadoCuenta" />
           <FunctionImportMapping FunctionImportName="IngresaCuenta" FunctionName="db_a3cb5b_webbienesraicesModel.Store.IngresaCuenta" />
           <FunctionImportMapping FunctionImportName="ModicaCuenta" FunctionName="db_a3cb5b_webbienesraicesModel.Store.ModicaCuenta" />
@@ -554,6 +559,30 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ModificarPropiedad" FunctionName="db_a3cb5b_webbienesraicesModel.Store.ModificarPropiedad" />
+          <FunctionImportMapping FunctionImportName="OcultarPropiedad" FunctionName="db_a3cb5b_webbienesraicesModel.Store.OcultarPropiedad" />
+          <FunctionImportMapping FunctionImportName="MuestralosPedidos" FunctionName="db_a3cb5b_webbienesraicesModel.Store.MuestralosPedidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.MuestralosPedidos_Result">
+                <ScalarProperty Name="Id_Contacto_CO" ColumnName="Id_Contacto_CO" />
+                <ScalarProperty Name="NombreCompleto_CO" ColumnName="NombreCompleto_CO" />
+                <ScalarProperty Name="Telefono_CO" ColumnName="Telefono_CO" />
+                <ScalarProperty Name="Correo_CO" ColumnName="Correo_CO" />
+                <ScalarProperty Name="Id_Propiedad_CO" ColumnName="Id_Propiedad_CO" />
+                <ScalarProperty Name="Estado_CO" ColumnName="Estado_CO" />
+                <ScalarProperty Name="Comentario_CO" ColumnName="Comentario_CO" />
+                <ScalarProperty Name="Id_Propiedad_P" ColumnName="Id_Propiedad_P" />
+                <ScalarProperty Name="Nombre_P" ColumnName="Nombre_P" />
+                <ScalarProperty Name="Precio_P" ColumnName="Precio_P" />
+                <ScalarProperty Name="Can_Cuarto_P" ColumnName="Can_Cuarto_P" />
+                <ScalarProperty Name="Can_Baños_P" ColumnName="Can_Baños_P" />
+                <ScalarProperty Name="Estado_P" ColumnName="Estado_P" />
+                <ScalarProperty Name="Can_Garaje_P" ColumnName="Can_Garaje_P" />
+                <ScalarProperty Name="Id_Categoria_P" ColumnName="Id_Categoria_P" />
+                <ScalarProperty Name="Id_Categoria_CA" ColumnName="Id_Categoria_CA" />
+                <ScalarProperty Name="Nombre_CA" ColumnName="Nombre_CA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

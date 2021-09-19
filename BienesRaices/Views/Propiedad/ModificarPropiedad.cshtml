@@ -12,7 +12,7 @@
         </div>
         <div class="col-lg-3 form-group">
             <label for="">Precio de la Propiedad</label>
-            <input type="text" class="form-control" name="Precio_P" value="@Model.Precio" placeholder="Ingrese el Precio de la Propiedad" />
+            <input type="text" class="form-control" name="Precio_P" value="@Model.Precio_P" placeholder="Ingrese el Precio de la Propiedad" />
         </div>
         <div class="col-lg-3 form-group">
             <label>Cantidad de Cuartos</label>
@@ -160,17 +160,7 @@
             <label>Cargar Imagen</label>
             <input class="form-control-file border" type="file" name="name" value="" />
         </div>
-        <div class="col-lg-3 mt-4 form-groupml-2 ">
-            <label for="">Estado</label>
-            @if (@Model.Estado_P == "Oculto")
-            {
-            <input type="button" class="btn btn-info" name="Estado_P" value="Mostrar" />
-            }
-            else
-            {
-            <input type="button" class="btn btn-danger" name="Estado_P" value="Oculto" />
-            }
-        </div>
+        <input type="text" name="Estado_P" value="@Model.Estado_P" style="display:none">
 
         <div class="col-lg-3 form-group">
             <label>Categoria de la propiedad</label>
@@ -180,11 +170,15 @@
                     foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
                     {
                         bool repeat = Categoria.Id_Categoria_CA == Model.Id_Categoria_CA;
-                if (repeat)
-                {
-                        <option value="@Categoria.Id_Categoria_CA" selected>@Categoria.Nombre_CA</option>
+                        if (repeat)
+                        {
+                            <option value="@Categoria.Id_Categoria_CA" selected>@Categoria.Nombre_CA</option>
 
-                }
+                        }
+                        else
+                        {
+                            <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
+                        }
                     }
 
 

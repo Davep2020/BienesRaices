@@ -73,7 +73,7 @@ namespace BienesRaices.Controllers
             }
             Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
 
-            return RedirectToAction("Propiedades,Index");
+            return RedirectToAction("Propiedades","Index");
 
         }
         void CargarCategoria()
