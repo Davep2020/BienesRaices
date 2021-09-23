@@ -211,6 +211,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\CSS\Index\ClientePropiedades.css" />
     <Content Include="Content\CSS\Index\Index.css" />
+    <Content Include="Content\CSS\Index\style.css" />
     <Content Include="Content\CSS\Login\Login.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />

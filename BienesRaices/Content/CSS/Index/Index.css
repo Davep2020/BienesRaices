@@ -772,3 +772,12 @@ textarea {
     justify-content: space-between;
     align-items: center;
 }
+
+
+
+/* HEADER BOOTSTRAP*/
+
+.d-block {
+    max-width: 1350px;
+    max-height: 670px
+}
