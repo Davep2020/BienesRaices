@@ -21,6 +21,7 @@ namespace BienesRaices.Models
         public int Id_Propiedad_CO { get; set; }
         public string Estado_CO { get; set; }
         public string Comentario_CO { get; set; }
+        public string Fecha_Cierre { get; set; }
     
         public virtual Propiedad_P Propiedad_P { get; set; }
     }

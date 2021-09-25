@@ -103,6 +103,72 @@ namespace BienesRaices.Controllers
 
             return View(lista);
         }
+        [HttpPost]
+        public ActionResult PedidosVendidos(MuestralosPedidos_Result modelovista, int idContacto)
+        {
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+            try
+            {
+                cantRegistrosAfectados = this.Model.FinalizarVenta(
+                    modelovista.Id_Contacto_CO = idContacto
+                    );
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un error: " + error.Message;
+            }
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                {
+                    resultado += "Registro modificado";
+                }
+                else
+                {
+                    resultado += "No se pudo modificar";
+                }
+
+            }
+            Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+
+            return RedirectToAction("Pedidos", "Propiedad");
+
+
+        }
+      
+        [HttpPost]
+        public ActionResult PedidosRechazados(MuestralosPedidos_Result modelovista, int idContacto)
+        {
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+            try
+            {
+                cantRegistrosAfectados = this.Model.RechazarVenta(
+                    modelovista.Id_Contacto_CO = idContacto
+                    );
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un error: " + error.Message;
+            }
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                {
+                    resultado += "Registro modificado";
+                }
+                else
+                {
+                    resultado += "No se pudo modificar";
+                }
+
+            }
+            Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+
+            return RedirectToAction("Pedidos", "Propiedad");
+
+        }
 
         #endregion
 
@@ -111,6 +177,16 @@ namespace BienesRaices.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult ReportesVentas()
+        {
+            List<MostrarReporte_Result> listaPersonas =Model.MostrarReporte().ToList();
+            return Json(new
+            {
+                resultado = listaPersonas
+            });
+        }
+
         #endregion
 
         #region Inicio

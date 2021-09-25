@@ -29,10 +29,10 @@ namespace BienesRaices.Models
         }
     
         public DbSet<Categoria_CA> Categoria_CA { get; set; }
-        public DbSet<Contacto_CO> Contacto_CO { get; set; }
         public DbSet<Imagen_I> Imagen_I { get; set; }
         public DbSet<Propiedad_P> Propiedad_P { get; set; }
         public DbSet<Credenciales_CR> Credenciales_CR { get; set; }
+        public DbSet<Contacto_CO> Contacto_CO { get; set; }
     
         public virtual int IngresaPedido(string nombreCompleto, string telefono, string correo, Nullable<int> idPropiedad, string estado, string comentario)
         {
@@ -243,9 +243,32 @@ namespace BienesRaices.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("OcultarPropiedad", idPropiedadParameter, estadoParameter);
         }
     
+        public virtual int FinalizarVenta(Nullable<int> idContacto)
+        {
+            var idContactoParameter = idContacto.HasValue ?
+                new ObjectParameter("idContacto", idContacto) :
+                new ObjectParameter("idContacto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FinalizarVenta", idContactoParameter);
+        }
+    
+        public virtual int RechazarVenta(Nullable<int> idContacto)
+        {
+            var idContactoParameter = idContacto.HasValue ?
+                new ObjectParameter("idContacto", idContacto) :
+                new ObjectParameter("idContacto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RechazarVenta", idContactoParameter);
+        }
+    
         public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
+        }
+    
+        public virtual ObjectResult<MostrarReporte_Result> MostrarReporte()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarReporte_Result>("MostrarReporte");
         }
     }
 }

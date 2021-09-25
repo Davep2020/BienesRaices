@@ -11,10 +11,12 @@
             <td><strong>Nombre del interesado</strong> </td>
             <td><strong>Teléfono</strong></td>
             <td><strong>Correo</strong></td>
-            <td><strong>Comentario</strong></td>
             <td><strong>Nombre de la Propiedad</strong></td>
             <td><strong>Categoria</strong></td>
             <td><strong>Precio</strong></td>
+            <td><strong>Confirmar Venta</strong></td>
+            <td><strong>Rechazar Venta</strong></td>
+
 
 
 
@@ -27,10 +29,24 @@
                     <td>@posicion.NombreCompleto_CO</td>
                     <td>@posicion.Telefono_CO</td>
                     <td>@posicion.Correo_CO</td>
-                    <td>@posicion.Comentario_CO</td>
                     <td>@posicion.Nombre_P</td>
                     <td>@posicion.Nombre_CA</td>
                     <td>@posicion.Precio_P</td>
+
+                    <td style="text-align:center">
+                        @using (Html.BeginForm("PedidosVendidos", "Propiedad", FormMethod.Post))
+                        {
+                            <button type="submit" id="submit" name="idContacto" value="@posicion.Id_Contacto_CO">Vender</button>
+                        }
+
+                    </td>
+                    <td style="text-align:center">
+                        @using (Html.BeginForm("PedidosRechazados", "Propiedad", FormMethod.Post))
+                        {
+                            <button type="submit" id="submit" name="idContacto" value="@posicion.Id_Contacto_CO">Rechazar</button>
+                        }
+
+                    </td>
 
 
                 </tr>

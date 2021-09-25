@@ -16,8 +16,8 @@ namespace BienesRaices.Models
     {
         public Propiedad_P()
         {
-            this.Contacto_CO = new HashSet<Contacto_CO>();
             this.Imagen_I = new HashSet<Imagen_I>();
+            this.Contacto_CO = new HashSet<Contacto_CO>();
         }
     
         public int Id_Propiedad_P { get; set; }
@@ -30,7 +30,7 @@ namespace BienesRaices.Models
         public int Id_Categoria_P { get; set; }
     
         public virtual Categoria_CA Categoria_CA { get; set; }
-        public virtual ICollection<Contacto_CO> Contacto_CO { get; set; }
         public virtual ICollection<Imagen_I> Imagen_I { get; set; }
+        public virtual ICollection<Contacto_CO> Contacto_CO { get; set; }
     }
 }

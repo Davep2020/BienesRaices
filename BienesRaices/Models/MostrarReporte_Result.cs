@@ -11,8 +11,9 @@ namespace BienesRaices.Models
 {
     using System;
     
-    public partial class MuestralosPedidos_Result
+    public partial class MostrarReporte_Result
     {
+        public string Precio { get; set; }
         public int Id_Contacto_CO { get; set; }
         public string NombreCompleto_CO { get; set; }
         public string Telefono_CO { get; set; }
