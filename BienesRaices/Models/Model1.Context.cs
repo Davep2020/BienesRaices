@@ -125,7 +125,40 @@ namespace BienesRaices.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetornaCuentaID_Result>("RetornaCuentaID", id_UsuarioParameter);
         }
     
-        public virtual int IngresaPropiedad(string nombrePro, Nullable<decimal> precioPro, Nullable<int> cantidadCuarto, Nullable<int> cantidadBano, Nullable<int> cantidadGarajes, Nullable<int> categoriaPro)
+        public virtual ObjectResult<MostrarCategoria_Result> MostrarCategoria()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarCategoria_Result>("MostrarCategoria");
+        }
+    
+        public virtual int FinalizarVenta(Nullable<int> idContacto)
+        {
+            var idContactoParameter = idContacto.HasValue ?
+                new ObjectParameter("idContacto", idContacto) :
+                new ObjectParameter("idContacto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FinalizarVenta", idContactoParameter);
+        }
+    
+        public virtual int RechazarVenta(Nullable<int> idContacto)
+        {
+            var idContactoParameter = idContacto.HasValue ?
+                new ObjectParameter("idContacto", idContacto) :
+                new ObjectParameter("idContacto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RechazarVenta", idContactoParameter);
+        }
+    
+        public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
+        }
+    
+        public virtual ObjectResult<MostrarReporte_Result> MostrarReporte()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarReporte_Result>("MostrarReporte");
+        }
+    
+        public virtual int IngresaPropiedad(string nombrePro, Nullable<decimal> precioPro, Nullable<int> cantidadCuarto, Nullable<int> cantidadBano, Nullable<int> cantidadGarajes, Nullable<int> categoriaPro, string ruta)
         {
             var nombreProParameter = nombrePro != null ?
                 new ObjectParameter("NombrePro", nombrePro) :
@@ -151,49 +184,14 @@ namespace BienesRaices.Models
                 new ObjectParameter("CategoriaPro", categoriaPro) :
                 new ObjectParameter("CategoriaPro", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IngresaPropiedad", nombreProParameter, precioProParameter, cantidadCuartoParameter, cantidadBanoParameter, cantidadGarajesParameter, categoriaProParameter);
+            var rutaParameter = ruta != null ?
+                new ObjectParameter("Ruta", ruta) :
+                new ObjectParameter("Ruta", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IngresaPropiedad", nombreProParameter, precioProParameter, cantidadCuartoParameter, cantidadBanoParameter, cantidadGarajesParameter, categoriaProParameter, rutaParameter);
         }
     
-        public virtual ObjectResult<MostrarCategoria_Result> MostrarCategoria()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarCategoria_Result>("MostrarCategoria");
-        }
-    
-        public virtual ObjectResult<MostrarPropiedad_Result> MostrarPropiedad(Nullable<int> precio02, Nullable<int> canCuato, Nullable<int> canBano, Nullable<int> canGara, Nullable<int> cate)
-        {
-            var precio02Parameter = precio02.HasValue ?
-                new ObjectParameter("Precio02", precio02) :
-                new ObjectParameter("Precio02", typeof(int));
-    
-            var canCuatoParameter = canCuato.HasValue ?
-                new ObjectParameter("CanCuato", canCuato) :
-                new ObjectParameter("CanCuato", typeof(int));
-    
-            var canBanoParameter = canBano.HasValue ?
-                new ObjectParameter("CanBano", canBano) :
-                new ObjectParameter("CanBano", typeof(int));
-    
-            var canGaraParameter = canGara.HasValue ?
-                new ObjectParameter("CanGara", canGara) :
-                new ObjectParameter("CanGara", typeof(int));
-    
-            var cateParameter = cate.HasValue ?
-                new ObjectParameter("Cate", cate) :
-                new ObjectParameter("Cate", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedad_Result>("MostrarPropiedad", precio02Parameter, canCuatoParameter, canBanoParameter, canGaraParameter, cateParameter);
-        }
-    
-        public virtual ObjectResult<MostrarPropiedadID_Result> MostrarPropiedadID(Nullable<int> idPropiedad)
-        {
-            var idPropiedadParameter = idPropiedad.HasValue ?
-                new ObjectParameter("idPropiedad", idPropiedad) :
-                new ObjectParameter("idPropiedad", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadID_Result>("MostrarPropiedadID", idPropiedadParameter);
-        }
-    
-        public virtual int ModificarPropiedad(Nullable<int> idPropi, string nombrePro, Nullable<decimal> precio, Nullable<int> cantidadba, Nullable<int> cantidadCuar, Nullable<int> cantidadGara, string estado, Nullable<int> categoria)
+        public virtual int ModificarPropiedad(Nullable<int> idPropi, string nombrePro, Nullable<decimal> precio, Nullable<int> cantidadba, Nullable<int> cantidadCuar, Nullable<int> cantidadGara, string estado, Nullable<int> categoria, string ruta)
         {
             var idPropiParameter = idPropi.HasValue ?
                 new ObjectParameter("idPropi", idPropi) :
@@ -227,7 +225,20 @@ namespace BienesRaices.Models
                 new ObjectParameter("Categoria", categoria) :
                 new ObjectParameter("Categoria", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarPropiedad", idPropiParameter, nombreProParameter, precioParameter, cantidadbaParameter, cantidadCuarParameter, cantidadGaraParameter, estadoParameter, categoriaParameter);
+            var rutaParameter = ruta != null ?
+                new ObjectParameter("Ruta", ruta) :
+                new ObjectParameter("Ruta", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarPropiedad", idPropiParameter, nombreProParameter, precioParameter, cantidadbaParameter, cantidadCuarParameter, cantidadGaraParameter, estadoParameter, categoriaParameter, rutaParameter);
+        }
+    
+        public virtual ObjectResult<MostrarPropiedadID_Result> MostrarPropiedadID(Nullable<int> idPropiedad)
+        {
+            var idPropiedadParameter = idPropiedad.HasValue ?
+                new ObjectParameter("idPropiedad", idPropiedad) :
+                new ObjectParameter("idPropiedad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadID_Result>("MostrarPropiedadID", idPropiedadParameter);
         }
     
         public virtual int OcultarPropiedad(Nullable<int> idPropiedad, string estado)
@@ -243,32 +254,58 @@ namespace BienesRaices.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("OcultarPropiedad", idPropiedadParameter, estadoParameter);
         }
     
-        public virtual int FinalizarVenta(Nullable<int> idContacto)
+        public virtual ObjectResult<MostrarPropiedad_Result> MostrarPropiedad(Nullable<int> precio02, Nullable<int> canCuato, Nullable<int> canBano, Nullable<int> canGara, Nullable<int> cate)
         {
-            var idContactoParameter = idContacto.HasValue ?
-                new ObjectParameter("idContacto", idContacto) :
-                new ObjectParameter("idContacto", typeof(int));
+            var precio02Parameter = precio02.HasValue ?
+                new ObjectParameter("Precio02", precio02) :
+                new ObjectParameter("Precio02", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FinalizarVenta", idContactoParameter);
+            var canCuatoParameter = canCuato.HasValue ?
+                new ObjectParameter("CanCuato", canCuato) :
+                new ObjectParameter("CanCuato", typeof(int));
+    
+            var canBanoParameter = canBano.HasValue ?
+                new ObjectParameter("CanBano", canBano) :
+                new ObjectParameter("CanBano", typeof(int));
+    
+            var canGaraParameter = canGara.HasValue ?
+                new ObjectParameter("CanGara", canGara) :
+                new ObjectParameter("CanGara", typeof(int));
+    
+            var cateParameter = cate.HasValue ?
+                new ObjectParameter("Cate", cate) :
+                new ObjectParameter("Cate", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedad_Result>("MostrarPropiedad", precio02Parameter, canCuatoParameter, canBanoParameter, canGaraParameter, cateParameter);
         }
     
-        public virtual int RechazarVenta(Nullable<int> idContacto)
+        public virtual ObjectResult<MostrarPropiedadAdmin_Result> MostrarPropiedadAdmin(Nullable<int> precio02, Nullable<int> canCuato, Nullable<int> canBano, Nullable<int> canGara, Nullable<int> cate, string estado)
         {
-            var idContactoParameter = idContacto.HasValue ?
-                new ObjectParameter("idContacto", idContacto) :
-                new ObjectParameter("idContacto", typeof(int));
+            var precio02Parameter = precio02.HasValue ?
+                new ObjectParameter("Precio02", precio02) :
+                new ObjectParameter("Precio02", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RechazarVenta", idContactoParameter);
-        }
+            var canCuatoParameter = canCuato.HasValue ?
+                new ObjectParameter("CanCuato", canCuato) :
+                new ObjectParameter("CanCuato", typeof(int));
     
-        public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
-        }
+            var canBanoParameter = canBano.HasValue ?
+                new ObjectParameter("CanBano", canBano) :
+                new ObjectParameter("CanBano", typeof(int));
     
-        public virtual ObjectResult<MostrarReporte_Result> MostrarReporte()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarReporte_Result>("MostrarReporte");
+            var canGaraParameter = canGara.HasValue ?
+                new ObjectParameter("CanGara", canGara) :
+                new ObjectParameter("CanGara", typeof(int));
+    
+            var cateParameter = cate.HasValue ?
+                new ObjectParameter("Cate", cate) :
+                new ObjectParameter("Cate", typeof(int));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadAdmin_Result>("MostrarPropiedadAdmin", precio02Parameter, canCuatoParameter, canBanoParameter, canGaraParameter, cateParameter, estadoParameter);
         }
     }
 }

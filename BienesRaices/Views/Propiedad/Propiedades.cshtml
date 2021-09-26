@@ -3,7 +3,9 @@
     ViewBag.Title = "Propiedades";
     Layout = "~/Views/Shared/_LayoutPropiedad.cshtml";
 }
-<form  method="post">
+@using (Html.BeginForm("Propiedades", "Propiedad", FormMethod.Post,
+                    new { enctype = "multipart/form-data" }))
+{
     <div class="row">
         <div class="col-lg-3 form-group">
             <label for="">Nombre de la propiedad</label>
@@ -11,7 +13,7 @@
         </div>
         <div class="col-lg-3 form-group">
             <label for="">Precio de la Propiedad</label>
-            <input type="text"  class="form-control" name="Precio_P" value="" placeholder="Ingrese el Precio de la Propiedad" />
+            <input type="text" class="form-control" name="Precio" value="" placeholder="Ingrese el Precio de la Propiedad" />
         </div>
         <div class="col-lg-3 form-group">
             <label>Cantidad de Cuartos</label>
@@ -49,7 +51,7 @@
         </div>
         <div class="col-lg-2 offset-lg-1 form-group">
             <label>Cargar Imagen</label>
-            <input class="form-control-file border" type="file" name="name" value="" />
+            <input class="form-control-file border" type="file" size="" id="Ruta_I" name="Ruta_I" />
         </div>
         <div class="col-lg-3 offset-lg-3 form-group">
             <label>Categoria de la propiedad</label>
@@ -73,5 +75,4 @@
         </div>
     </div>
 
-
-</form>
+ }

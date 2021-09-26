@@ -11,11 +11,12 @@ namespace BienesRaices.Models
 {
     using System;
     
-    public partial class MostrarPropiedad_Result
+    public partial class MostrarPropiedadAdmin_Result
     {
         public string Precio { get; set; }
         public int Id_Propiedad_P { get; set; }
         public string Nombre_P { get; set; }
+        public string Estado_P { get; set; }
         public int Can_Cuarto_P { get; set; }
         public int Can_Baños_P { get; set; }
         public int Can_Garaje_P { get; set; }
@@ -23,6 +24,5 @@ namespace BienesRaices.Models
         public int Id_Categoria_CA { get; set; }
         public string Nombre_CA { get; set; }
         public string Ruta_I { get; set; }
-        public string Estado_P { get; set; }
     }
 }

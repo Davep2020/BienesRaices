@@ -24,5 +24,8 @@ namespace BienesRaices.Models
         public int Id_Categoria_P { get; set; }
         public int Id_Categoria_CA { get; set; }
         public string Nombre_CA { get; set; }
+        public int Id_Imagen_I { get; set; }
+        public string Ruta_I { get; set; }
+        public Nullable<int> Id_Propiedad_I { get; set; }
     }
 }

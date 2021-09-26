@@ -52,21 +52,25 @@ namespace BienesRaices.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Propiedades(MostrarPropiedad_Result modelos)
+        public ActionResult Propiedades(MostrarPropiedad_Result modelos, HttpPostedFileBase Ruta_I)
         {
             int registros = 0;
             string mensaje = "";
             CargarCategoria();
-
+            string ImageName = System.IO.Path.GetFileName(Ruta_I.FileName);
+            string physicalPath = Server.MapPath("~/Images/" + ImageName);
+            Ruta_I.SaveAs(physicalPath);
             try
             {
                 registros = Model.IngresaPropiedad(
                     modelos.Nombre_P,
-                    modelos.Precio_P,
+                    Convert.ToInt32(modelos.Precio),
                     modelos.Can_Cuarto_P,
                     modelos.Can_Baños_P,
                     modelos.Can_Garaje_P,
-                    modelos.Id_Categoria_P
+                    modelos.Id_Categoria_P,
+                    Ruta_I.FileName
+                  
 
                     );
             }
@@ -190,12 +194,12 @@ namespace BienesRaices.Controllers
         #endregion
 
         #region Inicio
-        public ActionResult Inicio(int? pageSize, int? page, int? precio02, int? CanCuato, int? CanBano, int? CanGara, int? Cate)
+        public ActionResult Inicio(int? pageSize, int? page, int? precio02, int? CanCuato, int? CanBano, int? CanGara, int? Cate, string estado)
         {
             CargarCategoria();
 
-            List<MostrarPropiedad_Result> lista = new List<MostrarPropiedad_Result>();
-            lista = Model.MostrarPropiedad(precio02, CanCuato, CanBano, CanGara, Cate).ToList();
+            List<MostrarPropiedadAdmin_Result> lista = new List<MostrarPropiedadAdmin_Result>();
+            lista = Model.MostrarPropiedadAdmin(precio02, CanCuato, CanBano, CanGara, Cate, estado).ToList();
             pageSize = (pageSize ?? 10);
             page = (page ?? 1);
 
@@ -268,7 +272,8 @@ namespace BienesRaices.Controllers
                     modelovista.Can_Baños_P,
                     modelovista.Can_Garaje_P,
                     modelovista.Estado_P,
-                     modelovista.Id_Categoria_P
+                    modelovista.Id_Categoria_P,
+                    modelovista.Ruta_I
 
                     );
             }

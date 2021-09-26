@@ -1,0 +1,17 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("FileUpload", "Test", FormMethod.Post,
+                    new { enctype = "multipart/form-data" }))
+{
+    <div>
+
+        <h1>Add student information</h1>
+
+        <input type="file" multiple name="file" id="file" style="width: 100%;" /> <br /><br />
+
+        <input type="submit" value="Upload student info" />
+    </div>
+}
