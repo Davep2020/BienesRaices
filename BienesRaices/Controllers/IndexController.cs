@@ -14,10 +14,20 @@ namespace BienesRaices.Controllers
     {
         db_a3cb5b_webbienesraicesEntities Model = new db_a3cb5b_webbienesraicesEntities();
         // GET: Index
+
+
+        #region Mostrar tres propiedades en el index
+        /// <summary>
+        /// Método que muestra los 3 últiimas propiedades para mostrar en el index
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-            return View();
+            List<MostrarTresPropiedades_Result> modeloVista = new List<MostrarTresPropiedades_Result>();
+            modeloVista = this.Model.MostrarTresPropiedades().ToList();
+            return View(modeloVista);
         }
+        #endregion
 
         public ActionResult Propiedades(int? pageSize, int? page,int? precio02, int? CanCuato,int? CanBano,int ? CanGara,int? Cate)
         {

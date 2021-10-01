@@ -1,4 +1,4 @@
-﻿
+﻿@model List<BienesRaices.Models.MostrarTresPropiedades_Result>
 @{
     Layout = null;
 }
@@ -99,179 +99,78 @@
 
     </header>
 
-    <div ></div>
+    <div class="container">
+        <h4 class="text-center mt-5 mb-3">PROPIEDADES</h4>
+    </div>
 
     <main>
 
-        <div class="container-fluid"  id="anuncios">
-    
-                <div class="card-deck">
-                    <div class="card">
-                        <img src="~/img/anuncio4.jpg" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
+                <div class="container-fluid" id="anuncios">
+                    <div class="row">
+                     @{
+                         foreach (BienesRaices.Models.MostrarTresPropiedades_Result propiedad in Model)
+                         {
+                             @Html.AntiForgeryToken()
 
-                            <h3>Casa de Lujo en el lago</h3>
-                            <p>Casa en el lago con excelente vista, acabados de lujo a un excelente precio</p>
-                            <p class="text-muted">$3,000,000</p>
+                               <div class="col-sm-4">
 
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-6 col-md-4">
-                                        <ul class="iconos-caracteristicas">
-                                            <li>
-                                                <img src="~/img/icono_wc.svg" alt="icono wc">
-                                                <p>3</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-6 col-md-4">
-                                        <ul class="iconos-caracteristicas">
-                                            <li>
-                                                <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
-                                                <p>3</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-6 col-md-4">
-                                        <ul class="iconos-caracteristicas">
-                                            <li>
-                                                <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
-                                                <p>4</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                   <div class="card-deck">
+                                       <div class="card"> @*FALTA LLAMAR LA IMG*@
+                                           <img src="~/img/anuncio4.jpg" class="card-img-top" alt="...">
+                                           <div class="card-body text-center">
 
-                                <a href="" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Propiedad</a>
+                                               <h3>@propiedad.Nombre_P</h3>
+                                               <p>Casa en el lago con excelente vista, acabados de lujo a un excelente precio</p>
+                                               <p class="text-muted">₡@propiedad.Precio_P</p>
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="~/img/anuncio5.jpg" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h3>Casa de Lujo en el lago</h3>
-                            <p>Casa en el lago con excelente vista, acabados de lujo a un excelente precio</p>
-                            <p class="text-muted">$3,000,000</p>
+                                               <div class="container">
+                                                   <div class="row">
+                                                       <div class="col-6 col-md-4">
+                                                           <ul class="iconos-caracteristicas">
+                                                               <li>
+                                                                   <img src="~/img/icono_wc.svg" alt="icono wc">
+                                                                   <p>@propiedad.Can_Baños_P</p>
+                                                               </li>
+                                                           </ul>
+                                                       </div>
+                                                       <div class="col-6 col-md-4">
+                                                           <ul class="iconos-caracteristicas">
+                                                               <li>
+                                                                   <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
+                                                                   <p>@propiedad.Can_Garaje_P</p>
+                                                               </li>
+                                                           </ul>
+                                                       </div>
+                                                       <div class="col-6 col-md-4">
+                                                           <ul class="iconos-caracteristicas">
+                                                               <li>
+                                                                   <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
+                                                                   <p>@propiedad.Can_Cuarto_P</p>
+                                                               </li>
+                                                           </ul>
+                                                       </div>
+                                                   </div>
 
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-6 col-md-4">
-                                        <ul class="iconos-caracteristicas">
-                                            <li>
-                                                <img src="~/img/icono_wc.svg" alt="icono wc">
-                                                <p>3</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-6 col-md-4">
-                                        <ul class="iconos-caracteristicas">
-                                            <li>
-                                                <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
-                                                <p>3</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-6 col-md-4">
-                                        <ul class="iconos-caracteristicas">
-                                            <li>
-                                                <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
-                                                <p>4</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <a href="" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Propiedad</a>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="~/img/anuncio6.jpg" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h3>Casa de Lujo en el lago</h3>
-                            <p>Casa en el lago con excelente vista, acabados de lujo a un excelente precio</p>
-                            <p class="text-muted">$3,000,000</p>
-
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-6 col-md-4">
-                                        <ul class="iconos-caracteristicas">
-                                            <li>
-                                                <img src="~/img/icono_wc.svg" alt="icono wc">
-                                                <p>3</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-6 col-md-4">
-                                        <ul class="iconos-caracteristicas">
-                                            <li>
-                                                <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
-                                                <p>3</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-6 col-md-4">
-                                        <ul class="iconos-caracteristicas">
-                                            <li>
-                                                <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
-                                                <p>4</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <a href="" class="btn btn-warning text-white" data-toggle="modal" data-target="#exampleModal">Ver Propiedad</a>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Contacto</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form method="post">
-                                                    <div class="form-group">
-                                                        <label for="">Nombre Completo</label>
-                                                        <input type="text" class="form-control" name="Nombre_P" value="" placeholder="Ingrese el nombre de la propiedad" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Teléfono</label>
-                                                        <input type="text" class="form-control" name="Precio_P" value="" placeholder="Ingrese el Precio de la Propiedad" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Correo Electronico</label>
-                                                        <input type="email" class="form-control" name="Precio_P" value="" placeholder="Ingrese el Precio de la Propiedad" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Comentarios</label>
-                                                        <textarea cols="10" rows="2"></textarea>
-                                                    </div>
+                                                   @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
+                                                   {
+                                                        <button id="Con" type="submit" name="idPropiedad" class="btn btn-warning text-white" value="@propiedad.Id_Propiedad_P">Ver Propiedad</button>
+                                                   }
 
 
+                                               </div>
+                                           </div>
+                                       </div>
 
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="button" class="btn btn-primary">Solicitar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                            </div>
+                                   </div>
 
-                        </div>
+                               </div>
+
+                         }
+                     }
                     </div>
                 </div>
-            </div>
-           
-        </div>
+
 
         <div style="margin-bottom:50px"></div>
 
@@ -279,7 +178,7 @@
             <div class="row">
                 <div class="col text-center">
                     <img src="~/img/icono1.svg" alt="Seguridad">
-                    <h3 class="">Seguridad</h3>
+                    <h3 class="mt-2">Seguridad</h3>
                     <p>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, aut totam. Laudantium, dolores.
                         Molestias
@@ -291,7 +190,7 @@
                 </div>
                 <div class="col text-center">
                     <img src="~/img/icono2.svg" alt="Icono Mejor Precio">
-                    <h3>El Mejor Precio</h3>
+                    <h3 class="mt-2">El Mejor Precio</h3>
                     <p>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, aut totam. Laudantium, dolores.
                         Molestias
@@ -303,7 +202,7 @@
                 </div>
                 <div class="col text-center">
                     <img src="~/img/icono3.svg" alt="Icono">
-                    <h3>A Tiempo</h3>
+                    <h3 class="mt-2">A Tiempo</h3>
                     <p>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, aut totam. Laudantium, dolores.
                         Molestias
@@ -318,13 +217,14 @@
 
 
         <section class="imagen-contacto">
-            <div class="contenedor contenido-contacto">
+            <div class="container contenido-contacto">
                 <h2>Encuentra la casa de tus sueños</h2>
                 <p>
-                    Llena el formulario de contacto y un asesor se poondrá en
-                    contacto contigo a la brevedad
+                    minima quasi illum pariatur, at totam in cumque aspernatur, praesentium porro vel placeat
+                    voluptatibus
+                    inventore
                 </p>
-                <a href="contacto.html" class="btn btn-warning">Contáctanos</a>
+                <a href="~/Index/Propiedades" class="btn btn-warning text-white">VER PROPIEDADES</a>
             </div>
         </section>
 
@@ -355,10 +255,10 @@
 
                 <!-- Google -->
                 <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #dd4b39;"
+                   style="background-color:  #77f41a ;"
                    href="#!"
                    role="button">
-                    <i class="fa-instagram"></i>
+                    <i class="fab fa-whatsapp"></i>
                 </a>
 
                 <!-- Instagram -->
@@ -367,21 +267,6 @@
                    href="#!"
                    role="button">
                     <i class="fab fa-instagram"></i>
-                </a>
-
-                <!-- Linkedin -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #0082ca;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <!-- Github -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #333333;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-github"></i>
                 </a>
             </section>
             <!-- Section: Social media -->
@@ -396,203 +281,6 @@
     </footer>
 
 
-
-    <!--<section class="contenedor seccion">
-        <h2 class="fw-300 centrar-texto">Más sobre nosotros</h2>
-
-        <div class="iconos-nosotros">
-            <div class="icono">
-                <img src="~/img/icono1.svg" alt="Seguridad">
-                <h3 class="encabezado mayusculas">Seguridad</h3>
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, aut totam. Laudantium, dolores.
-                    Molestias
-                    minima quasi illum pariatur, at totam in cumque aspernatur, praesentium porro vel placeat
-                    voluptatibus
-                    inventore
-                    vero.
-                </p>
-            </div>
-
-            <div class="icono">
-                <img src="~/img/icono2.svg" alt="Icono Mejor Precio">
-                <h3>El Mejor Precio</h3>
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, aut totam. Laudantium, dolores.
-                    Molestias
-                    minima quasi illum pariatur, at totam in cumque aspernatur, praesentium porro vel placeat
-                    voluptatibus
-                    inventore
-                    vero.
-                </p>
-            </div>
-
-            <div class="icono">
-                <img src="~/img/icono3.svg" alt="Icono">
-                <h3>A Tiempo</h3>
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, aut totam. Laudantium, dolores.
-                    Molestias
-                    minima quasi illum pariatur, at totam in cumque aspernatur, praesentium porro vel placeat
-                    voluptatibus
-                    inventore
-                    vero.
-                </p>
-            </div>
-        </div>
-
-    </section>
-
-    <main class="seccion contenedor">
-        <h2 class="fw-300 centrar-texto">Casas y Depas en Venta</h2>
-
-        <div class="contenedor-anuncios">
-
-            <div class="anuncio">
-                <img src="~/img/anuncio1.jpg" alt="Anuncio casa en el lago">
-                <div class="contenido-anuncio">
-                    <h3>Casa de Lujo en el lago</h3>
-                    <p>Casa en el lago con excelente vista, acabados de lujo a un excelente precio</p>
-                    <p class="precio">$3,000,000</p>
-
-                    <ul class="iconos-caracteristicas">
-                        <li>
-                            <img src="~/img/icono_wc.svg" alt="icono wc">
-                            <p>3</p>
-                        </li>
-                        <li>
-                            <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
-                            <p>3</p>
-                        </li>
-                        <li>
-                            <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
-                            <p>4</p>
-                        </li>
-                    </ul>
-
-                    <a href="" class="boton boton-amarillo d-block" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Propiedad</a>-->
-    <!-- Modal -->
-    <!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Contacto</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="post">
-                                        <div class="form-group">
-                                            <label for="">Nombre Completo</label>
-                                            <input type="text" class="form-control" name="Nombre_P" value="" placeholder="Ingrese el nombre de la propiedad" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Teléfono</label>
-                                            <input type="text" class="form-control" name="Precio_P" value="" placeholder="Ingrese el Precio de la Propiedad" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Correo Electronico</label>
-                                            <input type="email" class="form-control" name="Precio_P" value="" placeholder="Ingrese el Precio de la Propiedad" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Comentarios</label>
-                                            <textarea cols="10" rows="2"></textarea>
-                                        </div>
-
-
-
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-primary">Solicitar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="anuncio">
-                <img src="~/img/anuncio2.jpg" alt="Anuncio casa de lujo">
-                <div class="contenido-anuncio">
-                    <h3>Casa terminados de Lujo </h3>
-                    <p>Casa con diseño moderno, así como tecnología inteligente y amueblada</p>
-                    <p class="precio">$2,000,000</p>
-
-                    <ul class="iconos-caracteristicas">
-                        <li>
-                            <img src="~/img/icono_wc.svg" alt="icono wc">
-                            <p>3</p>
-                        </li>
-                        <li>
-                            <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
-                            <p>3</p>
-                        </li>
-                        <li>
-                            <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
-                            <p>4</p>
-                        </li>
-                    </ul>
-
-                    <a href="" class="boton boton-amarillo d-block" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Propiedad</a>
-                </div>
-            </div>
-
-            <div class="anuncio">
-                <img src="~/img/anuncio3.jpg" alt="Anuncio casa en el alberca">
-                <div class="contenido-anuncio">
-                    <h3>Casa con alberca</h3>
-                    <p>Casa con alberca y acabados de lujo en la ciudad, excelente oportunidad</p>
-                    <p class="precio">$3,000,000</p>
-
-                    <ul class="iconos-caracteristicas">
-                        <li>
-                            <img src="~/img/icono_wc.svg" alt="icono wc">
-                            <p>3</p>
-                        </li>
-                        <li>
-                            <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
-                            <p>3</p>
-                        </li>
-                        <li>
-                            <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
-                            <p>4</p>
-                        </li>
-                    </ul>
-
-                    <a href="" class="boton boton-amarillo d-block" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Propiedad</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="ver-todas">
-            <a href="" class="boton boton-verde">Ver Todas</a>
-        </div>
-    </main>
-
-
-    <section class="imagen-contacto">
-        <div class="contenedor contenido-contacto">
-            <h2>Encuentra la casa de tus sueños</h2>
-            <p>
-                Llena el formulario de contacto y un asesor se poondrá en
-                contacto contigo a la brevedad
-            </p>
-            <a href="contacto.html" class="boton boton-amarillo">Contáctanos</a>
-        </div>
-    </section>-->
-    @*<footer class="site-footer seccion">
-            <div class="contenedor contenedor-footer">
-                <nav class="navegacion">
-                    <a href="Nosotros.html">Nosotros</a>
-                    <a href="anuncios.html">Anuncios</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="contacto.html">Contacto</a>
-                </nav>
-                <p class="copyright">Todos los Derechos Reservador 2019 &copy;</p>
-            </div>
-        </footer>*@
 </body>
 
 </html>

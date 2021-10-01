@@ -5,6 +5,11 @@
     -webkit-background-size: cover;
     background-size: cover;
 }
+@media only screen and (max-width: 600px){
+    .carousel-item {
+        height: 10vh;
+    }
+}
 
 .carousel-caption {
     bottom: auto;

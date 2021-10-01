@@ -13,20 +13,25 @@ namespace BienesRaices.Models
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class Credenciales_CR
+public partial class MostrarTresPropiedades_Result
 {
 
-    public int Id_Credenciales_CR { get; set; }
+    public int Id_Propiedad_P { get; set; }
 
-    public string Usuario_CR { get; set; }
+    public string Nombre_P { get; set; }
 
-    public string Tipo_CR { get; set; }
+    public decimal Precio_P { get; set; }
 
-    public string Estado_CR { get; set; }
+    public int Can_Cuarto_P { get; set; }
 
-    public string Contrasena_CR { get; set; }
+    public int Can_Baños_P { get; set; }
+
+    public string Estado_P { get; set; }
+
+    public int Can_Garaje_P { get; set; }
+
+    public int Id_Categoria_P { get; set; }
 
 }
 
