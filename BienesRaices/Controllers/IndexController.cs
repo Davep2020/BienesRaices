@@ -23,9 +23,9 @@ namespace BienesRaices.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            List<MostrarTresPropiedades_Result> modeloVista = new List<MostrarTresPropiedades_Result>();
-            modeloVista = this.Model.MostrarTresPropiedades().ToList();
-            return View(modeloVista);
+            //List<MostrarTresPropiedades_Result> modeloVista = new List<MostrarTresPropiedades_Result>();
+            //modeloVista = this.Model.MostrarTresPropiedades().ToList();
+            return View();
         }
         #endregion
 

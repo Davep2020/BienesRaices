@@ -9,20 +9,20 @@
     </div>
     <div class="col-lg-3">
         <h3>@Model.Nombre_P</h3>
-        <img src="https://images.adsttc.com/media/images/5afb/37ff/f197/cc1b/a000/00d7/medium_jpg/Janak_Mistry_residence-61.jpg?1526413290" width="100%" alt="Alternate Text" />
+        <img src="https://images.adsttc.com/media/images/5afb/37ff/f197/cc1b/a000/00d7/medium_jpg/Janak_Mistry_residence-61.jpg?1526413290" width="100" alt="Alternate Text" />
 
 
         <p>Precio:@Model.Precio</p>
         <p>Tipo: @Model.Nombre_CA</p>
-        <i class="fas fa-bed">@Model.Can_Cuarto_P</i>
-        <i class="fas fa-warehouse">@Model.Can_Garaje_P</i>
-        <i class="fas fa-toilet">@Model.Can_Baños_P</i>
+        <i class="fas fa-bed">@Model.CanCuartos_C</i>
+        <i class="fas fa-warehouse">@Model.CanGarage_C</i>
+        <i class="fas fa-toilet">@Model.CanBanos_C</i>
     </div>
     <div class="col-lg-9">
         <form method="post">
             <div class="form-group">
                 <label for="">Nombre Completo</label>
-                <input type="text" class="form-control" name="NombreCompleto_CO" value="" placeholder="Ingrese su nombre completo" />
+                <input type="text" class="form-control" autocomplete="off" name="NombreCompleto_CO" value="" placeholder="Ingrese su nombre completo" />
             </div>
             <div class="form-group">
                 <label for="">Teléfono</label>

@@ -86,9 +86,9 @@
                             <img src="https://images.adsttc.com/media/images/5afb/37ff/f197/cc1b/a000/00d7/medium_jpg/Janak_Mistry_residence-61.jpg?1526413290" width="100%" alt="Alternate Text" />
                             <p>Precio:@posicion.Precio</p>
                             <p>Tipo: @posicion.Nombre_CA</p>
-                            <i class="fas fa-bed">@posicion.Can_Cuarto_P</i>
-                            <i class="fas fa-warehouse">@posicion.Can_Garaje_P</i>
-                            <i class="fas fa-toilet">@posicion.Can_Baños_P</i>
+                            <i class="fas fa-bed">@posicion.CanCuartos_C</i>
+                            <i class="fas fa-warehouse">@posicion.CanGarage_C</i>
+                            <i class="fas fa-toilet">@posicion.CanBanos_C</i>
                             @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
                             {
                                 <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-info">Consultar Propiedad</button>

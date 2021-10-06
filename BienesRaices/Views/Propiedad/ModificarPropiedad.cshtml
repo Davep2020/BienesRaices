@@ -18,7 +18,7 @@
             <label>Cantidad de Cuartos</label>
             <select class="form-control" name="Can_Cuarto_P">
                 <option value="">Seleccione la cantidad</option>
-                @if (Model.Can_Cuarto_P == 1)
+                @if (Model.CanCuartos_C == 1)
                 {
                     <option value="1" selected>1</option>
                     <option value="2">2</option>
@@ -27,7 +27,7 @@
                     <option value="5">5</option>
                     <option value="6">6</option>
                 }
-                else if (Model.Can_Cuarto_P == 2)
+                else if (Model.CanCuartos_C == 2)
                 {
                     <option value="1">1</option>
                     <option value="2" selected>2</option>
@@ -36,7 +36,7 @@
                     <option value="5">5</option>
                     <option value="6">6</option>
                 }
-                else if (Model.Can_Cuarto_P == 3)
+                else if (Model.CanCuartos_C == 3)
                 {
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -45,7 +45,7 @@
                     <option value="5">5</option>
                     <option value="6">6</option>
                 }
-                else if (Model.Can_Cuarto_P == 4)
+                else if (Model.CanCuartos_C == 4)
                 {
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -54,7 +54,7 @@
                     <option value="5">5</option>
                     <option value="6">6</option>
                 }
-                else if (Model.Can_Cuarto_P == 5)
+                else if (Model.CanCuartos_C == 5)
                 {
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -66,7 +66,7 @@
                     <option value="5">5</option>
                     <option value="6">6</option>
                 }
-                else if (Model.Can_Cuarto_P == 6)
+                else if (Model.CanCuartos_C == 6)
                 {
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -82,7 +82,7 @@
             <label>Cantidad de Baños</label>
             <select class="form-control" name="Can_Baños_P">
                 <option value="">Seleccione la cantidad</option>
-                @if (Model.Can_Baños_P == 1)
+                @if (Model.CanBanos_C == 1)
                 {
                     <option value="1" selected>1</option>
                     <option value="2">2</option>
@@ -90,7 +90,7 @@
                     <option value="4">4</option>
 
                 }
-                else if (Model.Can_Baños_P == 2)
+                else if (Model.CanBanos_C == 2)
                 {
                     <option value="1">1</option>
                     <option value="2" selected>2</option>
@@ -98,7 +98,7 @@
                     <option value="4">4</option>
 
                 }
-                else if (Model.Can_Baños_P == 3)
+                else if (Model.CanBanos_C == 3)
                 {
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -106,7 +106,7 @@
                     <option value="4">4</option>
 
                 }
-                else if (Model.Can_Baños_P == 4)
+                else if (Model.CanBanos_C == 4)
                 {
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -122,7 +122,7 @@
             <label>Cantidad de Garajes</label>
             <select class="form-control" name="Can_Garaje_P">
                 <option value="">Seleccione la cantidad</option>
-                @if (Model.Can_Garaje_P == 1)
+                @if (Model.CanGarage_C == 1)
                 {
                     <option value="1" selected>1</option>
                     <option value="2">2</option>
@@ -130,7 +130,7 @@
                     <option value="4">4</option>
 
                 }
-                else if (Model.Can_Garaje_P == 2)
+                else if (Model.CanGarage_C == 2)
                 {
                     <option value="1">1</option>
                     <option value="2" selected>2</option>
@@ -138,7 +138,7 @@
                     <option value="4">4</option>
 
                 }
-                else if (Model.Can_Garaje_P == 3)
+                else if (Model.CanGarage_C == 3)
                 {
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -146,7 +146,7 @@
                     <option value="4">4</option>
 
                 }
-                else if (Model.Can_Garaje_P == 4)
+                else if (Model.CanGarage_C == 4)
                 {
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -155,10 +155,6 @@
 
                 }
             </select>
-        </div>
-        <div class="col-lg-3 form-group">
-            <label>Cargar Imagen</label>
-            <input class="form-control-file border" type="file" name="name" value="" />
         </div>
         <input type="text" name="Estado_P" value="@Model.Estado_P" style="display:none">
 
@@ -185,6 +181,9 @@
                 }
             </select>
         </div>
+
+
+
     </div>
 
     <div class="row mt-3">
@@ -195,5 +194,40 @@
 
 
 </form>
+<button data-bs-toggle="modal" data-bs-target="#exampleModal">Mostrar Imagenes</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @{ foreach (BienesRaices.Models.AgregarImagenes_Result posicion in this.ViewBag.CargarImagenes)
+                    {
+
+                        <div class="card col-lg-3">
+                            <div class="card-body" style="text-align:center">
+                                <img src="~/images/@posicion.Ruta_I" width="100" />
+
+                                @using (Html.BeginForm("EliminarImagen", "Propiedad", FormMethod.Post))
+                                {
+                                    <button id="Con" type="submit" name="Id_Imagen_I" value="@posicion.Id_Imagen_I" class="btn btn-info">Eliminar Imagen</button>
+                                   <input type="text" name="idPropiedad" value="@posicion.Id_Propiedad_I" hidden>
+                                }
+
+                            </div>
+                        </div>
 
 
+                    }
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

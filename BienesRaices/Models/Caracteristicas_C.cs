@@ -12,16 +12,16 @@ namespace BienesRaices.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Categoria_CA
+    public partial class Caracteristicas_C
     {
-        public Categoria_CA()
-        {
-            this.Propiedad_P = new HashSet<Propiedad_P>();
-        }
+        public int IdCaracteristica_C { get; set; }
+        public Nullable<int> CanCuartos_C { get; set; }
+        public Nullable<int> CanBanos_C { get; set; }
+        public Nullable<int> CanGarage_C { get; set; }
+        public Nullable<int> MetrosCuadradosCasa_C { get; set; }
+        public Nullable<int> MetrosCuadradosLote_C { get; set; }
+        public int IdPropiedad_C { get; set; }
     
-        public int Id_Categoria_CA { get; set; }
-        public string Nombre_CA { get; set; }
-    
-        public virtual ICollection<Propiedad_P> Propiedad_P { get; set; }
+        public virtual Propiedad_P Propiedad_P { get; set; }
     }
 }

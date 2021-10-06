@@ -43,8 +43,7 @@ namespace BienesRaices.Controllers
 
         #endregion
 
-        #region AgregaPropiedad
-
+        #region AgregaCasa
         public ActionResult Propiedades()
         {
             CargarCategoria();
@@ -52,43 +51,75 @@ namespace BienesRaices.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Propiedades(MostrarPropiedad_Result modelos, HttpPostedFileBase Ruta_I)
+        public ActionResult Propiedades(MostrarPropiedad_Result modelos)
         {
             int registros = 0;
+            int registrox = 0;
             string mensaje = "";
             CargarCategoria();
-            string ImageName = System.IO.Path.GetFileName(Ruta_I.FileName);
-            string physicalPath = Server.MapPath("~/Images/" + ImageName);
-            Ruta_I.SaveAs(physicalPath);
-            try
+            for (int i = 0; i < Request.Files.Count; i++)
             {
-                registros = Model.IngresaPropiedad(
-                    modelos.Nombre_P,
-                    Convert.ToInt32(modelos.Precio),
-                    modelos.Can_Cuarto_P,
-                    modelos.Can_Baños_P,
-                    modelos.Can_Garaje_P,
-                    modelos.Id_Categoria_P,
-                    Ruta_I.FileName
-                  
-
-                    );
-            }
-            catch (Exception e)
-            {
-                mensaje = "Ocurrió un error: " + e.Message;
-            }
-            finally
-            {
-                if (registros > 0)
+                if (i == 0)
                 {
+                    HttpPostedFileBase carga = Request.Files[i];
+                    string ImageName = System.IO.Path.GetFileName(carga.FileName);
+                    string physicalPath = Server.MapPath("~/Images/" + ImageName);
+                    carga.SaveAs(physicalPath);
 
-                    mensaje = "Se agregó una nueva Propiedad.";
+                    try
+                    {
+                        registros = Model.IngresaPropiedad(
+                            modelos.Nombre_P,
+                            modelos.Descripcion_P,
+                            Convert.ToInt32(modelos.Precio),
+                            modelos.NombreProvincia_L,
+                            modelos.NombreCanton_L,
+                            modelos.NombreDistrito_L,
+                            modelos.Id_Provincia_L,
+                            modelos.Id_Canton_L,
+                            modelos.Id_Distrito_L,
+                            modelos.DireccionExacta_L,
+                            modelos.CanCuartos_C,
+                            modelos.CanBanos_C,
+                            modelos.CanGarage_C,
+                            modelos.Id_Categoria_P,
+                            carga.FileName,
+                            modelos.MetrosCuadradosCasa_C,
+                            modelos.MetrosCuadradosLote_C
+                            );
 
-                }
-                else
+
+
+                    }
+
+                    catch (Exception e)
+                    {
+                        mensaje = "Ocurrió un error: " + e.Message;
+                    }
+
+                    finally
+                    {
+                        if (registros > 0)
+                        {
+
+                            mensaje = "Se agregó una nueva Propiedad.";
+
+                        }
+                        else
+                        {
+                            mensaje = "No se pudo insertar.";
+                        }
+                    }
+                }else if (i > 0)
                 {
-                    mensaje = "No se pudo insertar.";
+                    HttpPostedFileBase carga = Request.Files[i];
+                    string ImageName = System.IO.Path.GetFileName(carga.FileName);
+                    string physicalPath = Server.MapPath("~/Images/" + ImageName);
+                    carga.SaveAs(physicalPath);
+
+                    registrox = Model.CargarImagenes(
+                            carga.FileName
+                            );
                 }
             }
 
@@ -184,7 +215,7 @@ namespace BienesRaices.Controllers
         [HttpPost]
         public ActionResult ReportesVentas()
         {
-            List<MostrarReporte_Result> listaPersonas =Model.MostrarReporte().ToList();
+            List<MostrarReporte_Result> listaPersonas = Model.MostrarReporte().ToList();
             return Json(new
             {
                 resultado = listaPersonas
@@ -210,9 +241,9 @@ namespace BienesRaices.Controllers
         #endregion
 
         #region Ocultar Propiedad
-        public ActionResult OcultarPropiedad(MostrarPropiedadID_Result modelovista, int idpropiedad , string Estado)
+        public ActionResult OcultarPropiedad(MostrarPropiedadID_Result modelovista, int idpropiedad, string Estado)
         {
-   
+
             int cantRegistrosAfectados = 0;
             string resultado = "";
             try
@@ -249,8 +280,9 @@ namespace BienesRaices.Controllers
 
         #region ModificarPropiedad
 
-        public ActionResult ModificarPropiedad( int idpropiedad)
+        public ActionResult ModificarPropiedad(int idpropiedad)
         {
+            CargarImagenes(idpropiedad);
             CargarCategoria();
             MostrarPropiedadID_Result modelovista = new MostrarPropiedadID_Result();
             modelovista = this.Model.MostrarPropiedadID(idpropiedad).FirstOrDefault();
@@ -259,6 +291,7 @@ namespace BienesRaices.Controllers
         [HttpPost]
         public ActionResult ModificarPropiedad(MostrarPropiedadID_Result modelovista, int idpropiedad)
         {
+            CargarImagenes(idpropiedad);
             CargarCategoria();
             int cantRegistrosAfectados = 0;
             string resultado = "";
@@ -268,12 +301,21 @@ namespace BienesRaices.Controllers
                     modelovista.Id_Propiedad_P = idpropiedad,
                     modelovista.Nombre_P,
                     modelovista.Precio_P,
-                    modelovista.Can_Cuarto_P,
-                    modelovista.Can_Baños_P,
-                    modelovista.Can_Garaje_P,
                     modelovista.Estado_P,
                     modelovista.Id_Categoria_P,
-                    modelovista.Ruta_I
+                    modelovista.Descripcion_P,
+                    modelovista.NombreProvincia_L,
+                    modelovista.NombreCanton_L,
+                    modelovista.NombreDistrito_L,
+                    modelovista.Id_Propiedad_I,
+                    modelovista.Id_Canton_L,
+                    modelovista.Id_Distrito_L,
+                    modelovista.DireccionExacta_L,
+                    modelovista.CanCuartos_C,
+                    modelovista.CanBanos_C,
+                    modelovista.CanGarage_C,
+                    modelovista.MetrosCuadradosCasa_C,
+                    modelovista.MetrosCuadradosLote_C
 
                     );
             }
@@ -301,6 +343,42 @@ namespace BienesRaices.Controllers
         }
         #endregion
 
+        #region EliminarImagen
+        [HttpPost]
+        public ActionResult EliminarImagen(AgregarImagenes_Result modelovista, MostrarPropiedadID_Result modelovistas ,int Id_Imagen_I,int idpropiedad)
+        {
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+            try
+            {
+                cantRegistrosAfectados = this.Model.EliminarImagenes(
+                    modelovista.Id_Imagen_I = Id_Imagen_I
+                    );
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un error: " + error.Message;
+            }
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                {
+                    resultado += "Registro modificado";
+                }
+                else
+                {
+                    resultado += "No se pudo modificar";
+                }
+
+            }
+            Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+
+            return RedirectToAction("ModificarPropiedad", "Propiedad", new { idpropiedad });
+
+        }
+#endregion
+
+
 
         #region Metodos
         void CargarCategoria()
@@ -308,6 +386,14 @@ namespace BienesRaices.Controllers
             this.ViewBag.CargarCategoria =
                 this.Model.MostrarCategoria().ToList();
         }
+
+
+        void CargarImagenes(int idpropiedad)
+        {
+            this.ViewBag.CargarImagenes =
+                this.Model.AgregarImagenes(idpropiedad).ToList();
+        }
         #endregion
     }
+
 }

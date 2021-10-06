@@ -1,4 +1,4 @@
-﻿@model List<BienesRaices.Models.MostrarTresPropiedades_Result>
+﻿@*@model List<BienesRaices.Models.MostrarTresPropiedades_Result>*@
 @{
     Layout = null;
 }
@@ -105,72 +105,7 @@
 
     <main>
 
-                <div class="container-fluid" id="anuncios">
-                    <div class="row">
-                     @{
-                         foreach (BienesRaices.Models.MostrarTresPropiedades_Result propiedad in Model)
-                         {
-                             @Html.AntiForgeryToken()
-
-                               <div class="col-sm-4">
-
-                                   <div class="card-deck">
-                                       <div class="card"> @*FALTA LLAMAR LA IMG*@
-                                           <img src="~/img/anuncio4.jpg" class="card-img-top" alt="...">
-                                           <div class="card-body text-center">
-
-                                               <h3>@propiedad.Nombre_P</h3>
-                                               <p>Casa en el lago con excelente vista, acabados de lujo a un excelente precio</p>
-                                               <p class="text-muted">₡@propiedad.Precio_P</p>
-
-                                               <div class="container">
-                                                   <div class="row">
-                                                       <div class="col-6 col-md-4">
-                                                           <ul class="iconos-caracteristicas">
-                                                               <li>
-                                                                   <img src="~/img/icono_wc.svg" alt="icono wc">
-                                                                   <p>@propiedad.Can_Baños_P</p>
-                                                               </li>
-                                                           </ul>
-                                                       </div>
-                                                       <div class="col-6 col-md-4">
-                                                           <ul class="iconos-caracteristicas">
-                                                               <li>
-                                                                   <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
-                                                                   <p>@propiedad.Can_Garaje_P</p>
-                                                               </li>
-                                                           </ul>
-                                                       </div>
-                                                       <div class="col-6 col-md-4">
-                                                           <ul class="iconos-caracteristicas">
-                                                               <li>
-                                                                   <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
-                                                                   <p>@propiedad.Can_Cuarto_P</p>
-                                                               </li>
-                                                           </ul>
-                                                       </div>
-                                                   </div>
-
-                                                   @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
-                                                   {
-                                                        <button id="Con" type="submit" name="idPropiedad" class="btn btn-warning text-white" value="@propiedad.Id_Propiedad_P">Ver Propiedad</button>
-                                                   }
-
-
-                                               </div>
-                                           </div>
-                                       </div>
-
-
-                                   </div>
-
-                               </div>
-
-                         }
-                     }
-                    </div>
-                </div>
-
+              
 
         <div style="margin-bottom:50px"></div>
 

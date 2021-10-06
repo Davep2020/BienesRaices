@@ -5,14 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f3330c9e809b4f3e94112b749fdb117a" Name="Diagram1">
-        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Categoria_CA" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Imagen_I" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Propiedad_P" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Caracteristicas_C" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Categoria_CA" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Contacto_CO" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Credenciales_CR" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Imagen_I" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Localizacion_L" Width="1.5" PointX="5.25" PointY="11.125" />
+        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Propiedad_P" Width="1.5" PointX="3" PointY="11" />
+        <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Caracteristicas_C_Propiedad_P" />
         <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Propiedad_P_Categoria_CA" />
-        <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Imagen_I_Propiedad_P" />
-        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Credenciales_CR" Width="1.5" PointX="7.875" PointY="0.875" />
-        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.Contacto_CO" Width="1.5" PointX="5.25" PointY="0.75" />
         <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Contacto_CO_Propiedad_P" />
+        <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Imagen_I_Propiedad_P" />
+        <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Localizacion_L_Propiedad_P" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
