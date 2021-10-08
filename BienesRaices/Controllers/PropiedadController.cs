@@ -230,7 +230,7 @@ namespace BienesRaices.Controllers
             CargarCategoria();
 
             List<MostrarPropiedadAdmin_Result> lista = new List<MostrarPropiedadAdmin_Result>();
-            lista = Model.MostrarPropiedadAdmin(precio02, CanCuato, CanBano, CanGara, Cate, estado).ToList();
+            //lista = Model.MostrarPropiedadAdmin(precio02, CanCuato, CanBano, CanGara, Cate, estado).ToList();
             pageSize = (pageSize ?? 10);
             page = (page ?? 1);
 

@@ -17,7 +17,7 @@
     <link href="~/Content/CSS/Login/Login.css" rel="stylesheet" />
 
 
-    <title>Login</title>
+    <title>BienesRaices</title>
 </head>
 <body>
     
@@ -34,7 +34,7 @@
                 <!-- Login Form -->
                 <form  action="@urlMetodoFormulario" method="post">
                     <input type="text" id="Usuario_CR" class="fadeIn second" name="Usuario_CR" placeholder="Usuario">
-                    <input type="text" id="Contrasena_CR" class="fadeIn third" name="Contrasena_CR" placeholder="Contraseña">
+                    <input type="password" id="Contrasena_CR" class="fadeIn third password" name="Contrasena_CR" placeholder="Contraseña">
                     <input type="submit" class="fadeIn fourth" value="Log In">
 
                     @Html.ValidationSummary(true)

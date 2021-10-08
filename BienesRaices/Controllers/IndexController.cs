@@ -23,9 +23,9 @@ namespace BienesRaices.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            //List<MostrarTresPropiedades_Result> modeloVista = new List<MostrarTresPropiedades_Result>();
-            //modeloVista = this.Model.MostrarTresPropiedades().ToList();
-            return View();
+            List<MostrarTresPropiedades_Result> modeloVista = new List<MostrarTresPropiedades_Result>();
+            modeloVista = this.Model.MostrarTresPropiedades().ToList();
+            return View(modeloVista);
         }
         #endregion
 
@@ -34,7 +34,7 @@ namespace BienesRaices.Controllers
             CargarCategoria();
 
             List<MostrarPropiedad_Result> lista = new List<MostrarPropiedad_Result>();
-            lista = Model.MostrarPropiedad(precio02, CanCuato, CanBano, CanGara, Cate).ToList();
+            //lista = Model.MostrarPropiedad(precio02, CanCuato, CanBano, CanGara, Cate).ToList();
             pageSize = (pageSize ?? 10);
             page = (page ?? 1);
 
@@ -90,6 +90,11 @@ namespace BienesRaices.Controllers
         {
             this.ViewBag.CargarCategoria =
                 this.Model.MostrarCategoria().ToList();
+        }
+        void CargarCaracteristica()
+        {
+            this.ViewBag.CargarCaracteristica =
+                this.Model.MuestraCaracteristicas().ToList();
         }
     }
 }

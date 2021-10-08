@@ -1,4 +1,4 @@
-﻿@*@model List<BienesRaices.Models.MostrarTresPropiedades_Result>*@
+﻿@model List<BienesRaices.Models.MostrarTresPropiedades_Result>
 @{
     Layout = null;
 }
@@ -41,9 +41,6 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Nosotros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#anuncios">Anuncios</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="~/Index/Propiedades">Propiedades</a>
@@ -100,12 +97,12 @@
     </header>
 
     <div class="container">
-        <h4 class="text-center mt-5 mb-3">PROPIEDADES</h4>
+        <h4 class="text-center mt-5 mb-3 display-4" >PROPIEDADES</h4>
     </div>
 
     <main>
 
-              
+
 
         <div style="margin-bottom:50px"></div>
 
@@ -150,6 +147,73 @@
             </div>
         </div>
 
+        <div class="container">
+            <h2 class="text-center mt-4 mb-5">Casas Recientes</h2>
+            <div class="row">
+                    @{
+                        foreach (BienesRaices.Models.MostrarTresPropiedades_Result propiedad in this.Model)
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="col-sm-4">
+
+                                <div class="card-deck">
+                                    <div class="card">
+                                        @*FALTA LLAMAR LA IMG*@
+                                        <img src="~/images/@propiedad.Ruta_I" class="card-img-top" style="min-height: 250px" alt="Imagen Propiedad">
+                                        <div class="card-body text-center">
+
+                                            <h3>@propiedad.Nombre_P</h3>
+                                            <p>@propiedad.Descripcion_P</p>
+                                            <p class="text-muted">@propiedad.Precio_P</p>
+
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-6 col-md-4">
+                                                        <ul class="iconos-caracteristicas">
+                                                            <li>
+                                                                <img src="~/img/icono_wc.svg" alt="icono wc">
+                                                                <p>@propiedad.CanBanos_C</p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-6 col-md-4">
+                                                        <ul class="iconos-caracteristicas">
+                                                            <li>
+                                                                <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
+                                                                <p>@propiedad.CanGarage_C</p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-6 col-md-4">
+                                                        <ul class="iconos-caracteristicas">
+                                                            <li>
+                                                                <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
+                                                                <p>@propiedad.CanCuartos_C</p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
+                                                {
+                                                    <button id="Con" type="submit" name="idPropiedad" class="btn btn-warning text-white" value="@propiedad.Id_Propiedad_P">Ver Propiedad</button>
+                                                }
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        }
+                    }
+            </div>
+        </div>
 
         <section class="imagen-contacto">
             <div class="container contenido-contacto">

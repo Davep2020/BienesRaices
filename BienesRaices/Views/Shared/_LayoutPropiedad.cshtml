@@ -67,21 +67,33 @@
                     <li class="nav-item">
                         <a class="nav-link" href="~/Propiedad/Reportes">Reporte</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Cerrar Sesión</a>
-                    </li>
+
+
 
                     @{
                         if (sesionIniciada == true)
                         {
                             //Comprueba si es administrador o cliente
-                            @*if (modelo.Id_TipoUsuario_S == 1)
-                {
-                    <li>@Html.ActionLink("Atender", "#", "#")</li>
-                }
-                <li><a id="lnkCerrarSesion" href="#">Salir</a></li>*@
+                            if (modelo.Tipo_CR != "2         ")
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Perfil
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item">@Html.ActionLink("Consultar cuentas", "Cuentas", "Perfil")</a></li>
+                                        <li><a class="dropdown-item">@Html.ActionLink("Ingresar cuenta", "Ingresar", "Perfil")</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            @*<li><a id="lnkCerrarSesion" href="#">Salir</a></li>*@
                         }
                     }
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Cerrar Sesión</a>
+                    </li>
 
                 </ul>
             </div>

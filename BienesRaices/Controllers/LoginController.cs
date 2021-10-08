@@ -28,7 +28,7 @@ namespace BienesRaices.Controllers
                 this.Session.Add("datosUsuario", usuarioBuscar);
 
                 //Falta agregar a la vista que va a ingresar
-                return RedirectToAction("Index", "Propiedad");
+                return RedirectToAction("Inicio", "Propiedad");
             }
 
         }

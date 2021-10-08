@@ -192,6 +192,12 @@
     <Compile Include="Models\MostrarTodoImagen_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MostrarTresPropiedades_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MuestraCaracteristicas_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MuestraCuenta_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -237,6 +243,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\3.png" />
+    <Content Include="Images\4.jpg" />
+    <Content Include="Images\5.jpg" />
+    <Content Include="Images\6.jpg" />
     <Content Include="img\anuncio1.jpg" />
     <Content Include="img\anuncio2.jpg" />
     <Content Include="img\anuncio3.jpg" />

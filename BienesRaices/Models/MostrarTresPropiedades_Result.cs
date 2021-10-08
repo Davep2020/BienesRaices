@@ -14,34 +14,16 @@ namespace BienesRaices.Models
 
 using System;
     
-public partial class MostrarPropiedadID_Result
+public partial class MostrarTresPropiedades_Result
 {
-
-    public string Precio { get; set; }
 
     public Nullable<int> Id_Propiedad_P { get; set; }
 
     public string Nombre_P { get; set; }
 
-    public Nullable<decimal> Precio_P { get; set; }
-
-    public string Estado_P { get; set; }
-
-    public Nullable<int> Id_Categoria_P { get; set; }
+    public string Precio_P { get; set; }
 
     public string Descripcion_P { get; set; }
-
-    public Nullable<int> Id_Categoria_CA { get; set; }
-
-    public string Nombre_CA { get; set; }
-
-    public Nullable<int> Id_Imagen_I { get; set; }
-
-    public string Ruta_I { get; set; }
-
-    public Nullable<int> Id_Propiedad_I { get; set; }
-
-    public int IdCaracteristica_C { get; set; }
 
     public Nullable<int> CanCuartos_C { get; set; }
 
@@ -49,29 +31,21 @@ public partial class MostrarPropiedadID_Result
 
     public Nullable<int> CanGarage_C { get; set; }
 
-    public Nullable<int> MetrosCuadradosCasa_C { get; set; }
+    public Nullable<int> Id_Categoria_P { get; set; }
 
-    public Nullable<int> MetrosCuadradosLote_C { get; set; }
+    public Nullable<int> Id_Categoria_CA { get; set; }
 
-    public int IdPropiedad_C { get; set; }
+    public string Nombre_CA { get; set; }
 
-    public int Id_Localizacion_L { get; set; }
+    public string Estado_P { get; set; }
+
+    public string Ruta_I { get; set; }
 
     public string NombreProvincia_L { get; set; }
 
-    public int Id_Provincia_L { get; set; }
-
     public string NombreCanton_L { get; set; }
 
-    public int Id_Canton_L { get; set; }
-
     public string NombreDistrito_L { get; set; }
-
-    public int Id_Distrito_L { get; set; }
-
-    public string DireccionExacta_L { get; set; }
-
-    public int Id_Propiedad_L { get; set; }
 
 }
 
