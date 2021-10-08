@@ -16,52 +16,6 @@
     </style>
     <div class="row">
         <div class="col-lg-3 form-group">
-            <label for="">Nombre de la propiedad</label>
-            <input type="text" class="form-control" autocomplete="off" name="Nombre_P" value="" placeholder="Ingrese el nombre de la propiedad" />
-        </div>
-        <div class="col-lg-3 form-group">
-            <label for="">Precio de la Propiedad</label>
-            <input type="number" class="form-control" name="Precio"  autocomplete="off" value="" placeholder="Ingrese el Precio de la Propiedad" />
-        </div>
-        <div class="col-lg-3 form-group"  id="CanCuartos_C">
-            <label>Cantidad de Cuartos</label>
-            <select class="form-control" name="CanCuartos_C">
-                <option value="">Seleccione la cantidad</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-        </div>
-        <div class="col-lg-3 form-group" id="CanBanos_C">
-            <label>Cantidad de Baños</label>
-            <select class="form-control"  name="CanBanos_C">
-                <option value="">Seleccione la cantidad</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 form-group " id="CanGarage_C">
-            <label>Cantidad de Garajes</label>
-            <select class="form-control" name="CanGarage_C" >
-                <option value="">Seleccione la cantidad</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-        <div class="col-lg-2 offset-lg-1 form-group">
-            <label>Cargar Imagen</label>
-            <input class="form-control-file border"  type="file" multiple id="Ruta_I" name="Ruta_I" />
-        </div>
-        <div class="col-lg-3 offset-lg-3 form-group">
             <label>Categoria de la propiedad</label>
             <select class="form-control" name="Id_Categoria_P" id="Id_Categoria_P" onChange="mostrar(this.value);">
                 <option>Seleccione una categoria</option>
@@ -75,11 +29,58 @@
                 }
             </select>
         </div>
-    </div>
-    <div class="row">
+        <div class="col-lg-3 form-group">
+            <label for="">Nombre de la propiedad</label>
+            <input type="text" class="form-control" autocomplete="off" name="Nombre_P" value="" placeholder="Ingrese el nombre de la propiedad" />
+        </div>
+        <div class="col-lg-3 form-group">
+            <label for="">Precio de la Propiedad</label>
+            <input type="number" class="form-control" name="Precio" autocomplete="off" value="" placeholder="Ingrese el Precio de la Propiedad" />
+        </div>
+        <div class="col-lg-3 form-group" id="CanCuartos_C">
+            <label>Cantidad de Cuartos</label>
+            <select class="form-control" name="CanCuartos_C">
+                <option value="">Seleccione la cantidad</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+        <div class="col-lg-3 form-group" id="CanBanos_C">
+            <label>Cantidad de Baños</label>
+            <select class="form-control" name="CanBanos_C">
+                <option value="">Seleccione la cantidad</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+
+
+        <div class="col-lg-3 form-group " id="CanGarage_C">
+            <label>Cantidad de Garajes</label>
+            <select class="form-control" name="CanGarage_C">
+                <option value="">Seleccione la cantidad</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <div class="col-lg-2  form-group">
+            <label>Cargar Imagen</label>
+            <input class="form-control-file border" type="file" multiple id="Ruta_I" name="Ruta_I" />
+        </div>
+
+
+
         <div class="col-lg-3 form-group">
             <label for="">Descripción de la propiedad</label>
-            <input type="text" class="form-control"  autocomplete="off" name="Descripcion_P" value="" placeholder="Ingrese la descripción de la propiedad" />
+            <input type="text" class="form-control" autocomplete="off" name="Descripcion_P" value="" placeholder="Ingrese la descripción de la propiedad" />
         </div>
         <div class="col-lg-3 form-group">
             <label for="provincias">Provincia</label>
@@ -95,22 +96,22 @@
             <label for="distritos">Distrito</label>
             <select class="form-control" id="distritos" name="Id_Distrito_L"></select>
         </div>
-    </div>
-    <div class="row">
+
+
         <div class="col-lg-3 form-group">
             <label for="">Dirección exacta de la propiedad</label>
-            <input type="text" class="form-control"  autocomplete="off" name="DireccionExacta_L" value="" placeholder="Ingrese la Dirección exacta de la propiedad" />
+            <input type="text" class="form-control" autocomplete="off" name="DireccionExacta_L" value="" placeholder="Ingrese la Dirección exacta de la propiedad" />
         </div>
         <div class="col-lg-3 form-group">
             <label for="">Metros Cuadrados de la propiedad</label>
-            <input type="number" class="form-control"  autocomplete="off" name="MetrosCuadradosLote_C" value="" placeholder="Ingrese la Cantidad" />
+            <input type="number" class="form-control" autocomplete="off" name="MetrosCuadradosLote_C" value="" placeholder="Ingrese la Cantidad" />
         </div>
         <div class="col-lg-3 form-group" id="MetrosCuadradosCasa_C">
             <label for="">Metros Cuadrados de la casa</label>
-            <input type="number" class="form-control"  autocomplete="off" name="MetrosCuadradosCasa_C" value="" placeholder="Ingrese la Cantidad" />
+            <input type="number" class="form-control" autocomplete="off" name="MetrosCuadradosCasa_C" value="" placeholder="Ingrese la Cantidad" />
         </div>
-    </div>
 
+    </div>
     <div class="row mt-3">
         <div class="col-lg-5 offset-lg-5">
             <input class="btn btn-secondary" type="submit" name="name" value="Cargar" />

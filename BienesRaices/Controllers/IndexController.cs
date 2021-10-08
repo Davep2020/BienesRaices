@@ -29,12 +29,12 @@ namespace BienesRaices.Controllers
         }
         #endregion
 
-        public ActionResult Propiedades(int? pageSize, int? page,int? precio02, int? CanCuato,int? CanBano,int ? CanGara,int? Cate)
+        public ActionResult Propiedades(int? pageSize, int? page,int? precio02, int? CanCuato,int? CanBano,int ? CanGara,int? Cate, int? Id_Provincia_L, int? Id_Canton_L, int? Id_Distrito_L)
         {
             CargarCategoria();
 
             List<MostrarPropiedad_Result> lista = new List<MostrarPropiedad_Result>();
-            //lista = Model.MostrarPropiedad(precio02, CanCuato, CanBano, CanGara, Cate).ToList();
+            lista = Model.MostrarPropiedad(precio02, CanCuato, CanBano, CanGara, Cate, Id_Provincia_L, Id_Canton_L, Id_Distrito_L).ToList();
             pageSize = (pageSize ?? 10);
             page = (page ?? 1);
 
