@@ -299,6 +299,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\CategoriaPropiedad\Categoria.js" />
     <Content Include="Scripts\EstadoCuenta\Estado.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

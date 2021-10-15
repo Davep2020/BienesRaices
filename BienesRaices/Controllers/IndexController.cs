@@ -21,11 +21,30 @@ namespace BienesRaices.Controllers
         /// Método que muestra los 3 últiimas propiedades para mostrar en el index
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
+        public ActionResult Index(int? Id_Categoria_P)
         {
-            List<MostrarTresPropiedades_Result> modeloVista = new List<MostrarTresPropiedades_Result>();
-            modeloVista = this.Model.MostrarTresPropiedades().ToList();
-            return View(modeloVista);
+            //List<MostrarTresPropiedades_Result> modeloVista = new List<MostrarTresPropiedades_Result>();
+            //modeloVista = this.Model.MostrarTresPropiedades(Id_Categoria_P).ToList();
+
+            MostrarTresCasas(1);
+            MostrarTresAlquiler(2);
+            MostrarTresTerrenos(3);
+            return View();
+        }
+
+        void MostrarTresCasas(int Id_Categoria_P)
+        {
+            this.ViewBag.MostrarCasas = this.Model.MostrarTresPropiedades(Id_Categoria_P).ToList();
+        }
+
+        void MostrarTresAlquiler(int Id_Categoria_P)
+        {
+            this.ViewBag.MostrarAlquiler = this.Model.MostrarTresPropiedades(Id_Categoria_P).ToList();
+        }
+
+        void MostrarTresTerrenos(int Id_Categoria_P)
+        {
+            this.ViewBag.MostrarTerrenos = this.Model.MostrarTresPropiedades(Id_Categoria_P).ToList();
         }
         #endregion
 

@@ -51,82 +51,82 @@ namespace BienesRaices.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Propiedades(MostrarPropiedad_Result modelos)
-        {
-            int registros = 0;
-            int registrox = 0;
-            string mensaje = "";
-            CargarCategoria();
-            for (int i = 0; i < Request.Files.Count; i++)
-            {
-                if (i == 0)
-                {
-                    HttpPostedFileBase carga = Request.Files[i];
-                    string ImageName = System.IO.Path.GetFileName(carga.FileName);
-                    string physicalPath = Server.MapPath("~/Images/" + ImageName);
-                    carga.SaveAs(physicalPath);
+        //public ActionResult Propiedades(MostrarPropiedad_Result modelos)
+        //{
+        //    int registros = 0;
+        //    int registrox = 0;
+        //    string mensaje = "";
+        //    CargarCategoria();
+        //    for (int i = 0; i < Request.Files.Count; i++)
+        //    {
+        //        if (i == 0)
+        //        {
+        //            HttpPostedFileBase carga = Request.Files[i];
+        //            string ImageName = System.IO.Path.GetFileName(carga.FileName);
+        //            string physicalPath = Server.MapPath("~/Images/" + ImageName);
+        //            carga.SaveAs(physicalPath);
 
-                    try
-                    {
-                        registros = Model.IngresaPropiedad(
-                            modelos.Nombre_P,
-                            modelos.Descripcion_P,
-                            Convert.ToInt32(modelos.Precio),
-                            modelos.NombreProvincia_L,
-                            modelos.NombreCanton_L,
-                            modelos.NombreDistrito_L,
-                            modelos.Id_Provincia_L,
-                            modelos.Id_Canton_L,
-                            modelos.Id_Distrito_L,
-                            modelos.DireccionExacta_L,
-                            modelos.CanCuartos_C,
-                            modelos.CanBanos_C,
-                            modelos.CanGarage_C,
-                            modelos.Id_Categoria_P,
-                            carga.FileName,
-                            modelos.MetrosCuadradosCasa_C,
-                            modelos.MetrosCuadradosLote_C
-                            );
+        //            try
+        //            {
+        //                registros = Model.IngresaPropiedad(
+        //                    modelos.Nombre_P,
+        //                    modelos.Descripcion_P,
+        //                    Convert.ToInt32(modelos.Precio),
+        //                    modelos.NombreProvincia_L,
+        //                    modelos.NombreCanton_L,
+        //                    modelos.NombreDistrito_L,
+        //                    modelos.Id_Provincia_L,
+        //                    modelos.Id_Canton_L,
+        //                    modelos.Id_Distrito_L,
+        //                    modelos.DireccionExacta_L,
+        //                    modelos.CanCuartos_C,
+        //                    modelos.CanBanos_C,
+        //                    modelos.CanGarage_C,
+        //                    modelos.Id_Categoria_P,
+        //                    carga.FileName,
+        //                    modelos.MetrosCuadradosCasa_C,
+        //                    modelos.MetrosCuadradosLote_C
+        //                    );
 
 
 
-                    }
+        //            }
 
-                    catch (Exception e)
-                    {
-                        mensaje = "Ocurrió un error: " + e.Message;
-                    }
+        //            catch (Exception e)
+        //            {
+        //                mensaje = "Ocurrió un error: " + e.Message;
+        //            }
 
-                    finally
-                    {
-                        if (registros > 0)
-                        {
+        //            finally
+        //            {
+        //                if (registros > 0)
+        //                {
 
-                            mensaje = "Se agregó una nueva Propiedad.";
+        //                    mensaje = "Se agregó una nueva Propiedad.";
 
-                        }
-                        else
-                        {
-                            mensaje = "No se pudo insertar.";
-                        }
-                    }
-                }else if (i > 0)
-                {
-                    HttpPostedFileBase carga = Request.Files[i];
-                    string ImageName = System.IO.Path.GetFileName(carga.FileName);
-                    string physicalPath = Server.MapPath("~/Images/" + ImageName);
-                    carga.SaveAs(physicalPath);
+        //                }
+        //                else
+        //                {
+        //                    mensaje = "No se pudo insertar.";
+        //                }
+        //            }
+        //        }else if (i > 0)
+        //        {
+        //            HttpPostedFileBase carga = Request.Files[i];
+        //            string ImageName = System.IO.Path.GetFileName(carga.FileName);
+        //            string physicalPath = Server.MapPath("~/Images/" + ImageName);
+        //            carga.SaveAs(physicalPath);
 
-                    registrox = Model.CargarImagenes(
-                            carga.FileName
-                            );
-                }
-            }
+        //            registrox = Model.CargarImagenes(
+        //                    carga.FileName
+        //                    );
+        //        }
+        //    }
 
-            Response.Write("<script laguage=JavaScript>alert('" + mensaje + "');</script>");
+        //    Response.Write("<script laguage=JavaScript>alert('" + mensaje + "');</script>");
 
-            return View();
-        }
+        //    return View();
+        //}
 
         #endregion
 
@@ -289,62 +289,62 @@ namespace BienesRaices.Controllers
             return View(modelovista);
         }
         [HttpPost]
-        public ActionResult ModificarPropiedad(MostrarPropiedadID_Result modelovista, int idpropiedad)
-        {
-            CargarImagenes(idpropiedad);
-            CargarCategoria();
-            int cantRegistrosAfectados = 0;
-            string resultado = "";
-            try
-            {
-                cantRegistrosAfectados = this.Model.ModificarPropiedad(
-                    modelovista.Id_Propiedad_P = idpropiedad,
-                    modelovista.Nombre_P,
-                    modelovista.Precio_P,
-                    modelovista.Estado_P,
-                    modelovista.Id_Categoria_P,
-                    modelovista.Descripcion_P,
-                    modelovista.NombreProvincia_L,
-                    modelovista.NombreCanton_L,
-                    modelovista.NombreDistrito_L,
-                    modelovista.Id_Propiedad_I,
-                    modelovista.Id_Canton_L,
-                    modelovista.Id_Distrito_L,
-                    modelovista.DireccionExacta_L,
-                    modelovista.CanCuartos_C,
-                    modelovista.CanBanos_C,
-                    modelovista.CanGarage_C,
-                    modelovista.MetrosCuadradosCasa_C,
-                    modelovista.MetrosCuadradosLote_C
+        //public ActionResult ModificarPropiedad(MostrarPropiedadID_Result modelovista, int idpropiedad)
+        //{
+        //    CargarImagenes(idpropiedad);
+        //    CargarCategoria();
+        //    int cantRegistrosAfectados = 0;
+        //    string resultado = "";
+        //    try
+        //    {
+        //        cantRegistrosAfectados = this.Model.ModificarPropiedad(
+        //            modelovista.Id_Propiedad_P = idpropiedad,
+        //            modelovista.Nombre_P,
+        //            modelovista.Precio_P,
+        //            modelovista.Estado_P,
+        //            modelovista.Id_Categoria_P,
+        //            modelovista.Descripcion_P,
+        //            modelovista.NombreProvincia_L,
+        //            modelovista.NombreCanton_L,
+        //            modelovista.NombreDistrito_L,
+        //            modelovista.Id_Propiedad_I,
+        //            modelovista.Id_Canton_L,
+        //            modelovista.Id_Distrito_L,
+        //            modelovista.DireccionExacta_L,
+        //            modelovista.CanCuartos_C,
+        //            modelovista.CanBanos_C,
+        //            modelovista.CanGarage_C,
+        //            modelovista.MetrosCuadradosCasa_C,
+        //            modelovista.MetrosCuadradosLote_C
 
-                    );
-            }
-            catch (Exception error)
-            {
-                resultado = "Ocurrio un error: " + error.Message;
-            }
-            finally
-            {
-                if (cantRegistrosAfectados > 0)
-                {
-                    resultado += "Registro modificado";
-                }
-                else
-                {
-                    resultado += "No se pudo modificar";
-                }
+        //            );
+        //    }
+        //    catch (Exception error)
+        //    {
+        //        resultado = "Ocurrio un error: " + error.Message;
+        //    }
+        //    finally
+        //    {
+        //        if (cantRegistrosAfectados > 0)
+        //        {
+        //            resultado += "Registro modificado";
+        //        }
+        //        else
+        //        {
+        //            resultado += "No se pudo modificar";
+        //        }
 
-            }
-            Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+        //    }
+        //    Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
 
-            return View(modelovista);
+        //    return View(modelovista);
 
 
-        }
+        //}
         #endregion
 
         #region EliminarImagen
-        [HttpPost]
+        //[HttpPost]
         public ActionResult EliminarImagen(AgregarImagenes_Result modelovista, MostrarPropiedadID_Result modelovistas ,int Id_Imagen_I,int idpropiedad)
         {
             int cantRegistrosAfectados = 0;
