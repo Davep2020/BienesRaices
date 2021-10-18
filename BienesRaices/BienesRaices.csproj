@@ -204,6 +204,12 @@
     <Compile Include="Models\MuestralosPedidos_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MuestraPrioridad_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Prioridad_Pri.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Propiedad_P.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -311,6 +317,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ModificaPropiedad.js" />
     <Content Include="Scripts\Reporte\Generica.js" />
     <Content Include="Scripts\Reporte\ReporteCliente.js" />
     <Content Include="Scripts\Validaciones\IngresarCuenta.js" />

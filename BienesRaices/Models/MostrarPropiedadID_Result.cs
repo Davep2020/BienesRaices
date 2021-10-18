@@ -19,6 +19,8 @@ public partial class MostrarPropiedadID_Result
 
     public string Precio { get; set; }
 
+    public string PrecioA { get; set; }
+
     public Nullable<int> Id_Propiedad_P { get; set; }
 
     public string Nombre_P { get; set; }
@@ -30,6 +32,14 @@ public partial class MostrarPropiedadID_Result
     public Nullable<int> Id_Categoria_P { get; set; }
 
     public string Descripcion_P { get; set; }
+
+    public Nullable<decimal> PrecioAntes_P { get; set; }
+
+    public Nullable<int> IdPrioridad_P { get; set; }
+
+    public string TipoMoneda_P { get; set; }
+
+    public Nullable<int> CantidadVisiras_P { get; set; }
 
     public Nullable<int> Id_Categoria_CA { get; set; }
 
@@ -72,6 +82,10 @@ public partial class MostrarPropiedadID_Result
     public string DireccionExacta_L { get; set; }
 
     public int Id_Propiedad_L { get; set; }
+
+    public int IdPrioridad_Pri { get; set; }
+
+    public string Nombre_Pri { get; set; }
 
 }
 

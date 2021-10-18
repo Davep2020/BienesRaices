@@ -48,6 +48,8 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
 
     public DbSet<Localizacion_L> Localizacion_L { get; set; }
 
+    public DbSet<Prioridad_Pri> Prioridad_Pri { get; set; }
+
     public DbSet<Propiedad_P> Propiedad_P { get; set; }
 
 
@@ -201,7 +203,100 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
     }
 
 
-    public virtual int IngresaPropiedad(string nombrePro, string descripcion, Nullable<decimal> precioPro, string provincia, string canton, string distrito, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string direccionExacta, Nullable<int> cantidadCuarto, Nullable<int> cantidadBano, Nullable<int> cantidadGarajes, Nullable<int> categoriaPro, string ruta, Nullable<int> metrosCasa, Nullable<int> metrosLote, Nullable<int> idPrioridad, string tipoMoneda)
+    public virtual int CargarImagenes(string ruta)
+    {
+
+        var rutaParameter = ruta != null ?
+            new ObjectParameter("Ruta", ruta) :
+            new ObjectParameter("Ruta", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CargarImagenes", rutaParameter);
+    }
+
+
+    public virtual int OcultarPropiedad(Nullable<int> idPropiedad, string estado)
+    {
+
+        var idPropiedadParameter = idPropiedad.HasValue ?
+            new ObjectParameter("IdPropiedad", idPropiedad) :
+            new ObjectParameter("IdPropiedad", typeof(int));
+
+
+        var estadoParameter = estado != null ?
+            new ObjectParameter("Estado", estado) :
+            new ObjectParameter("Estado", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("OcultarPropiedad", idPropiedadParameter, estadoParameter);
+    }
+
+
+    public virtual int EliminarImagenes(Nullable<int> idimagen)
+    {
+
+        var idimagenParameter = idimagen.HasValue ?
+            new ObjectParameter("Idimagen", idimagen) :
+            new ObjectParameter("Idimagen", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarImagenes", idimagenParameter);
+    }
+
+
+    public virtual ObjectResult<AgregarImagenes_Result> AgregarImagenes(Nullable<int> idPropiedad)
+    {
+
+        var idPropiedadParameter = idPropiedad.HasValue ?
+            new ObjectParameter("IdPropiedad", idPropiedad) :
+            new ObjectParameter("IdPropiedad", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AgregarImagenes_Result>("AgregarImagenes", idPropiedadParameter);
+    }
+
+
+    public virtual ObjectResult<MostrarTodoImagen_Result> MostrarTodoImagen()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarTodoImagen_Result>("MostrarTodoImagen");
+    }
+
+
+    public virtual ObjectResult<MuestraCaracteristicas_Result> MuestraCaracteristicas()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestraCaracteristicas_Result>("MuestraCaracteristicas");
+    }
+
+
+    public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
+    }
+
+
+    public virtual ObjectResult<MostrarTresPropiedades_Result> MostrarTresPropiedades(Nullable<int> idCategoria)
+    {
+
+        var idCategoriaParameter = idCategoria.HasValue ?
+            new ObjectParameter("IdCategoria", idCategoria) :
+            new ObjectParameter("IdCategoria", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarTresPropiedades_Result>("MostrarTresPropiedades", idCategoriaParameter);
+    }
+
+
+    public virtual ObjectResult<MuestraPrioridad_Result> MuestraPrioridad()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestraPrioridad_Result>("MuestraPrioridad");
+    }
+
+
+    public virtual int IngresaPropiedad(string nombrePro, string descripcion, string precioPro, string provincia, string canton, string distrito, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string direccionExacta, Nullable<int> cantidadCuarto, Nullable<int> cantidadBano, Nullable<int> cantidadGarajes, Nullable<int> categoriaPro, string ruta, Nullable<int> metrosCasa, Nullable<int> metrosLote, Nullable<int> idPrioridad, string tipoMoneda)
     {
 
         var nombreProParameter = nombrePro != null ?
@@ -214,9 +309,9 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
             new ObjectParameter("Descripcion", typeof(string));
 
 
-        var precioProParameter = precioPro.HasValue ?
+        var precioProParameter = precioPro != null ?
             new ObjectParameter("PrecioPro", precioPro) :
-            new ObjectParameter("PrecioPro", typeof(decimal));
+            new ObjectParameter("PrecioPro", typeof(string));
 
 
         var provinciaParameter = provincia != null ?
@@ -303,19 +398,7 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
     }
 
 
-    public virtual int CargarImagenes(string ruta)
-    {
-
-        var rutaParameter = ruta != null ?
-            new ObjectParameter("Ruta", ruta) :
-            new ObjectParameter("Ruta", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CargarImagenes", rutaParameter);
-    }
-
-
-    public virtual int ModificarPropiedad(Nullable<int> idPropi, string nombrePro, Nullable<decimal> precio, string estado, Nullable<int> categoria, string des, string nombreProvincia, string nombreCanton, string nombreDistrito, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string direccionExacta, Nullable<int> cuartos, Nullable<int> banos, Nullable<int> garajes, Nullable<int> metrosCasa, Nullable<int> metrosPropiedad, Nullable<int> idPrioridad, Nullable<int> precioAntes)
+    public virtual int ModificarPropiedad(Nullable<int> idPropi, string nombrePro, string precio, string estado, Nullable<int> categoria, string des, string nombreProvincia, string nombreCanton, string nombreDistrito, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string direccionExacta, Nullable<int> cuartos, Nullable<int> banos, Nullable<int> garajes, Nullable<int> metrosCasa, Nullable<int> metrosPropiedad, Nullable<int> idPrioridad, string tipoMoneda, string precioAntes)
     {
 
         var idPropiParameter = idPropi.HasValue ?
@@ -328,9 +411,9 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
             new ObjectParameter("NombrePro", typeof(string));
 
 
-        var precioParameter = precio.HasValue ?
+        var precioParameter = precio != null ?
             new ObjectParameter("Precio", precio) :
-            new ObjectParameter("Precio", typeof(decimal));
+            new ObjectParameter("Precio", typeof(string));
 
 
         var estadoParameter = estado != null ?
@@ -413,12 +496,17 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
             new ObjectParameter("idPrioridad", typeof(int));
 
 
-        var precioAntesParameter = precioAntes.HasValue ?
+        var tipoMonedaParameter = tipoMoneda != null ?
+            new ObjectParameter("TipoMoneda", tipoMoneda) :
+            new ObjectParameter("TipoMoneda", typeof(string));
+
+
+        var precioAntesParameter = precioAntes != null ?
             new ObjectParameter("PrecioAntes", precioAntes) :
-            new ObjectParameter("PrecioAntes", typeof(int));
+            new ObjectParameter("PrecioAntes", typeof(string));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarPropiedad", idPropiParameter, nombreProParameter, precioParameter, estadoParameter, categoriaParameter, desParameter, nombreProvinciaParameter, nombreCantonParameter, nombreDistritoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, direccionExactaParameter, cuartosParameter, banosParameter, garajesParameter, metrosCasaParameter, metrosPropiedadParameter, idPrioridadParameter, precioAntesParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarPropiedad", idPropiParameter, nombreProParameter, precioParameter, estadoParameter, categoriaParameter, desParameter, nombreProvinciaParameter, nombreCantonParameter, nombreDistritoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, direccionExactaParameter, cuartosParameter, banosParameter, garajesParameter, metrosCasaParameter, metrosPropiedadParameter, idPrioridadParameter, tipoMonedaParameter, precioAntesParameter);
     }
 
 
@@ -426,73 +514,6 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
     {
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarReporte_Result>("MostrarReporte");
-    }
-
-
-    public virtual int OcultarPropiedad(Nullable<int> idPropiedad, string estado)
-    {
-
-        var idPropiedadParameter = idPropiedad.HasValue ?
-            new ObjectParameter("IdPropiedad", idPropiedad) :
-            new ObjectParameter("IdPropiedad", typeof(int));
-
-
-        var estadoParameter = estado != null ?
-            new ObjectParameter("Estado", estado) :
-            new ObjectParameter("Estado", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("OcultarPropiedad", idPropiedadParameter, estadoParameter);
-    }
-
-
-    public virtual int EliminarImagenes(Nullable<int> idimagen)
-    {
-
-        var idimagenParameter = idimagen.HasValue ?
-            new ObjectParameter("Idimagen", idimagen) :
-            new ObjectParameter("Idimagen", typeof(int));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarImagenes", idimagenParameter);
-    }
-
-
-    public virtual ObjectResult<AgregarImagenes_Result> AgregarImagenes(Nullable<int> idPropiedad)
-    {
-
-        var idPropiedadParameter = idPropiedad.HasValue ?
-            new ObjectParameter("IdPropiedad", idPropiedad) :
-            new ObjectParameter("IdPropiedad", typeof(int));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AgregarImagenes_Result>("AgregarImagenes", idPropiedadParameter);
-    }
-
-
-    public virtual ObjectResult<MostrarPropiedadID_Result> MostrarPropiedadID(Nullable<int> idPropiedad)
-    {
-
-        var idPropiedadParameter = idPropiedad.HasValue ?
-            new ObjectParameter("idPropiedad", idPropiedad) :
-            new ObjectParameter("idPropiedad", typeof(int));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadID_Result>("MostrarPropiedadID", idPropiedadParameter);
-    }
-
-
-    public virtual ObjectResult<MostrarTodoImagen_Result> MostrarTodoImagen()
-    {
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarTodoImagen_Result>("MostrarTodoImagen");
-    }
-
-
-    public virtual ObjectResult<MuestraCaracteristicas_Result> MuestraCaracteristicas()
-    {
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestraCaracteristicas_Result>("MuestraCaracteristicas");
     }
 
 
@@ -548,13 +569,6 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
     }
 
 
-    public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
-    {
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
-    }
-
-
     public virtual ObjectResult<MostrarPropiedad_Result> MostrarPropiedad(Nullable<int> precio02, Nullable<int> canCuato, Nullable<int> canBano, Nullable<int> canGara, Nullable<int> cate, Nullable<int> provincia, Nullable<int> canton, Nullable<int> distrito)
     {
 
@@ -602,15 +616,15 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
     }
 
 
-    public virtual ObjectResult<MostrarTresPropiedades_Result> MostrarTresPropiedades(Nullable<int> idCategoria)
+    public virtual ObjectResult<MostrarPropiedadID_Result> MostrarPropiedadID(Nullable<int> idPropiedad)
     {
 
-        var idCategoriaParameter = idCategoria.HasValue ?
-            new ObjectParameter("IdCategoria", idCategoria) :
-            new ObjectParameter("IdCategoria", typeof(int));
+        var idPropiedadParameter = idPropiedad.HasValue ?
+            new ObjectParameter("idPropiedad", idPropiedad) :
+            new ObjectParameter("idPropiedad", typeof(int));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarTresPropiedades_Result>("MostrarTresPropiedades", idCategoriaParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadID_Result>("MostrarPropiedadID", idPropiedadParameter);
     }
 
 }

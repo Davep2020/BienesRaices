@@ -1,22 +1,65 @@
 ﻿@model BienesRaices.Models.MostrarPropiedadID_Result
-@{
-    ViewBag.Title = "ModificarPropiedad";
-    Layout = "~/Views/Shared/_LayoutPropiedad.cshtml";
-}
+@{ ViewBag.Title = "ModificarPropiedad";
+    Layout = "~/Views/Shared/_LayoutPropiedad.cshtml"; }
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
+<script src="~/Scripts/ModificaPropiedad.js"></script>
+
 
 <form method="post">
     <div class="row">
         <div class="col-lg-3 form-group">
+            <label>Categoria de la propiedad</label>
+            <select class="form-control" name="Id_Categoria_P" id="Id_Categoria_P" onChange="mostrar(this.value);">
+                <option>Seleccione una categoria</option>
+                @{ foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
+                    {
+                        bool repeat = Categoria.Id_Categoria_CA == Model.Id_Categoria_CA;
+                        var idcate = Categoria.Id_Categoria_CA;
+                        if (repeat)
+                        {
+        <option value="@Categoria.Id_Categoria_CA" selected>@Categoria.Nombre_CA</option>
+ }
+    else
+    {
+<option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
+ }
+} }
+            </select>
+        </div>
+        <div class="col-lg-3 form-group">
             <label for="">Nombre de la propiedad</label>
             <input type="text" class="form-control" name="Nombre_P" value="@Model.Nombre_P" placeholder="Ingrese el nombre de la propiedad" />
         </div>
-        <div class="col-lg-3 form-group">
-            <label for="">Precio de la Propiedad</label>
-            <input type="text" class="form-control" name="Precio_P" value="@Model.Precio_P" placeholder="Ingrese el Precio de la Propiedad" />
+        <div class="col-lg-3 form-group" id="TipoMoneda_P">
+            <label>Tipo Moneda</label>
+            <select class="form-control" name="TipoMoneda_P">
+                @if (Model.TipoMoneda_P == "$")
+                {
+                <option value="$" selected>Dolares</option>
+                  <option value="¢">Colones</option>
+                 }
+                else
+                {
+    <option value="$">Dolares</option>
+                    <option value="¢" selected>Colones</option>}
+            </select>
         </div>
         <div class="col-lg-3 form-group">
+            <label for="">Precio de la Propiedad</label>
+            <input type="text" class="form-control" name="Precio" value="@Model.Precio" placeholder="Ingrese el Precio de la Propiedad" />
+        </div>
+        <div class="col-lg-3 form-group">
+            <label for="">Nuevo Precio de la Propiedad</label>
+            <input type="text" class="form-control" name="PrecioA" value="@Model.PrecioAntes_P" placeholder="Ingrese el Precio de la Propiedad" />
+        </div>
+
+
+
+        <div class="col-lg-3 form-group" id="CanCuartos_C">
             <label>Cantidad de Cuartos</label>
-            <select class="form-control" name="Can_Cuarto_P">
+            <select class="form-control" name="CanCuartos_C">
                 <option value="">Seleccione la cantidad</option>
                 @if (Model.CanCuartos_C == 1)
                 {
@@ -68,19 +111,42 @@
                 }
                 else if (Model.CanCuartos_C == 6)
                 {
+
+
+                    <option value="1">1</option>
+
+
+                    <option value="2">2</option>
+
+
+                    <option value="3">3</option>
+
+
+                    <option value="4">4</option>
+
+
+                    <option value="5">5</option>
+
+
+                    <option value="6">6</option>
+
+
+                    <option value="6" selected>6</option>
+                }
+                else
+                {
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                     <option value="6">6</option>
-                    <option value="6" selected>6</option>
                 }
             </select>
         </div>
-        <div class="col-lg-3 form-group">
+        <div class="col-lg-3 form-group" id="CanBanos_C">
             <label>Cantidad de Baños</label>
-            <select class="form-control" name="Can_Baños_P">
+            <select class="form-control" name="CanBanos_C">
                 <option value="">Seleccione la cantidad</option>
                 @if (Model.CanBanos_C == 1)
                 {
@@ -88,7 +154,6 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-
                 }
                 else if (Model.CanBanos_C == 2)
                 {
@@ -96,7 +161,6 @@
                     <option value="2" selected>2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-
                 }
                 else if (Model.CanBanos_C == 3)
                 {
@@ -104,7 +168,6 @@
                     <option value="2">2</option>
                     <option value="3" selected>3</option>
                     <option value="4">4</option>
-
                 }
                 else if (Model.CanBanos_C == 4)
                 {
@@ -112,15 +175,20 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4" selected>4</option>
-
+                }
+                else
+                {
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+           
                 }
             </select>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 form-group ">
+        <div class="col-lg-3 form-group " id="CanGarage_C">
             <label>Cantidad de Garajes</label>
-            <select class="form-control" name="Can_Garaje_P">
+            <select class="form-control" name="CanGarage_C">
                 <option value="">Seleccione la cantidad</option>
                 @if (Model.CanGarage_C == 1)
                 {
@@ -128,7 +196,6 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-
                 }
                 else if (Model.CanGarage_C == 2)
                 {
@@ -136,7 +203,6 @@
                     <option value="2" selected>2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-
                 }
                 else if (Model.CanGarage_C == 3)
                 {
@@ -144,7 +210,6 @@
                     <option value="2">2</option>
                     <option value="3" selected>3</option>
                     <option value="4">4</option>
-
                 }
                 else if (Model.CanGarage_C == 4)
                 {
@@ -152,36 +217,69 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4" selected>4</option>
-
+                }
+                else
+                {
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+      
                 }
             </select>
         </div>
         <input type="text" name="Estado_P" value="@Model.Estado_P" style="display:none">
-
         <div class="col-lg-3 form-group">
-            <label>Categoria de la propiedad</label>
-            <select class="form-control" name="Id_Categoria_P">
-                <option>Seleccione una categoria</option>
-                @{
-                    foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
+            <label>Prioridad de la propiedad</label>
+            <select class="form-control" name="IdPrioridad_Pri">
+                <option>Seleccione una Prioridad</option>
+                @{ foreach (BienesRaices.Models.MuestraPrioridad_Result Prioridad in this.ViewBag.CargarPrioridad)
                     {
-                        bool repeat = Categoria.Id_Categoria_CA == Model.Id_Categoria_CA;
+                        bool repeat = Prioridad.IdPrioridad_Pri == Model.IdPrioridad_Pri;
                         if (repeat)
                         {
-                            <option value="@Categoria.Id_Categoria_CA" selected>@Categoria.Nombre_CA</option>
-
-                        }
-                        else
-                        {
-                            <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
-                        }
-                    }
-
-
-                }
+        <option value="@Prioridad.IdPrioridad_Pri" selected>@Prioridad.Nombre_Pri</option>
+ }
+    else
+    {
+<option value="@Prioridad.IdPrioridad_Pri">@Prioridad.Nombre_Pri</option>
+ }
+} }
             </select>
         </div>
 
+        <div class="col-lg-3 form-group">
+            <label for="">Descripción de la propiedad</label>
+            <input type="text" class="form-control" autocomplete="off" name="Descripcion_P" value="@Model.Descripcion_P" placeholder="Ingrese la descripción de la propiedad" />
+        </div>
+        <div class="col-lg-3 form-group">
+            <label for="provincias">Provincia</label>
+            <select class="form-control" id="provincias" name="Id_Provincia_L" onchange="getCantones(this.value);">
+            </select>
+        </div>
+        <div class="col-lg-3 form-group canton">
+            <label for="cantones">Cantón</label>
+            <select class="form-control" id="cantones" name="Id_Canton_L" onchange="getDistritos(this.value);">
+            </select>
+        </div>
+        <div class="col-lg-3 form-group distrito">
+            <label for="distritos">Distrito</label>
+            <select class="form-control" id="distritos" name="Id_Distrito_L" onchange="distritoSelected()"></select>
+        </div>
+        <div class="col-lg-3 form-group">
+            <label for="">Dirección exacta de la propiedad</label>
+            <input type="text" class="form-control" autocomplete="off" name="DireccionExacta_L" value="@Model.DireccionExacta_L" placeholder="Ingrese la Dirección exacta de la propiedad" />
+        </div>
+        <div class="col-lg-3 form-group">
+            <label for="">Metros Cuadrados de la propiedad</label>
+            <input type="number" class="form-control" autocomplete="off" name="MetrosCuadradosLote_C" value="@Model.MetrosCuadradosLote_C" placeholder="Ingrese la Cantidad" />
+        </div>
+
+
+        <div class="col-lg-3 form-group" id="MetrosCuadradosCasa_C">
+            <label for="">Metros Cuadrados de la casa</label>
+            <input type="number" class="form-control" autocomplete="off" name="MetrosCuadradosCasa_C" value="@Model.MetrosCuadradosCasa_C" placeholder="Ingrese la Cantidad" />
+        </div>
 
 
     </div>
@@ -191,7 +289,18 @@
             <input class="btn btn-secondary" type="submit" name="name" value="Cargar" />
         </div>
     </div>
+          @if (Model.NombreProvincia_L == ""|| Model.NombreProvincia_L == null) {
 
+          }
+    <input type="hidden" name="hddProvincia" id="hdProvinciaID" value="@Model.NombreProvincia_L" />
+    <input type="hidden" name="hddCantonID" id="hdCantonID" value="@Model.NombreCanton_L" />
+    <input type="hidden" name="hddDistritoID" id="hdDistritoID" value="@Model.NombreDistrito_L" />
+    <input type="hidden" name="hddProvincia" id="hddProvinciaID" value="@Model.Id_Provincia_L" />
+    <input type="hidden" name="hddCantonID" id="hddCantonID" value="@Model.Id_Canton_L" />
+    <input type="hidden" name="hddDistritoID" id="hddDistritoID" value="@Model.Id_Distrito_L" />
+    <input type="text" hidden name="NombreProvincia_L" id="1" value="" />
+    <input type="text" hidden name="NombreCanton_L" id="2" value="" />
+    <input type="text" hidden name="NombreDistrito_L" id="3" value="" />
 
 </form>
 <button data-bs-toggle="modal" data-bs-target="#exampleModal">Mostrar Imagenes</button>
@@ -207,22 +316,17 @@
                 @{ foreach (BienesRaices.Models.AgregarImagenes_Result posicion in this.ViewBag.CargarImagenes)
                     {
 
-                        <div class="card col-lg-3">
-                            <div class="card-body" style="text-align:center">
-                                <img src="~/images/@posicion.Ruta_I" width="100" />
+        <div class="card col-lg-3">
+            <div class="card-body" style="text-align:center">
+                <img src="~/images/@posicion.Ruta_I" width="100" />
 
-                                @using (Html.BeginForm("EliminarImagen", "Propiedad", FormMethod.Post))
-                                {
-                                    <button id="Con" type="submit" name="Id_Imagen_I" value="@posicion.Id_Imagen_I" class="btn btn-info">Eliminar Imagen</button>
-                                   <input type="text" name="idPropiedad" value="@posicion.Id_Propiedad_I" hidden>
-                                }
+                @using (Html.BeginForm("EliminarImagen", "Propiedad", FormMethod.Post))
+                {
+<button id="Con" type="submit" name="Id_Imagen_I" value="@posicion.Id_Imagen_I" class="btn btn-info">Eliminar Imagen</button>
+                    <input type="text" name="idPropiedad" value="@posicion.Id_Propiedad_I" hidden>}
 
-                            </div>
-                        </div>
-
-
-                    }
-                }
+            </div>
+        </div> } }
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -231,3 +335,4 @@
         </div>
     </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3cOQNB4cQjQDSGWiB_nT2H2pEOuD3w60&callback=initMap" async defer></script>

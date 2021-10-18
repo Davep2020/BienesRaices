@@ -23,6 +23,8 @@ public partial class MostrarPropiedad_Result
 
     public string Nombre_P { get; set; }
 
+    public string Estado_P { get; set; }
+
     public Nullable<int> CanCuartos_C { get; set; }
 
     public Nullable<int> CanBanos_C { get; set; }
@@ -37,27 +39,35 @@ public partial class MostrarPropiedad_Result
 
     public string Ruta_I { get; set; }
 
-    public string Estado_P { get; set; }
-
-    public string Descripcion_P { get; set; }
+    public string NombreProvincia_L { get; set; }
 
     public string NombreCanton_L { get; set; }
 
-    public string DireccionExacta_L { get; set; }
-
     public string NombreDistrito_L { get; set; }
 
-    public string NombreProvincia_L { get; set; }
+    public string Nombre_Pri { get; set; }
 
-    public Nullable<int> MetrosCuadradosCasa_C { get; set; }
+    public Nullable<decimal> PrecioAntes_P { get; set; }
 
-    public Nullable<int> MetrosCuadradosLote_C { get; set; }
+    public int IdPrioridad_Pri { get; set; }
+
+    public string TipoMoneda_P { get; set; }
+
+    public string Descripcion_P { get; set; }
 
     public int Id_Provincia_L { get; set; }
 
     public int Id_Canton_L { get; set; }
 
     public int Id_Distrito_L { get; set; }
+
+    public string DireccionExacta_L { get; set; }
+
+    public Nullable<int> MetrosCuadradosCasa_C { get; set; }
+
+    public Nullable<int> MetrosCuadradosLote_C { get; set; }
+
+    public Nullable<int> CantidadVisiras_P { get; set; }
 
 }
 

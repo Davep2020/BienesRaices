@@ -45,6 +45,16 @@ public partial class MostrarPropiedadAdmin_Result
 
     public string NombreDistrito_L { get; set; }
 
+    public string Nombre_Pri { get; set; }
+
+    public Nullable<decimal> PrecioAntes_P { get; set; }
+
+    public int IdPrioridad_Pri { get; set; }
+
+    public string TipoMoneda_P { get; set; }
+
+    public Nullable<int> CantidadVisiras_P { get; set; }
+
 }
 
 }

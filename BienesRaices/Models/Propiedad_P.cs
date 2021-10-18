@@ -50,6 +50,8 @@ public partial class Propiedad_P
 
     public string TipoMoneda_P { get; set; }
 
+    public Nullable<int> CantidadVisiras_P { get; set; }
+
 
 
     public virtual ICollection<Caracteristicas_C> Caracteristicas_C { get; set; }
@@ -61,6 +63,8 @@ public partial class Propiedad_P
     public virtual ICollection<Imagen_I> Imagen_I { get; set; }
 
     public virtual ICollection<Localizacion_L> Localizacion_L { get; set; }
+
+    public virtual Prioridad_Pri Prioridad_Pri { get; set; }
 
 }
 
