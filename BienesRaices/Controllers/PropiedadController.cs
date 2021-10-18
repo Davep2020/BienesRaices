@@ -229,12 +229,12 @@ namespace BienesRaices.Controllers
         #endregion
 
         #region Inicio
-        public ActionResult Inicio(int? pageSize, int? page, int? precio02, int? CanCuato, int? CanBano, int? CanGara, int? Cate, string estado,int? Id_Provincia_L,int? Id_Canton_L, int? Id_Distrito_L)
+        public ActionResult Inicio(int? pageSize, int? page, int? precio02, int? CanCuato, int? CanBano, int? CanGara, int? Cate, string estado,int? Id_Provincia_L,int? Id_Canton_L, int? Id_Distrito_L, string tipo)
         {
             CargarCategoria();
 
             List<MostrarPropiedadAdmin_Result> lista = new List<MostrarPropiedadAdmin_Result>();
-            lista = Model.MostrarPropiedadAdmin(precio02, CanCuato, CanBano, CanGara, Cate, estado,Id_Provincia_L,Id_Canton_L,Id_Distrito_L).ToList();
+            lista = Model.MostrarPropiedadAdmin(precio02, CanCuato, CanBano, CanGara, Cate, estado,Id_Provincia_L,Id_Canton_L,Id_Distrito_L, tipo).ToList();
             pageSize = (pageSize ?? 20);
             page = (page ?? 1);
 
@@ -359,7 +359,7 @@ namespace BienesRaices.Controllers
         #endregion
 
         #region EliminarImagen
-        //[HttpPost]
+        [HttpPost]
         public ActionResult EliminarImagen(AgregarImagenes_Result modelovista, MostrarPropiedadID_Result modelovistas ,int Id_Imagen_I,int idpropiedad)
         {
             int cantRegistrosAfectados = 0;
@@ -391,9 +391,30 @@ namespace BienesRaices.Controllers
             return RedirectToAction("ModificarPropiedad", "Propiedad", new { idpropiedad });
 
         }
-#endregion
+        #endregion
 
+        #region AgregarImagenes
+        [HttpPost]
+        public ActionResult agregarImagen(MostrarPropiedad_Result modelovista , int? idpropiedad)
+        {
+            int registrox = 0;
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                
+                    HttpPostedFileBase carga = Request.Files[i];
+                    string ImageName = System.IO.Path.GetFileName(carga.FileName);
+                    string physicalPath = Server.MapPath("~/Images/" + ImageName);
+                    carga.SaveAs(physicalPath);
 
+                    registrox = Model.CargarImagenesModificar(
+                            modelovista.Id_Propiedad_P= idpropiedad,
+                            carga.FileName
+                            );
+                
+            }
+            return RedirectToAction("ModificarPropiedad", "Propiedad", new { idpropiedad });
+        }
+        #endregion
 
         #region Metodos
         void CargarCategoria()

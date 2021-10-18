@@ -304,6 +304,7 @@
 
 </form>
 <button data-bs-toggle="modal" data-bs-target="#exampleModal">Mostrar Imagenes</button>
+<button data-bs-toggle="modal" data-bs-target="#exampleModal1">Agregar Imagenes</button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -313,26 +314,63 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @{ foreach (BienesRaices.Models.AgregarImagenes_Result posicion in this.ViewBag.CargarImagenes)
-                    {
+                <div class="row">
 
-        <div class="card col-lg-3">
-            <div class="card-body" style="text-align:center">
-                <img src="~/images/@posicion.Ruta_I" width="100" />
 
-                @using (Html.BeginForm("EliminarImagen", "Propiedad", FormMethod.Post))
-                {
-<button id="Con" type="submit" name="Id_Imagen_I" value="@posicion.Id_Imagen_I" class="btn btn-info">Eliminar Imagen</button>
-                    <input type="text" name="idPropiedad" value="@posicion.Id_Propiedad_I" hidden>}
+                    @{ foreach (BienesRaices.Models.AgregarImagenes_Result posicion in this.ViewBag.CargarImagenes)
+                        {
 
-            </div>
-        </div> } }
+                            <div class="card col-lg-6">
+                                <div class="card-body" style="text-align:center">
+                                    <img src="~/images/@posicion.Ruta_I" width="100%" />
+
+                                    @using (Html.BeginForm("EliminarImagen", "Propiedad", FormMethod.Post))
+                                    {
+                                        <button id="Con" type="submit" name="Id_Imagen_I" value="@posicion.Id_Imagen_I" class="btn btn-info">Eliminar Imagen</button>
+                                        <input type="text" name="idPropiedad" value="@posicion.Id_Propiedad_I" hidden>
+                                    }
+
+                                </div>
+                            </div> } }
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Imagenes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @using (Html.BeginForm("agregarImagen", "Propiedad", FormMethod.Post,
+                  new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+
+                    <div class="col-lg-2  form-group">
+
+                        <label>Cargar Imagen</label>
+                        <input class="form-control-file border" type="file" multiple id="Ruta_I" name="Ruta_I" required />
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+
+                    <button id="Con" type="submit" name="idpropiedad" value="@Model.Id_Propiedad_P" class="btn btn-info">Agregar Imagen</button>
+                    
+                </div>
+            }
+            </div>
     </div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3cOQNB4cQjQDSGWiB_nT2H2pEOuD3w60&callback=initMap" async defer></script>

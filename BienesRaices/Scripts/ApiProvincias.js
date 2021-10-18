@@ -3,6 +3,8 @@
         "https://ubicaciones.paginasweb.cr/provincias.json",
         function (data) {
             arrayToOptions(data, $("#provincias"), 'Provincias');
+            $("#Dolares").hide();
+            $("#Colones").hide();
         }
     );
 });
@@ -105,4 +107,19 @@ function mostrar(id) {
   
         
     
+}
+
+function moneda(id) {
+    if (id == "¢") {
+        $("#Colones").show();
+        $("#Dolares").hide();
+    }
+    if (id == "$") {
+        $("#Colones").hide();
+        $("#Dolares").show();
+    }
+
+
+
+
 }

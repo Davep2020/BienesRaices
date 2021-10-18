@@ -2,7 +2,7 @@
 @model PagedList.IPagedList<BienesRaices.Models.MostrarPropiedadAdmin_Result>
 
 @{ ViewBag.Title = "Inicio";
-                Layout = "~/Views/Shared/_LayoutPropiedad.cshtml"; }
+    Layout = "~/Views/Shared/_LayoutPropiedad.cshtml"; }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
 <script src="~/Scripts/ApiProvincias.js"></script>
 <style>
@@ -22,8 +22,9 @@
         <select class="form-control" name="Cate" onChange="mostrar(this.value);">
             <option>Seleccione una categoria</option>
             @{ foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
-                                {
-                <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option> } }
+                {
+<option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
+ } }
         </select>
     </div>
     <div class="col-lg-2 form-group" id="CanCuartos_C">
@@ -71,13 +72,25 @@
         </select>
     </div>
 
+    <div class="col-lg-2 form-group" id="TipoMoneda_P">
+        <label>Tipo Moneda</label>
+        <select class="form-control" name="tipo" onchange="moneda(this.value)">
+            <option value="¢">Colones</option>
+            <option value="$">Dolares</option>
+        </select>
+    </div>
 
-
-    <div class="slidecontainer col-lg-2">
+    <div class="slidecontainer col-lg-2"  id="Dolares">
         <label>Precio</label>
         <br />
         <input type="range" name="precio02" max="20000000" value="0" step="1000000" class="slider" id="myRange">
-        <p>Precio:¢ <span id="demo"></span></p>
+        <p>Precio:$ <span id="demo"></span></p>
+    </div>
+    <div class="slidecontainer col-lg-2"  id="Colones">
+        <label>Precio</label>
+        <br />
+        <input type="range" name="precio02" max="20000000" value="0" step="1000000" class="slider" id="myRange1">
+        <p>Precio:¢ <span id="demo1"></span></p>
     </div>
     <div class="col-lg-2 form-group ">
         <label>Provincia</label>
@@ -124,10 +137,10 @@
         {
 <label>Nuevo Precio:@posicion.PrecioAntes_P</label>
                     <label>Precio Antes:@posicion.Precio</label> }
-                                    else
-                                    {
-                    <label>Precio:@posicion.Precio</label>}
-
+                else
+                {
+<label>Precio:@posicion.Precio</label>}
+    <br />
         <label>@posicion.NombreProvincia_L ,@posicion.NombreCanton_L ,@posicion.NombreDistrito_L</label>
         <p>Tipo: @posicion.Nombre_CA</p>
 
@@ -169,8 +182,9 @@
         <select class="form-control" name="Cate" onChange="mostrar(this.value);">
             <option>Seleccione una categoria</option>
             @{ foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
-                                {
-                <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option> } }
+                {
+<option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
+ } }
         </select>
     </div>
     <div class="col-lg-2 form-group" id="CanCuartos_C">
@@ -271,6 +285,21 @@
 
     slider.oninput = function () {
         output.innerHTML = formatter.format(this.value);
+
+    }
+
+    const formatters = new Intl.NumberFormat({
+        style: 'currency',
+        currency: '',
+        minimumFractionDigits: 0
+    })
+
+    var slider1 = document.getElementById("myRange1");
+    var output1 = document.getElementById("demo1");
+    output1.innerHTML = slider1.value;
+
+    slider1.oninput = function () {
+        output1.innerHTML = formatters.format(this.value);
 
     }
 </script>
