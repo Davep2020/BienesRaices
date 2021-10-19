@@ -29,6 +29,7 @@ namespace BienesRaices.Controllers
             MostrarTresCasas(1);
             MostrarTresAlquiler(2);
             MostrarTresTerrenos(3);
+            CargarCategoria();
             return View();
         }
 
@@ -66,6 +67,7 @@ namespace BienesRaices.Controllers
         {
             MostrarPropiedadID_Result modelovista = new MostrarPropiedadID_Result();
             modelovista = this.Model.MostrarPropiedadID(idPropiedad).FirstOrDefault();
+            CargarImagenes(idPropiedad);
             return View(modelovista);
         }
         [HttpPost]
@@ -114,6 +116,11 @@ namespace BienesRaices.Controllers
         {
             this.ViewBag.CargarCaracteristica =
                 this.Model.MuestraCaracteristicas().ToList();
+        }
+
+        void CargarImagenes(int idPropiedad)
+        {
+            this.ViewBag.CargarImagenes = this.Model.MostrarCarruoselPropiedad(idPropiedad).ToList();
         }
     }
 }

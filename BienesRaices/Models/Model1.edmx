@@ -218,6 +218,9 @@
           <Parameter Name="TipoMoneda" Type="varchar" Mode="In" />
           <Parameter Name="PrecioAntes" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="MostrarCarruoselPropiedad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPropiedad" Type="int" Mode="In" />
+        </Function>
         <Function Name="MostrarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MostrarPropiedad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Precio02" Type="int" Mode="In" />
@@ -457,6 +460,9 @@
             <Parameter Name="Canton" Mode="In" Type="Int32" />
             <Parameter Name="Distrito" Mode="In" Type="Int32" />
             <Parameter Name="TipoMoneda" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MostrarCarruoselPropiedad" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MostrarCarruoselPropiedad_Result)">
+            <Parameter Name="IdPropiedad" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="MuestraCuenta_Result">
@@ -836,6 +842,11 @@
           <Property Type="String" Name="TipoMoneda_P" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="CantidadVisiras_P" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="MostrarCarruoselPropiedad_Result">
+          <Property Type="Int32" Name="Id_Imagen_I" Nullable="false" />
+          <Property Type="String" Name="Ruta_I" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Propiedad_I" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1208,6 +1219,15 @@
                 <ScalarProperty Name="IdPrioridad_Pri" ColumnName="IdPrioridad_Pri" />
                 <ScalarProperty Name="TipoMoneda_P" ColumnName="TipoMoneda_P" />
                 <ScalarProperty Name="CantidadVisiras_P" ColumnName="CantidadVisiras_P" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MostrarCarruoselPropiedad" FunctionName="db_a3cb5b_webbienesraicesModel.Store.MostrarCarruoselPropiedad">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.MostrarCarruoselPropiedad_Result">
+                <ScalarProperty Name="Id_Imagen_I" ColumnName="Id_Imagen_I" />
+                <ScalarProperty Name="Ruta_I" ColumnName="Ruta_I" />
+                <ScalarProperty Name="Id_Propiedad_I" ColumnName="Id_Propiedad_I" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -649,6 +649,18 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadAdmin_Result>("MostrarPropiedadAdmin", precio02Parameter, canCuatoParameter, canBanoParameter, canGaraParameter, cateParameter, estadoParameter, provinciaParameter, cantonParameter, distritoParameter, tipoMonedaParameter);
     }
 
+
+    public virtual ObjectResult<MostrarCarruoselPropiedad_Result> MostrarCarruoselPropiedad(Nullable<int> idPropiedad)
+    {
+
+        var idPropiedadParameter = idPropiedad.HasValue ?
+            new ObjectParameter("IdPropiedad", idPropiedad) :
+            new ObjectParameter("IdPropiedad", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarCarruoselPropiedad_Result>("MostrarCarruoselPropiedad", idPropiedadParameter);
+    }
+
 }
 
 }
