@@ -6,3 +6,11 @@
 #Con{
     margin-top:6%;
 }
+
+.navbar {
+    navbar-brand !important;
+}
+
+.nav-item {
+    color: #ffffff;
+}

@@ -50,7 +50,7 @@
 }
 
 .navbar-light .navbar-brand{
-    color: #fff;
+    color: #ffffff;
     font-size: 25px;
     text-transform: uppercase;
 }
@@ -96,7 +96,13 @@ w-100{
     }
 }
 
+.navbar{
+    navbar-brand!important;
+}
 
+.nav-item{
+    color: #ffffff;
+}
 
 .iconos-caracteristicas {
     list-style: none; /*circle*/ /* Para cambiar el diseño de las viñetas */
