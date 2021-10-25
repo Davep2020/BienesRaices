@@ -52,7 +52,7 @@
         </div>
         <div class="col-lg-3 form-group">
             <label for="">Nuevo Precio de la Propiedad</label>
-            <input type="text" class="form-control" name="PrecioA" value="@Model.PrecioAntes_P" placeholder="Ingrese el Precio de la Propiedad" />
+            <input type="text" class="form-control" name="PrecioA" value="@Model.PrecioA" placeholder="Ingrese el Precio de la Propiedad" />
         </div>
 
 
@@ -305,6 +305,7 @@
 </form>
 <button data-bs-toggle="modal" data-bs-target="#exampleModal">Mostrar Imagenes</button>
 <button data-bs-toggle="modal" data-bs-target="#exampleModal1">Agregar Imagenes</button>
+<button data-bs-toggle="modal" data-bs-target="#exampleModal2">Vender Propiedad</button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -371,6 +372,52 @@
                 </div>
             }
             </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Vender Propiedad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @using (Html.BeginForm("venderPropiedad", "Propiedad", FormMethod.Post)) 
+            {
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="">Nombre Completo</label>
+                            <input type="text" class="form-control" autocomplete="off" name="NombreCompleto_CO" value="" placeholder="Ingrese su nombre completo" />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Teléfono</label>
+                            <input type="text" class="form-control" name="Telefono_CO" value="" placeholder="Ingrese su teléfono" />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Correo Electronico</label>
+                            <input type="email" class="form-control" name="Correo_CO" value="" placeholder="Ingrese su correo Electronico " />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Comentarios</label>
+                            <br />
+                            <textarea class="form-control" name="Comentario_CO" rows="4"></textarea>
+                        </div>
+                        <br />
+                      
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+
+                    <button type="submit" value="@Model.Id_Propiedad_P" class="btn btn-info" name="idPropiedad">Vender Propiedad</button>
+
+                </div>
+            }
+        </div>
     </div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3cOQNB4cQjQDSGWiB_nT2H2pEOuD3w60&callback=initMap" async defer></script>

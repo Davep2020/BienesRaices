@@ -49,18 +49,17 @@ namespace BienesRaices.Controllers
         }
         #endregion
 
-        public ActionResult Propiedades(int? pageSize, int? page,int? Precio02, int? CanCuato,int? CanBano,int ? CanGara,int? Cate,int? Id_Provincia_L, int? Id_Canton_L, int? Id_Distrito_L)
+        public ActionResult Propiedades(int? Precio02, int? CanCuato,int? CanBano,int ? CanGara,int? Cate,int? Id_Provincia_L, int? Id_Canton_L, int? Id_Distrito_L,string tipo)
         {
             CargarCategoria();
 
             List<MostrarPropiedad_Result> lista = new List<MostrarPropiedad_Result>();
-            lista = Model.MostrarPropiedad(Precio02, CanCuato, CanBano, CanGara, Cate, Id_Provincia_L, Id_Canton_L, Id_Distrito_L).ToList();
-            pageSize = (pageSize ?? 10);
-            page = (page ?? 1);
+            lista = Model.MostrarPropiedad(Precio02, CanCuato, CanBano, CanGara, Cate, Id_Provincia_L, Id_Canton_L, Id_Distrito_L, tipo).ToList();
 
-            ViewBag.PageSize = pageSize;
 
-            return View(lista.ToPagedList(page.Value, pageSize.Value));
+ 
+
+            return View(lista);
         }
 
         public ActionResult Propiedad(int idPropiedad)

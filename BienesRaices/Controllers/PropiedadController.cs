@@ -229,18 +229,14 @@ namespace BienesRaices.Controllers
         #endregion
 
         #region Inicio
-        public ActionResult Inicio(int? pageSize, int? page, int? precio02, int? CanCuato, int? CanBano, int? CanGara, int? Cate, string estado,int? Id_Provincia_L,int? Id_Canton_L, int? Id_Distrito_L, string tipo)
+        public ActionResult Inicio(int? precio02, int? CanCuato, int? CanBano, int? CanGara, int? Cate, string estado,int? Id_Provincia_L,int? Id_Canton_L, int? Id_Distrito_L, string tipo)
         {
             CargarCategoria();
 
             List<MostrarPropiedadAdmin_Result> lista = new List<MostrarPropiedadAdmin_Result>();
             lista = Model.MostrarPropiedadAdmin(precio02, CanCuato, CanBano, CanGara, Cate, estado,Id_Provincia_L,Id_Canton_L,Id_Distrito_L, tipo).ToList();
-            pageSize = (pageSize ?? 20);
-            page = (page ?? 1);
 
-            ViewBag.PageSize = pageSize;
-
-            return View(lista.ToPagedList(page.Value, pageSize.Value));
+            return View(lista);
         }
         #endregion
 
@@ -413,6 +409,45 @@ namespace BienesRaices.Controllers
                 
             }
             return RedirectToAction("ModificarPropiedad", "Propiedad", new { idpropiedad });
+        }
+        #endregion
+
+        #region venderpropiedad
+        [HttpPost]
+        public ActionResult venderPropiedad(MuestralosPedidos_Result modelovista, int idPropiedad)
+        {
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+            try
+            {
+                cantRegistrosAfectados = this.Model.FinalizarVentaEmpresa(
+                    modelovista.Id_Propiedad_CO = idPropiedad,
+                    modelovista.NombreCompleto_CO,
+                    modelovista.Telefono_CO,
+                    modelovista.Correo_CO,
+                    modelovista.Comentario_CO
+                    );
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un error: " + error.Message;
+            }
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                {
+                    resultado += "Venta realizada";
+                }
+                else
+                {
+                    resultado += "No se pudo Vender";
+                }
+
+            }
+            Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+
+            return RedirectToAction("Inicio", "Propiedad");
+
         }
         #endregion
 

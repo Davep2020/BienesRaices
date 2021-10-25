@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-lg-3 form-group">
             <label>Categoria de la propiedad</label>
-            <select class="form-control" name="Id_Categoria_P" id="Id_Categoria_P" onChange="mostrar(this.value);">
+            <select class="form-control" required name="Id_Categoria_P" id="Id_Categoria_P" onChange="mostrar(this.value);">
                 <option>Seleccione una categoria</option>
                 @{ foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
                     {
@@ -26,18 +26,18 @@
         </div>
         <div class="col-lg-3 form-group">
             <label for="">Nombre de la propiedad</label>
-            <input type="text" class="form-control" autocomplete="off" name="Nombre_P" value="" placeholder="Ingrese el nombre de la propiedad" />
+            <input type="text" required class="form-control" autocomplete="off" name="Nombre_P" value="" placeholder="Ingrese el nombre de la propiedad" />
         </div>
         <div class="col-lg-3 form-group" id="TipoMoneda_P">
             <label>Tipo Moneda</label>
-            <select class="form-control" name="TipoMoneda_P">
+            <select class="form-control" required name="TipoMoneda_P">
                 <option value="$">Dolares</option>
                 <option value="¢">Colones</option>
             </select>
         </div>
         <div class="col-lg-3 form-group">
             <label for="">Precio de la Propiedad</label>
-            <input type="text" class="form-control" name="Precio"  id="currency-field" pattern="^\¢\d{1,3}(,\d{3})*(\.\d+)?¢" value="" data-type="currency" placeholder="Ingrese el Precio de la Propiedad" />
+            <input type="text" class="form-control" required name="Precio"  id="currency-field" pattern="^\¢\d{1,3}(,\d{3})*(\.\d+)?¢" value="" data-type="currency" placeholder="Ingrese el Precio de la Propiedad" />
         </div>
         <div class="col-lg-3 form-group" id="CanCuartos_C">
             <label>Cantidad de Cuartos</label>
@@ -73,14 +73,14 @@
                 <option value="4">4</option>
             </select>
         </div>
-        <div class="col-lg-2  form-group">
+        <div class="col-lg-3 form-group">
             <label>Cargar Imagen</label>
             <input class="form-control-file border" type="file" multiple id="Ruta_I" name="Ruta_I" />
         </div>
 
         <div class="col-lg-3 form-group">
             <label>Categoria de la propiedad</label>
-            <select class="form-control" name="IdPrioridad_Pri" id="IdPrioridad_Pri">
+            <select class="form-control" required name="IdPrioridad_Pri" id="IdPrioridad_Pri">
                 <option>Seleccione una categoria</option>
                 @{ foreach (BienesRaices.Models.MuestraPrioridad_Result Prioridad in this.ViewBag.CargarPrioridad)
                     {
@@ -94,17 +94,17 @@
         </div>
         <div class="col-lg-3 form-group">
             <label for="provincias">Provincia</label>
-            <select class="form-control" id="provincias" name="Id_Provincia_L" onchange="getCantones(this.value);">
+            <select required class="form-control" id="provincias" name="Id_Provincia_L" onchange="getCantones(this.value);">
             </select>
         </div>
         <div class="col-lg-3 form-group canton">
             <label for="cantones">Cantón</label>
-            <select class="form-control" id="cantones" name="Id_Canton_L" onchange="getDistritos(this.value);">
+            <select required class="form-control" id="cantones" name="Id_Canton_L" onchange="getDistritos(this.value);">
             </select>
         </div>
         <div class="col-lg-3 form-group distrito">
             <label for="distritos">Distrito</label>
-            <select class="form-control" id="distritos" name="Id_Distrito_L"></select>
+            <select required class="form-control" id="distritos" name="Id_Distrito_L"></select>
         </div>
 
 
@@ -113,12 +113,12 @@
             <input type="text" class="form-control" autocomplete="off" name="DireccionExacta_L" value="" placeholder="Ingrese la Dirección exacta de la propiedad" />
         </div>
         <div class="col-lg-3 form-group">
-            <label for="">Metros Cuadrados de la propiedad</label>
-            <input type="number" class="form-control" autocomplete="off" name="MetrosCuadradosLote_C" value="" placeholder="Ingrese la Cantidad" />
+            <label  for="">Metros Cuadrados de la propiedad</label>
+            <input required type="number" class="form-control" autocomplete="off" name="MetrosCuadradosLote_C" value="" placeholder="Ingrese la Cantidad" />
         </div>
         <div class="col-lg-3 form-group" id="MetrosCuadradosCasa_C">
             <label for="">Metros Cuadrados de la casa</label>
-            <input type="number" class="form-control" autocomplete="off" name="MetrosCuadradosCasa_C" value="" placeholder="Ingrese la Cantidad" />
+            <input required type="number" class="form-control" autocomplete="off" name="MetrosCuadradosCasa_C" value="" placeholder="Ingrese la Cantidad" />
         </div>
 
     </div>

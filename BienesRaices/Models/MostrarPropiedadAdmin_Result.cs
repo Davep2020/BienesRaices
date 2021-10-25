@@ -47,6 +47,8 @@ public partial class MostrarPropiedadAdmin_Result
 
     public string Nombre_Pri { get; set; }
 
+    public string Precios { get; set; }
+
     public Nullable<decimal> PrecioAntes_P { get; set; }
 
     public int IdPrioridad_Pri { get; set; }
