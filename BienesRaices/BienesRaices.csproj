@@ -283,6 +283,7 @@
     <Content Include="img\icono_estacionamiento.svg" />
     <Content Include="img\icono_wc.svg" />
     <Content Include="img\logo.svg" />
+    <Content Include="img\Logos\Logo.png" />
     <Content Include="img\nosotros.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -149,3 +149,70 @@ w-100{
 .contenido-contacto p {
     font-size: 1.8rem;
 }
+
+/* FOOTER */
+
+footer {
+    background-color: #353535;
+    padding-top: 40px;
+    margin-top: 20px;
+}
+
+footer .contenedor > div {
+    color: #ffffff;
+    padding: 0px 20px;
+    font-size: 12px;
+}
+
+/*@media only screen and (min-width:768px) {
+    footer .contenedor > div {
+        width: 33.3%;
+        float: left;
+    }
+}*/
+
+footer h3 {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 20px;
+}
+
+footer h3 span {
+    color: green;
+}
+
+footer .ultimos-tweets li {
+    margin-bottom: 10px;
+}
+
+footer nav.redes-sociales {
+    text-align: left;
+}
+
+.redes-sociales i {
+    color: green;
+}
+
+.redes-sociales {
+    display: inline-block;
+    font-size: 30px;
+}
+
+p.copyright {
+    background-color: #2e2e2e;
+    color: #ffffff;
+    padding: 10px 0;
+    margin: 20px 0 0 0;
+    text-align: center;
+}
+
+/* PROPIEDADES */
+.propiedades .row p{
+    font-size:15px;
+
+}
+i.fas{
+    font-size: 25px;
+    margin-right: 20px;
+}

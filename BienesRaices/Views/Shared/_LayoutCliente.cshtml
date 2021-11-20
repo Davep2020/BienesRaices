@@ -25,10 +25,10 @@
     <script src="~/Scripts/ApiProvincias.js"></script>
 </head>
 <body>
-  
+
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgb(45, 123, 190)">
         <div class="container">
-            <a class="navbar-brand" href="#">Sorafcys</a>
+            <a class="navbar-brand" href="/index/index"><img style="width: 300px" src="~/img/Logos/Logo.png" alt="Alternate Text" /></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,6 +55,37 @@
         <br />
         @RenderBody()
     </div>
+
+    <footer class="site-footer">
+        <div class="contenedor clearfix container">
+            <div class="row">
+                <div class="footer-informacion col-lg-8">
+                    <h3>Sobre <span>Sarafcys</span></h3>
+                    <p>
+                        Somos una empresa que brindamos servicios de intermediación de venta de
+                        propiedades, las más comunes son viviendas, lotes, fincas, locales comerciales,
+                        viviendas y apartamentos de alquiler. También ofrecemos servicios de
+                        intermediación en alquileres de viviendas, apartamentos y locales comerciales.
+
+                    </p>
+                </div>
+                <div class="menu col-lg-4">
+                    <h3>Redes <span>sociales</span></h3>
+                    <nav class="redes-sociales ">
+                        <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <p class="copyright">
+            Todos los derechos Reservados Sarafcys.
+        </p>
+
+    </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

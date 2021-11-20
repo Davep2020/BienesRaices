@@ -24,15 +24,16 @@
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="~/Scripts/ApiProvincias.js"></script>
 </head>
 
 <body>
 
     <header>
 
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgb(45, 123, 190)">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #808080">
             <div class="container">
-                <a class="navbar-brand" href="#">Sorafcys</a>
+                <a class="navbar-brand" href="/index/index"><img style="width: 300px" src="~/img/Logos/Logo.png" alt="Alternate Text" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -342,7 +343,7 @@
     </main>
 
     <div class="container">
-        <div class="row">
+        <div class="row" style="margin-right: 10px">
             <h1 style="text-align:center">Búsqueda de Propiedades</h1>
             @using (Html.BeginForm("Propiedades", "Index", FormMethod.Get))
             {
@@ -452,53 +453,80 @@
         </div>
     </div>
 
+    <footer class="site-footer">
+        <div class="contenedor clearfix container">
+            <div class="row">
+                <div class="footer-informacion col-lg-8">
+                    <h3>Sobre <span>Sarafcys</span></h3>
+                    <p>
+                        Somos una empresa que brindamos servicios de intermediación de venta de
+                        propiedades, las más comunes son viviendas, lotes, fincas, locales comerciales,
+                        viviendas y apartamentos de alquiler. También ofrecemos servicios de
+                        intermediación en alquileres de viviendas, apartamentos y locales comerciales.
 
-    <footer class="bg-light text-center text-white">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0">
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!-- Facebook -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #3b5998;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-
-                <!-- Twitter -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #55acee;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-twitter"></i>
-                </a>
-
-                <!-- Google -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color:  #77f41a ;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-
-                <!-- Instagram -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #ac2bac;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </section>
-            <!-- Section: Social media -->
+                    </p>
+                </div>
+                <div class="menu col-lg-4">
+                    <h3>Redes <span>sociales</span></h3>
+                    <nav class="redes-sociales ">
+                        <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    </nav>
+                </div>
+            </div>
         </div>
-        <!-- Grid container -->
-        <!-- Copyright -->
-        <div class="text-center p-3" style=" background-color: rgb(45, 123, 190);">
-            © 2020 Copyright:
-            <a class="text-white" href="">Sorafcys</a>
-        </div>
-        <!-- Copyright -->
+
+        <p class="copyright">
+            Todos los derechos Reservados Sarafcys.
+        </p>
+
     </footer>
+
+    <!--<footer class="bg-light text-center text-white">-->
+    <!-- Grid container -->
+    <!--<div class="container p-4 pb-0">-->
+    <!-- Section: Social media -->
+    <!--<section class="mb-4">-->
+    <!-- Facebook -->
+    <!--<a class="btn btn-primary btn-floating m-1"
+       style="background-color: #3b5998;"
+       href="#!"
+       role="button">
+        <i class="fab fa-facebook-f"></i>
+    </a>-->
+    <!-- Twitter -->
+    <!--<a class="btn btn-primary btn-floating m-1"
+       style="background-color: #55acee;"
+       href="#!"
+       role="button">
+        <i class="fab fa-twitter"></i>
+    </a>-->
+    <!-- Google -->
+    <!--<a class="btn btn-primary btn-floating m-1"
+       style="background-color:  #77f41a ;"
+       href="#!"
+       role="button">
+        <i class="fab fa-whatsapp"></i>
+    </a>-->
+    <!-- Instagram -->
+    <!--<a class="btn btn-primary btn-floating m-1"
+           style="background-color: #ac2bac;"
+           href="#!"
+           role="button">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </section>-->
+    <!-- Section: Social media -->
+    <!--</div>-->
+    <!-- Grid container -->
+    <!-- Copyright -->
+    <!--<div class="text-center p-3" style=" background-color: rgb(45, 123, 190);">
+        © 2020 Copyright:
+        <a class="text-white" href="">Sorafcys</a>
+    </div>-->
+    <!-- Copyright -->
+    <!--</footer>-->
 </body>
 </html>
