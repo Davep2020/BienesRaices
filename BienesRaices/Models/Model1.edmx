@@ -34,7 +34,7 @@
           <Property Name="Correo_CO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Id_Propiedad_CO" Type="int" Nullable="false" />
           <Property Name="Estado_CO" Type="varchar" MaxLength="50" />
-          <Property Name="Comentario_CO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentario_CO" Type="varchar(max)" Nullable="false" />
           <Property Name="Fecha_Cierre" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Credenciales_CR">
@@ -85,11 +85,21 @@
           <Property Name="Precio_P" Type="money" Nullable="false" />
           <Property Name="Estado_P" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Id_Categoria_P" Type="int" Nullable="false" />
-          <Property Name="Descripcion_P" Type="varchar" MaxLength="120" />
+          <Property Name="Descripcion_P" Type="varchar(max)" />
           <Property Name="PrecioAntes_P" Type="money" />
           <Property Name="IdPrioridad_P" Type="int" />
           <Property Name="TipoMoneda_P" Type="varchar" MaxLength="50" />
           <Property Name="CantidadVisiras_P" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Caracteristicas_C_Propiedad_P">
           <End Role="Propiedad_P" Type="Self.Propiedad_P" Multiplicity="1" />
@@ -287,6 +297,7 @@
           <EntitySet Name="Localizacion_L" EntityType="Self.Localizacion_L" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prioridad_Pri" EntityType="Self.Prioridad_Pri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Propiedad_P" EntityType="Self.Propiedad_P" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Caracteristicas_C_Propiedad_P" Association="Self.FK_Caracteristicas_C_Propiedad_P">
             <End Role="Propiedad_P" EntitySet="Propiedad_P" />
             <End Role="Caracteristicas_C" EntitySet="Caracteristicas_C" />
@@ -361,7 +372,6 @@
           </FunctionImport>
           <FunctionImport Name="MostrarTodoImagen" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MostrarTodoImagen_Result)" />
           <FunctionImport Name="MuestraCaracteristicas" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MuestraCaracteristicas_Result)" />
-          <FunctionImport Name="MuestralosPedidos" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MuestralosPedidos_Result)" />
           <FunctionImport Name="MostrarTresPropiedades" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MostrarTresPropiedades_Result)">
           <Parameter Name="IdCategoria" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -480,6 +490,8 @@
             <Parameter Name="Correo" Mode="In" Type="String" />
             <Parameter Name="Comentario" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="sysdiagrams" EntityType="db_a3cb5b_webbienesraicesModel.sysdiagrams" />
+          <FunctionImport Name="MuestralosPedidos" ReturnType="Collection(db_a3cb5b_webbienesraicesModel.MuestralosPedidos_Result)" />
           </EntityContainer>
         <ComplexType Name="MuestraCuenta_Result">
           <Property Type="Int32" Name="Id_Credenciales_CR" Nullable="false" />
@@ -537,7 +549,7 @@
           <Property Name="Correo_CO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Id_Propiedad_CO" Type="Int32" Nullable="false" />
           <Property Name="Estado_CO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Comentario_CO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comentario_CO" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Fecha_Cierre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Propiedad_P" Relationship="db_a3cb5b_webbienesraicesModel.FK_Contacto_CO_Propiedad_P" FromRole="Contacto_CO" ToRole="Propiedad_P" />
         </EntityType>
@@ -594,24 +606,6 @@
           <Property Type="Int32" Name="MetrosCuadradosLote_C" Nullable="true" />
           <Property Type="Int32" Name="IdPropiedad_C" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="MuestralosPedidos_Result">
-          <Property Type="Int32" Name="Id_Contacto_CO" Nullable="false" />
-          <Property Type="String" Name="NombreCompleto_CO" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Telefono_CO" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="Correo_CO" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Id_Propiedad_CO" Nullable="false" />
-          <Property Type="String" Name="Estado_CO" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Comentario_CO" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Fecha_Cierre" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Id_Propiedad_P" Nullable="false" />
-          <Property Type="String" Name="Nombre_P" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="Precio_P" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="String" Name="Estado_P" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Id_Categoria_P" Nullable="false" />
-          <Property Type="String" Name="Descripcion_P" Nullable="true" MaxLength="120" />
-          <Property Type="Int32" Name="Id_Categoria_CA" Nullable="false" />
-          <Property Type="String" Name="Nombre_CA" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="MostrarTresPropiedades_Result">
           <Property Type="Int32" Name="Id_Propiedad_P" Nullable="true" />
           <Property Type="String" Name="Nombre_P" Nullable="true" MaxLength="100" />
@@ -650,7 +644,7 @@
           <Property Name="Precio_P" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Estado_P" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Id_Categoria_P" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion_P" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion_P" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="PrecioAntes_P" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="IdPrioridad_P" Type="Int32" />
           <Property Name="TipoMoneda_P" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -865,6 +859,39 @@
           <Property Type="Int32" Name="MetrosCuadradosLote_C" Nullable="true" />
           <Property Type="Int32" Name="CantidadVisiras_P" Nullable="true" />
         </ComplexType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <ComplexType Name="MuestralosPedidos_Result">
+          <Property Type="String" Name="Precio" Nullable="false" MaxLength="178" />
+          <Property Type="Int32" Name="Id_Contacto_CO" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto_CO" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Telefono_CO" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Correo_CO" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Propiedad_CO" Nullable="false" />
+          <Property Type="String" Name="Estado_CO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Comentario_CO" Nullable="false" />
+          <Property Type="String" Name="Fecha_Cierre" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Propiedad_P" Nullable="false" />
+          <Property Type="String" Name="Nombre_P" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Precio_P" Nullable="false" Precision="19" />
+          <Property Type="String" Name="Estado_P" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Categoria_P" Nullable="false" />
+          <Property Type="String" Name="Descripcion_P" Nullable="true" />
+          <Property Type="Decimal" Name="PrecioAntes_P" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="IdPrioridad_P" Nullable="true" />
+          <Property Type="String" Name="TipoMoneda_P" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CantidadVisiras_P" Nullable="true" />
+          <Property Type="Int32" Name="Id_Categoria_CA" Nullable="false" />
+          <Property Type="String" Name="Nombre_CA" Nullable="false" MaxLength="50" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1018,28 +1045,6 @@
                 <ScalarProperty Name="MetrosCuadradosCasa_C" ColumnName="MetrosCuadradosCasa_C" />
                 <ScalarProperty Name="MetrosCuadradosLote_C" ColumnName="MetrosCuadradosLote_C" />
                 <ScalarProperty Name="IdPropiedad_C" ColumnName="IdPropiedad_C" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="MuestralosPedidos" FunctionName="db_a3cb5b_webbienesraicesModel.Store.MuestralosPedidos">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.MuestralosPedidos_Result">
-                <ScalarProperty Name="Id_Contacto_CO" ColumnName="Id_Contacto_CO" />
-                <ScalarProperty Name="NombreCompleto_CO" ColumnName="NombreCompleto_CO" />
-                <ScalarProperty Name="Telefono_CO" ColumnName="Telefono_CO" />
-                <ScalarProperty Name="Correo_CO" ColumnName="Correo_CO" />
-                <ScalarProperty Name="Id_Propiedad_CO" ColumnName="Id_Propiedad_CO" />
-                <ScalarProperty Name="Estado_CO" ColumnName="Estado_CO" />
-                <ScalarProperty Name="Comentario_CO" ColumnName="Comentario_CO" />
-                <ScalarProperty Name="Fecha_Cierre" ColumnName="Fecha_Cierre" />
-                <ScalarProperty Name="Id_Propiedad_P" ColumnName="Id_Propiedad_P" />
-                <ScalarProperty Name="Nombre_P" ColumnName="Nombre_P" />
-                <ScalarProperty Name="Precio_P" ColumnName="Precio_P" />
-                <ScalarProperty Name="Estado_P" ColumnName="Estado_P" />
-                <ScalarProperty Name="Id_Categoria_P" ColumnName="Id_Categoria_P" />
-                <ScalarProperty Name="Descripcion_P" ColumnName="Descripcion_P" />
-                <ScalarProperty Name="Id_Categoria_CA" ColumnName="Id_Categoria_CA" />
-                <ScalarProperty Name="Nombre_CA" ColumnName="Nombre_CA" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1252,6 +1257,44 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="FinalizarVentaEmpresa" FunctionName="db_a3cb5b_webbienesraicesModel.Store.FinalizarVentaEmpresa" />
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="MuestralosPedidos" FunctionName="db_a3cb5b_webbienesraicesModel.Store.MuestralosPedidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="db_a3cb5b_webbienesraicesModel.MuestralosPedidos_Result">
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Id_Contacto_CO" ColumnName="Id_Contacto_CO" />
+                <ScalarProperty Name="NombreCompleto_CO" ColumnName="NombreCompleto_CO" />
+                <ScalarProperty Name="Telefono_CO" ColumnName="Telefono_CO" />
+                <ScalarProperty Name="Correo_CO" ColumnName="Correo_CO" />
+                <ScalarProperty Name="Id_Propiedad_CO" ColumnName="Id_Propiedad_CO" />
+                <ScalarProperty Name="Estado_CO" ColumnName="Estado_CO" />
+                <ScalarProperty Name="Comentario_CO" ColumnName="Comentario_CO" />
+                <ScalarProperty Name="Fecha_Cierre" ColumnName="Fecha_Cierre" />
+                <ScalarProperty Name="Id_Propiedad_P" ColumnName="Id_Propiedad_P" />
+                <ScalarProperty Name="Nombre_P" ColumnName="Nombre_P" />
+                <ScalarProperty Name="Precio_P" ColumnName="Precio_P" />
+                <ScalarProperty Name="Estado_P" ColumnName="Estado_P" />
+                <ScalarProperty Name="Id_Categoria_P" ColumnName="Id_Categoria_P" />
+                <ScalarProperty Name="Descripcion_P" ColumnName="Descripcion_P" />
+                <ScalarProperty Name="PrecioAntes_P" ColumnName="PrecioAntes_P" />
+                <ScalarProperty Name="IdPrioridad_P" ColumnName="IdPrioridad_P" />
+                <ScalarProperty Name="TipoMoneda_P" ColumnName="TipoMoneda_P" />
+                <ScalarProperty Name="CantidadVisiras_P" ColumnName="CantidadVisiras_P" />
+                <ScalarProperty Name="Id_Categoria_CA" ColumnName="Id_Categoria_CA" />
+                <ScalarProperty Name="Nombre_CA" ColumnName="Nombre_CA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

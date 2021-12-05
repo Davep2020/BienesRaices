@@ -52,6 +52,8 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
 
     public DbSet<Propiedad_P> Propiedad_P { get; set; }
 
+    public DbSet<sysdiagrams> sysdiagrams { get; set; }
+
 
     public virtual int IngresaPedido(string nombreCompleto, string telefono, string correo, Nullable<int> idPropiedad, string estado, string comentario)
     {
@@ -255,13 +257,6 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
     {
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestraCaracteristicas_Result>("MuestraCaracteristicas");
-    }
-
-
-    public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
-    {
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
     }
 
 
@@ -696,6 +691,13 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FinalizarVentaEmpresa", idPropiedadParameter, nombreCompletoParameter, telefonoParameter, correoParameter, comentarioParameter);
+    }
+
+
+    public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
     }
 
 }

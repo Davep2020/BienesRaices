@@ -98,7 +98,7 @@ function mostrar(id) {
         $("#CanCuartos_C").show();
         $("#MetrosCuadradosCasa_C").show();
     }
-    if (id == "3") {
+    if (id == "3"|| id=="4") {
         $("#CanBanos_C").hide();
         $("#CanGarage_C").hide();
         $("#CanCuartos_C").hide();

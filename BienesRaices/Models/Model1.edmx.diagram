@@ -19,6 +19,7 @@
         <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Imagen_I_Propiedad_P" />
         <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Localizacion_L_Propiedad_P" />
         <AssociationConnector Association="db_a3cb5b_webbienesraicesModel.FK_Propiedad_P_Prioridad_Pri" />
+        <EntityTypeShape EntityType="db_a3cb5b_webbienesraicesModel.sysdiagrams" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
