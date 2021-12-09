@@ -31,7 +31,7 @@
 
     <header>
 
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #808080">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:#E0FFFF">
             <div class="container">
                 <a class="navbar-brand" href="/index/index"><img style="width: 300px" src="~/img/Logos/Logo.png" alt="Alternate Text" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
     </header>
 
     <div class="container">
-        <h4 class="text-center mt-5 mb-3 display-4">PROPIEDADES</h4>
+        <h4 class="text-center mt-5 mb-3 display-4">CARACTERÍSTICAS</h4>
     </div>
 
     <main>
@@ -135,7 +135,7 @@
                 </div>
                 <div class="col text-center">
                     <img src="~/img/icono3.svg" alt="Icono">
-                    <h3 class="mt-2">A Tiempo</h3>
+                    <h3 class="mt-2">Comodidad</h3>
                     <p>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, aut totam. Laudantium, dolores.
                         Molestias
@@ -202,7 +202,7 @@
 
                                             @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
                                             {
-                                                <button id="Con" type="submit" name="idPropiedad" class="btn btn-warning text-white" value="@propiedad.Id_Propiedad_P">Ver Propiedad</button>
+                                                <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P" style="">Ver Propiedad</button>
                                             }
 
 
@@ -268,7 +268,7 @@
 
                                             @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
                                             {
-                                                <button id="Con" type="submit" name="idPropiedad" class="btn btn-warning text-white" value="@propiedad.Id_Propiedad_P">Ver Propiedad</button>
+                                                <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P">Ver Propiedad</button>
                                             }
 
 
@@ -309,7 +309,7 @@
 
                                             @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
                                             {
-                                                <button id="Con" type="submit" name="idPropiedad" class="btn btn-warning text-white" value="@propiedad.Id_Propiedad_P">Ver Propiedad</button>
+                                                <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P">Ver Propiedad</button>
                                             }
 
 
@@ -335,7 +335,7 @@
                     voluptatibus
                     inventore
                 </p>
-                <a href="~/Index/Propiedades" class="btn btn-warning text-white">VER PROPIEDADES</a>
+                <a href="~/Index/Propiedades" class="btn boton text-black" style="background-color: #E0FFFF;">VER PROPIEDADES</a>
             </div>
         </section>
 
