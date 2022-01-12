@@ -98,7 +98,23 @@
     </header>
 
     <div class="container">
-        <h4 class="text-center mt-5 mb-3 display-4">CARACTERÍSTICAS</h4>
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="text-center mt-5 mb-3">¿Quiénes somos?</h4>
+                <p>Bienes Raíces SARAFCYS es una empresa ubicada en Costa Rica, 
+                San Jose, Puriscal. Con esfuerzo y profesionalismo hemos logrado posicionarnos en el mercado 
+                inmobiliario, contamos con más de 3 años en el mercado. Comercializamos y negociamos propiedades 
+                en varios lugares del país.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="text-center mt-5 mb-3 display-4">CARACTERÍSTICAS</h4>
+            </div>
+        </div>
     </div>
 
     <main>
@@ -109,41 +125,36 @@
 
         <div class="container">
             <div class="row">
-                <div class="col text-center">
-                    <img src="~/img/icono1.svg" alt="Seguridad">
-                    <h3 class="mt-2">Seguridad</h3>
-                    <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, aut totam. Laudantium, dolores.
-                        Molestias
-                        minima quasi illum pariatur, at totam in cumque aspernatur, praesentium porro vel placeat
-                        voluptatibus
-                        inventore
-                        vero.
-                    </p>
+                <div class="col-lg-4">
+                    <div class="col text-center">
+                        <img src="~/img/icono1.svg" alt="Seguridad">
+                        <h3 class="mt-2">Misión</h3>
+                        <p>
+                            La misión de Bienes Raíces SARAFCYS es la administración de inmuebles para compra, venta,
+                            renta al mejor precio razonable del mercado, brindando un servicio de calidad, con intermediación
+                            profesional y transparente, proporcionando asesoría honesta y siempre resguardando los intereses y
+                            patrimonio de nuestros clientes.
+                        </p>
+                    </div>
                 </div>
-                <div class="col text-center">
-                    <img src="~/img/icono2.svg" alt="Icono Mejor Precio">
-                    <h3 class="mt-2">El Mejor Precio</h3>
-                    <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, aut totam. Laudantium, dolores.
-                        Molestias
-                        minima quasi illum pariatur, at totam in cumque aspernatur, praesentium porro vel placeat
-                        voluptatibus
-                        inventore
-                        vero.
-                    </p>
+                <div class="col-lg-4">
+                    <div class="col text-center">
+                        <img src="~/img/icono2.svg" alt="Icono Mejor Precio">
+                        <h3 class="mt-2">Visión</h3>
+                        <p>
+                            Apoyar a nuestros clientes en el proceso integral de vender, comprar y alquilar su vivienda,
+                            lote, finca, local, que se ajuste a su presupuesto y preferencia.
+                        </p>
+                    </div>
                 </div>
-                <div class="col text-center">
-                    <img src="~/img/icono3.svg" alt="Icono">
-                    <h3 class="mt-2">Comodidad</h3>
-                    <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto, aut totam. Laudantium, dolores.
-                        Molestias
-                        minima quasi illum pariatur, at totam in cumque aspernatur, praesentium porro vel placeat
-                        voluptatibus
-                        inventore
-                        vero.
-                    </p>
+                <div class="col-lg-4">
+                    <div class="col text-center">
+                        <img src="~/img/icono3.svg" alt="Icono">
+                        <h3 class="mt-2">Servicios agregados de valor</h3>
+                        <p>
+                            Ofrecemos asesoramiento financiero y bancario en los trámites de créditos para la compra de las propiedades.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -327,6 +338,8 @@
             </div>
         </div>
 
+        <br />
+
         <section class="imagen-contacto">
             <div class="container contenido-contacto">
                 <h2>Encuentra la casa de tus sueños</h2>
@@ -335,7 +348,8 @@
                     voluptatibus
                     inventore
                 </p>
-                <a href="~/Index/Propiedades" class="btn boton text-black" style="background-color: #E0FFFF;">VER PROPIEDADES</a>
+                <a href="~/Index/Propiedades" class="btn boton text-black" style="
+    background-color: #E0FFFF;">VER PROPIEDADES</a>
             </div>
         </section>
 
@@ -369,116 +383,116 @@
         <div class="row">
             <h1 style="text-align:center">Busqueda de Propiedades</h1>
             @using (Html.BeginForm("Propiedades", "Index", FormMethod.Get))
-            
-                {
-                    <div class="row">
-                        <div class="col-lg-2 form-group">
-                            <label>Categoria propiedad</label>
-                            <select class="form-control" name="Cate" onChange="mostrar(this.value);">
-                                <option>Seleccione una categoria</option>
-                                @{ foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
-                                    {
-                                        <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
 
-                                    }
+            {
+                <div class="row">
+                    <div class="col-lg-2 form-group">
+                        <label>Categoria propiedad</label>
+                        <select class="form-control" name="Cate" onChange="mostrar(this.value);">
+                            <option>Seleccione una categoria</option>
+                            @{ foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
+                                {
+                                    <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
+
                                 }
-                            </select>
-                        </div>
-                        <div class="col-lg-2 form-group" id="CanCuartos_C">
-                            <label>Cantidad de Cuartos</label>
-                            <select class="form-control" name="CanCuato">
-                                <option value="">Seleccione la cantidad</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                        </div>
-
-                        <div class="col-lg-2 form-group" id="CanBanos_C">
-                            <label>Cantidad de Baños</label>
-                            <select class="form-control" name="CanBano">
-                                <option value="">Seleccione la cantidad</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-
-                        <div class="col-lg-2 form-group " id="CanGarage_C">
-                            <label>Cantidad de Garajes</label>
-                            <select class="form-control" name="CanGara">
-                                <option value="">Seleccione la cantidad</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-
-                        <div class="col-lg-2 form-group ">
-                            <label>Estado de la propiedad</label>
-                            <select class="form-control" name="estado">
-                                <option value="">Seleccione el estado</option>
-                                <option value="Vendida">Vendida</option>
-                                <option value="Oculto">Oculta</option>
-                                <option value="Nuevo">Nueva</option>
-                            </select>
-                        </div>
-
-                        <div class="col-lg-2 form-group" id="TipoMoneda_P">
-                            <label>Tipo Moneda</label>
-                            <select class="form-control" name="tipo" onchange="moneda(this.value)">
-                                <option value="">Seleccione la Moneda</option>
-                                <option value="¢">Colones</option>
-                                <option value="$">Dolares</option>
-                            </select>
-                        </div>
-
-                        <div class="slidecontainer col-lg-2" id="Dolares">
-                            <label>Precio</label>
-                            <br />
-                            <input type="range" name="precio02" max="20000000" value="0" step="1000000" class="slider" id="myRange">
-                            <p>Precio:$ <span id="demo"></span></p>
-                        </div>
-                        <div class="slidecontainer col-lg-2" id="Colones">
-                            <label>Precio</label>
-                            <br />
-                            <input type="range" name="precio02" max="20000000" value="0" step="1000000" class="slider" id="myRange1">
-                            <p>Precio:¢ <span id="demo1"></span></p>
-                        </div>
-                        <div class="col-lg-2 form-group ">
-                            <label>Provincia</label>
-                            <select class="form-control" id="provincias" name="Id_Provincia_L" onchange="getCantones(this.value);">
-                            </select>
-                        </div>
-                        <div class="col-lg-2 form-group canton">
-                            <label>Cantón</label>
-                            <select class="form-control" id="cantones" name="Id_Canton_L" onchange="getDistritos(this.value);">
-                            </select>
-                        </div>
-                        <div class="col-lg-2 form-group distrito">
-                            <label>Distrito</label>
-                            <select class="form-control" id="distritos" name="Id_Distrito_L">
-                            </select>
-                        </div>
-
-                        <div class="row">
-                            <br />
-                            <br />
-                            <div class="col-lg-12" style="text-align:center">
-                                <button type="submit" class="btn btn-info">Buscar</button>
-                            </div>
-                        </div>
-                        <br />
-                        <br />
-                        <hr />
+                            }
+                        </select>
                     </div>
-                }
-            </div>
+                    <div class="col-lg-2 form-group" id="CanCuartos_C">
+                        <label>Cantidad de Cuartos</label>
+                        <select class="form-control" name="CanCuato">
+                            <option value="">Seleccione la cantidad</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2 form-group" id="CanBanos_C">
+                        <label>Cantidad de Baños</label>
+                        <select class="form-control" name="CanBano">
+                            <option value="">Seleccione la cantidad</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2 form-group " id="CanGarage_C">
+                        <label>Cantidad de Garajes</label>
+                        <select class="form-control" name="CanGara">
+                            <option value="">Seleccione la cantidad</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2 form-group ">
+                        <label>Estado de la propiedad</label>
+                        <select class="form-control" name="estado">
+                            <option value="">Seleccione el estado</option>
+                            <option value="Vendida">Vendida</option>
+                            <option value="Oculto">Oculta</option>
+                            <option value="Nuevo">Nueva</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2 form-group" id="TipoMoneda_P">
+                        <label>Tipo Moneda</label>
+                        <select class="form-control" name="tipo" onchange="moneda(this.value)">
+                            <option value="">Seleccione la Moneda</option>
+                            <option value="¢">Colones</option>
+                            <option value="$">Dolares</option>
+                        </select>
+                    </div>
+
+                    <div class="slidecontainer col-lg-2" id="Dolares">
+                        <label>Precio</label>
+                        <br />
+                        <input type="range" name="precio02" max="20000000" value="0" step="1000000" class="slider" id="myRange">
+                        <p>Precio:$ <span id="demo"></span></p>
+                    </div>
+                    <div class="slidecontainer col-lg-2" id="Colones">
+                        <label>Precio</label>
+                        <br />
+                        <input type="range" name="precio02" max="20000000" value="0" step="1000000" class="slider" id="myRange1">
+                        <p>Precio:¢ <span id="demo1"></span></p>
+                    </div>
+                    <div class="col-lg-2 form-group ">
+                        <label>Provincia</label>
+                        <select class="form-control" id="provincias" name="Id_Provincia_L" onchange="getCantones(this.value);">
+                        </select>
+                    </div>
+                    <div class="col-lg-2 form-group canton">
+                        <label>Cantón</label>
+                        <select class="form-control" id="cantones" name="Id_Canton_L" onchange="getDistritos(this.value);">
+                        </select>
+                    </div>
+                    <div class="col-lg-2 form-group distrito">
+                        <label>Distrito</label>
+                        <select class="form-control" id="distritos" name="Id_Distrito_L">
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <br />
+                        <br />
+                        <div class="col-lg-12" style="text-align:center">
+                            <button type="submit" class="btn btn-info">Buscar</button>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <hr />
+                </div>
+            }
+        </div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3cOQNB4cQjQDSGWiB_nT2H2pEOuD3w60&callback=initMap" async defer></script>
     <script>
