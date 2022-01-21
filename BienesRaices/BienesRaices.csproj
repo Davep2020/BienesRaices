@@ -287,6 +287,11 @@
     <Content Include="img\icono_wc.svg" />
     <Content Include="img\logo.svg" />
     <Content Include="img\Logos\Logo.png" />
+    <Content Include="img\Logos\Sarafcys.jpeg" />
+    <Content Include="img\Logos\Sarafcys2.jpeg" />
+    <Content Include="img\Logos\Sarafcys3.jpeg" />
+    <Content Include="img\Logos\Sarafcys4.jpeg" />
+    <Content Include="img\Logos\Sarafcys5.jpeg" />
     <Content Include="img\nosotros.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
