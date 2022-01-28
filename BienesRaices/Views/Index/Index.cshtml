@@ -41,13 +41,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Nosotros</a>
+                            <a class="nav-link" href="#nosotros">Nosotros</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="~/Index/Propiedades">Propiedades</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contacto</a>
+                            <a class="nav-link" href="#contact">Contacto</a>
                         </li>
 
                     </ul>
@@ -85,7 +85,7 @@
 
     </header>
 
-    <div class="container">
+    <div class="container" id="nosotros">
         <div class="row">
             <div class="col-lg-12">
                 <h4 class="text-center mt-5 mb-3">¿Quiénes somos?</h4>
@@ -100,7 +100,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h4 class="text-center mt-5 mb-3 display-4">CARACTERÍSTICAS</h4>
+                <h4 class="text-center mt-5 mb-3 display-6"></h4>
             </div>
         </div>
     </div>
@@ -113,9 +113,9 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4 shadow">
                     <div class="col text-center">
-                        <img src="~/img/icono1.svg" alt="Seguridad">
+                        @*<img src="~/img/icono1.svg" alt="Seguridad">*@
                         <h3 class="mt-2">Misión</h3>
                         <p>
                             La misión de Bienes Raíces SARAFCYS es la administración de inmuebles para compra, venta,
@@ -125,9 +125,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 shadow">
                     <div class="col text-center">
-                        <img src="~/img/icono2.svg" alt="Icono Mejor Precio">
+                        @*<img src="~/img/icono2.svg" alt="Icono Mejor Precio">*@
                         <h3 class="mt-2">Visión</h3>
                         <p>
                             Apoyar a nuestros clientes en el proceso integral de vender, comprar y alquilar su vivienda,
@@ -135,9 +135,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 shadow">
                     <div class="col text-center">
-                        <img src="~/img/icono3.svg" alt="Icono">
+                        @*<img src="~/img/icono3.svg" alt="Icono">*@
                         <h3 class="mt-2">Servicios agregados de valor</h3>
                         <p>
                             Ofrecemos asesoramiento financiero y bancario en los trámites de créditos para la compra de las propiedades.
@@ -344,7 +344,7 @@
 
     </main>
 
-    <div class="container">
+    <div class="container" id="contact">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
         <script src="~/Scripts/ApiProvincias.js"></script>
         <style>
@@ -369,7 +369,7 @@
         </style>
 
         <div class="row">
-            <h1 style="text-align:center">Busqueda de Propiedades</h1>
+            <h1 style="margin: 25px 0px">Busqueda de Propiedades</h1>
             @using (Html.BeginForm("Propiedades", "Index", FormMethod.Get))
 
             {
@@ -468,10 +468,10 @@
                         </select>
                     </div>
 
-                    <div class="row">
+                    <div class="">
                         <br />
                         <br />
-                        <div class="col-lg-12" style="text-align:center">
+                        <div class="col-lg-12 form-group " style="text-align:center">
                             <button type="submit" class="btn btn-info">Buscar</button>
                         </div>
                     </div>
