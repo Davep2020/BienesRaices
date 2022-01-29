@@ -78,7 +78,7 @@
 
 w-100 {
     height: 100vh;
-    height: 100%!important;
+/*    object-fit: contain;*/
 }
 
 @media only screen and (max-width: 767px){
@@ -179,9 +179,9 @@ footer h3 {
     margin-bottom: 20px;
 }
 
-footer h3 span {
-    color: green;
-}
+    footer h3 span {
+        color: #E0FFFF;
+    }
 
 footer .ultimos-tweets li {
     margin-bottom: 10px;
@@ -192,7 +192,7 @@ footer nav.redes-sociales {
 }
 
 .redes-sociales i {
-    color: green;
+    color: #E0FFFF;
 }
 
 .redes-sociales {
