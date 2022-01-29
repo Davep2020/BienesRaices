@@ -159,7 +159,7 @@
         <label>@posicion.NombreProvincia_L ,@posicion.NombreCanton_L ,@posicion.NombreDistrito_L</label>
         <p>Tipo: @posicion.Nombre_CA</p>
 
-        @if (posicion.Id_Categoria_CA != 3)
+        @if (posicion.Id_Categoria_CA != 3 && posicion.Id_Categoria_CA != 4)
         {
 <i class="fas fa-bed">@posicion.CanCuartos_C</i>
                     <i class="fas fa-warehouse">@posicion.CanGarage_C</i>
