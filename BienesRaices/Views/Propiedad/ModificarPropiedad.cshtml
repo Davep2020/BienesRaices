@@ -19,13 +19,13 @@
                         var idcate = Categoria.Id_Categoria_CA;
                         if (repeat)
                         {
-        <option value="@Categoria.Id_Categoria_CA" selected>@Categoria.Nombre_CA</option>
- }
-    else
-    {
-<option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
- }
-} }
+                            <option value="@Categoria.Id_Categoria_CA" selected>@Categoria.Nombre_CA</option>
+                        }
+                        else
+                        {
+                            <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
+                        }
+                    } }
             </select>
         </div>
         <div class="col-lg-3 form-group">
@@ -37,13 +37,14 @@
             <select class="form-control" name="TipoMoneda_P">
                 @if (Model.TipoMoneda_P == "$")
                 {
-                <option value="$" selected>Dolares</option>
-                  <option value="¢">Colones</option>
-                 }
+                    <option value="$" selected>Dolares</option>
+                    <option value="¢">Colones</option>
+                }
                 else
                 {
-    <option value="$">Dolares</option>
-                    <option value="¢" selected>Colones</option>}
+                    <option value="$">Dolares</option>
+                    <option value="¢" selected>Colones</option>
+                }
             </select>
         </div>
         <div class="col-lg-3 form-group">
@@ -182,7 +183,7 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-           
+
                 }
             </select>
         </div>
@@ -224,7 +225,7 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-      
+
                 }
             </select>
         </div>
@@ -238,13 +239,13 @@
                         bool repeat = Prioridad.IdPrioridad_Pri == Model.IdPrioridad_Pri;
                         if (repeat)
                         {
-        <option value="@Prioridad.IdPrioridad_Pri" selected>@Prioridad.Nombre_Pri</option>
- }
-    else
-    {
-<option value="@Prioridad.IdPrioridad_Pri">@Prioridad.Nombre_Pri</option>
- }
-} }
+                            <option value="@Prioridad.IdPrioridad_Pri" selected>@Prioridad.Nombre_Pri</option>
+                        }
+                        else
+                        {
+                            <option value="@Prioridad.IdPrioridad_Pri">@Prioridad.Nombre_Pri</option>
+                        }
+                    } }
             </select>
         </div>
 
@@ -280,7 +281,29 @@
             <label for="">Metros Cuadrados de la casa</label>
             <input type="number" class="form-control" autocomplete="off" name="MetrosCuadradosCasa_C" value="@Model.MetrosCuadradosCasa_C" placeholder="Ingrese la Cantidad" />
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+
+        @if (Model.Estado_P == "Apartado")
+        {
+      
+
+    <div class="col-lg-3 form-check">
+        <input class="form-check-input" name="Apartado" type="checkbox" value="" onchange="apartado()" id="checkbox1" checked>
+        <label class="form-check-label" for="flexCheckDefault">
+            Apartado
+        </label>
+    </div>
+}
+else
+{
+    <div class="col-lg-3 form-check">
+        <input class="form-check-input" name="Apartado" type="checkbox" value="@Model.Apartado" onchange="apartado()" id="checkbox1">
+        <label class="form-check-label" for="flexCheckDefault">
+            Apartado
+        </label>
+    </div>
+}
 
     </div>
 
@@ -289,9 +312,10 @@
             <input class="btn btn-secondary" type="submit" name="name" value="Cargar" />
         </div>
     </div>
-          @if (Model.NombreProvincia_L == ""|| Model.NombreProvincia_L == null) {
+    @if (Model.NombreProvincia_L == "" || Model.NombreProvincia_L == null)
+    {
 
-          }
+    }
     <input type="hidden" name="hddProvincia" id="hdProvinciaID" value="@Model.NombreProvincia_L" />
     <input type="hidden" name="hddCantonID" id="hdCantonID" value="@Model.NombreCanton_L" />
     <input type="hidden" name="hddDistritoID" id="hdDistritoID" value="@Model.NombreDistrito_L" />
@@ -368,10 +392,10 @@
 
 
                     <button id="Con" type="submit" name="idpropiedad" value="@Model.Id_Propiedad_P" class="btn btn-info">Agregar Imagen</button>
-                    
+
                 </div>
             }
-            </div>
+        </div>
     </div>
 </div>
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -381,7 +405,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Vender Propiedad</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            @using (Html.BeginForm("venderPropiedad", "Propiedad", FormMethod.Post)) 
+            @using (Html.BeginForm("venderPropiedad", "Propiedad", FormMethod.Post))
             {
                 <div class="modal-body">
 
@@ -404,7 +428,7 @@
                             <textarea class="form-control" name="Comentario_CO" rows="4"></textarea>
                         </div>
                         <br />
-                      
+
 
 
                     </div>
@@ -421,3 +445,4 @@
     </div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3cOQNB4cQjQDSGWiB_nT2H2pEOuD3w60&callback=initMap" async defer></script>
+

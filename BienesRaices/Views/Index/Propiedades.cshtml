@@ -21,6 +21,7 @@
         right: 10px;
         top: 50px;
     }
+  
 </style>
 
 <div class="row">
@@ -134,7 +135,7 @@
                     <h1>@posicion.Nombre_P</h1>
 
                     <img src="~/images/@posicion.Ruta_I" height="200" width="100%" />
-                    <label>Prioridad: @posicion.Nombre_Pri</label>
+                    @*<label>Prioridad: @posicion.Nombre_Pri</label>*@
                     <br />
                     @if (posicion.PrecioAntes_P != null || posicion.PrecioAntes_P == 0)
                     {

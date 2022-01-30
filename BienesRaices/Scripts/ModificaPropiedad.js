@@ -1,6 +1,13 @@
 ﻿$(document).ready(function () {
     var nombreP = $("#hdProvinciaID").val();
     var idPro = $("#hddProvinciaID").val();
+    $("#checkbox1").on('change', function () {
+        if ($(this).is(':checked')) {
+            $(this).attr('value', 'true');
+        } else {
+            $(this).attr('value', 'false');
+        }
+    });
     getData(
         "https://ubicaciones.paginasweb.cr/provincias.json",
         function (data) {
@@ -22,6 +29,16 @@
     );
 
 });
+
+function apartado() {
+    $("#checkbox1").on('change', function () {
+        if ($(this).is(':checked')) {
+            $(this).attr('value', 'true');
+        } else {
+            $(this).attr('value', 'false');
+        }
+    });
+}
 
 function initMap() {
     geocoder = new google.maps.Geocoder();

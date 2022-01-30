@@ -297,6 +297,18 @@ namespace BienesRaices.Controllers
             CargarPrioridad();
             int cantRegistrosAfectados = 0;
             string resultado = "";
+            if (modelovista.Apartado == true)
+            {
+                modelovista.Estado_P = "Apartado";
+            }else if (modelovista.Apartado==false)
+            {
+                string EstadoC = Model.Propiedad_P.Where(a => a.Id_Propiedad_P == idpropiedad).FirstOrDefault().Estado_P;
+                if (EstadoC=="Apartado")
+                {
+                    modelovista.Estado_P = "Nuevo";
+                }
+           
+            }
             try
             {
                 cantRegistrosAfectados = this.Model.ModificarPropiedad(

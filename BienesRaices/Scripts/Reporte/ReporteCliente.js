@@ -90,6 +90,10 @@ function creaGridKendo(data) {
                 field: 'Telefono_CO',
                 title: 'Teléfono'
             },
+            {
+                field: 'Correo_CO',
+                title: 'Correo'
+            },
         ],
 
         filterable: true,

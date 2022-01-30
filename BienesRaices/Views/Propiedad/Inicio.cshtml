@@ -7,17 +7,28 @@
     .distrito {
         display: none;
     }
-    .Oferta{
-        position:absolute;
-        right:10px;
-        top:50px;
+
+    .Oferta {
+        position: absolute;
+        right: 10px;
+        top: 50px;
     }
+
     .color {
         border-color: goldenrod;
-       
     }
+
     hr {
         border: 4px solid darkgoldenrod;
+    }
+
+    .fa-2x {
+        letter-spacing: 8px;
+    }
+    .Apartado {
+        position: absolute;
+        left: 10px;
+        bottom: 230px;
     }
 </style>
 
@@ -25,112 +36,113 @@
     <h1 style="text-align:center">Busqueda de Propiedades</h1>
     @using (Html.BeginForm("Inicio", "Propiedad", FormMethod.Get))
     {
-<div class="row">
-    <div class="col-lg-2 form-group">
-        <label>Categoria propiedad</label>
-        <select class="form-control" name="Cate" onChange="mostrar(this.value);">
-            <option>Seleccione una categoria</option>
-            @{ foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
-                {
-                <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option> 
-                }
-             }
-        </select>
-    </div>
-    <div class="col-lg-2 form-group" id="CanCuartos_C">
-        <label>Cantidad de Cuartos</label>
-        <select class="form-control" name="CanCuato">
-            <option value="">Seleccione la cantidad</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-        </select>
-    </div>
+        <div class="row">
+            <div class="col-lg-2 form-group">
+                <label>Categoria propiedad</label>
+                <select class="form-control" name="Cate" onChange="mostrar(this.value);">
+                    <option>Seleccione una categoria</option>
+                    @{ foreach (BienesRaices.Models.MostrarCategoria_Result Categoria in this.ViewBag.CargarCategoria)
+                        {
+                            <option value="@Categoria.Id_Categoria_CA">@Categoria.Nombre_CA</option>
 
-    <div class="col-lg-2 form-group" id="CanBanos_C">
-        <label>Cantidad de Baños</label>
-        <select class="form-control" name="CanBano">
-            <option value="">Seleccione la cantidad</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-    </div>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-lg-2 form-group" id="CanCuartos_C">
+                <label>Cantidad de Cuartos</label>
+                <select class="form-control" name="CanCuato">
+                    <option value="">Seleccione la cantidad</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
 
-    <div class="col-lg-2 form-group " id="CanGarage_C">
-        <label>Cantidad de Garajes</label>
-        <select class="form-control" name="CanGara">
-            <option value="">Seleccione la cantidad</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-    </div>
+            <div class="col-lg-2 form-group" id="CanBanos_C">
+                <label>Cantidad de Baños</label>
+                <select class="form-control" name="CanBano">
+                    <option value="">Seleccione la cantidad</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
 
-    <div class="col-lg-2 form-group ">
-        <label>Estado de la propiedad</label>
-        <select class="form-control" name="estado">
-            <option value="">Seleccione el estado</option>
-            <option value="Vendida">Vendida</option>
-            <option value="Oculto">Oculta</option>
-            <option value="Nuevo">Nueva</option>
-        </select>
-    </div>
+            <div class="col-lg-2 form-group " id="CanGarage_C">
+                <label>Cantidad de Garajes</label>
+                <select class="form-control" name="CanGara">
+                    <option value="">Seleccione la cantidad</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
 
-    <div class="col-lg-2 form-group" id="TipoMoneda_P">
-        <label>Tipo Moneda</label>
-        <select class="form-control" name="tipo" onchange="moneda(this.value)">
-            <option value="">Seleccione la Moneda</option>
-            <option value="¢">Colones</option>
-            <option value="$">Dolares</option>
-        </select>
-    </div>
+            <div class="col-lg-2 form-group ">
+                <label>Estado de la propiedad</label>
+                <select class="form-control" name="estado">
+                    <option value="">Seleccione el estado</option>
+                    <option value="Vendida">Vendida</option>
+                    <option value="Oculto">Oculta</option>
+                    <option value="Nuevo">Nueva</option>
+                </select>
+            </div>
 
-    <div class="slidecontainer col-lg-2" id="Dolares">
-        <label>Precio</label>
-        <br />
-        <input type="range" name="precio02" max="200000" value="0" step="1000" class="slider" id="myRange">
-        <p>Precio:$ <span id="demo"></span></p>
-    </div>
-    <div class="slidecontainer col-lg-2" id="Colones">
-        <label>Precio</label>
-        <br />
-        <input type="range" name="precio02" max="20000000" value="0" step="1000000" class="slider" id="myRange1">
-        <p>Precio:¢ <span id="demo1"></span></p>
-    </div>
-    <div class="col-lg-2 form-group ">
-        <label>Provincia</label>
-        <select class="form-control" id="provincias" name="Id_Provincia_L" onchange="getCantones(this.value);">
-        </select>
-    </div>
-    <div class="col-lg-2 form-group canton">
-        <label>Cantón</label>
-        <select class="form-control" id="cantones" name="Id_Canton_L" onchange="getDistritos(this.value);">
-        </select>
-    </div>
-    <div class="col-lg-2 form-group distrito">
-        <label>Distrito</label>
-        <select class="form-control" id="distritos" name="Id_Distrito_L">
-        </select>
-    </div>
+            <div class="col-lg-2 form-group" id="TipoMoneda_P">
+                <label>Tipo Moneda</label>
+                <select class="form-control" name="tipo" onchange="moneda(this.value)">
+                    <option value="">Seleccione la Moneda</option>
+                    <option value="¢">Colones</option>
+                    <option value="$">Dolares</option>
+                </select>
+            </div>
 
-    <div class="row">
-        <br />
-        <br />
-        <div class="col-lg-12" style="text-align:center">
-            <button type="submit" class="btn btn-info">Buscar</button>
+            <div class="slidecontainer col-lg-2" id="Dolares">
+                <label>Precio</label>
+                <br />
+                <input type="range" name="precio02" max="200000" value="0" step="1000" class="slider" id="myRange">
+                <p>Precio:$ <span id="demo"></span></p>
+            </div>
+            <div class="slidecontainer col-lg-2" id="Colones">
+                <label>Precio</label>
+                <br />
+                <input type="range" name="precio02" max="20000000" value="0" step="1000000" class="slider" id="myRange1">
+                <p>Precio:¢ <span id="demo1"></span></p>
+            </div>
+            <div class="col-lg-2 form-group ">
+                <label>Provincia</label>
+                <select class="form-control" id="provincias" name="Id_Provincia_L" onchange="getCantones(this.value);">
+                </select>
+            </div>
+            <div class="col-lg-2 form-group canton">
+                <label>Cantón</label>
+                <select class="form-control" id="cantones" name="Id_Canton_L" onchange="getDistritos(this.value);">
+                </select>
+            </div>
+            <div class="col-lg-2 form-group distrito">
+                <label>Distrito</label>
+                <select class="form-control" id="distritos" name="Id_Distrito_L">
+                </select>
+            </div>
+
+            <div class="row">
+                <br />
+                <br />
+                <div class="col-lg-12" style="text-align:center">
+                    <button type="submit" class="btn btn-info">Buscar</button>
+                </div>
+            </div>
+            <br />
+            <br />
+            <hr />
         </div>
-    </div>
-    <br />
-    <br />
-    <hr />
-</div>
-                }
+    }
 </div>
 
 <div class="row">
@@ -138,53 +150,80 @@
 
     @{ foreach (BienesRaices.Models.MostrarPropiedadAdmin_Result posicion in this.Model)
         {
-<div class="card col-lg-3 color">
-    <div class="card-body" style="text-align:center">
-        <h1>@posicion.Nombre_P</h1>
-        
-        <img src="~/images/@posicion.Ruta_I" height="200" width="100%" />
-        <label>Prioridad: @posicion.Nombre_Pri</label>
-        <br />
-        @if (posicion.PrecioAntes_P != null || posicion.PrecioAntes_P == 0)
-        {
-                    <label>Nuevo Precio:@posicion.Precios</label>
-                    <br />
-                    <img src="~/images/Oferta.png" width="30%" class="Oferta" alt="Alternate Text" />
-                    <label style="text-decoration:line-through; color:red; font-weight:bold">Precio Antes:@posicion.Precio</label> 
-                    }
-                else
-                {
-<label>Precio:@posicion.Precio</label>}
-        <br />
-        <label>@posicion.NombreProvincia_L ,@posicion.NombreCanton_L ,@posicion.NombreDistrito_L</label>
-        <p>Tipo: @posicion.Nombre_CA</p>
+            <div class="card col-lg-3 color">
+                    <div class="card-body" style="text-align:center">
+                        <h1>@posicion.Nombre_P</h1>
 
-        @if (posicion.Id_Categoria_CA != 3 && posicion.Id_Categoria_CA != 4)
-        {
-<i class="fas fa-bed">@posicion.CanCuartos_C</i>
-                    <i class="fas fa-warehouse">@posicion.CanGarage_C</i>
-                                        <i class="fas fa-toilet">@posicion.CanBanos_C</i>}
+                        <img src="~/images/@posicion.Ruta_I" height="200" width="100%" />
+                        <label>Prioridad: @posicion.Nombre_Pri</label>
+                        <br />
+                        @if (posicion.Estado_P == "Apartado")
+                        {
+                            <img src="~/images/Apartado.png" width="30%" class="Apartado" alt="Alternate Text" />
+                        }
+                        @if (posicion.PrecioAntes_P != null || posicion.PrecioAntes_P == 0)
+                        {
+                            <label>Nuevo Precio:@posicion.Precios</label>
+                            <br />
+                            <img src="~/images/Oferta.png" width="30%" class="Oferta" alt="Alternate Text" />
+                            <label style="text-decoration:line-through; color:red; font-weight:bold">Precio Antes:@posicion.Precio</label>
+                        }
+                        else
+                        {
+                            <label>Precio:@posicion.Precio</label>}
+                        <br />
+                        <label>@posicion.NombreProvincia_L ,@posicion.NombreCanton_L ,@posicion.NombreDistrito_L</label>
+                        <p>Tipo: @posicion.Nombre_CA</p>
 
-        @using (Html.BeginForm("ModificarPropiedad", "Propiedad", FormMethod.Get))
-        {
-<button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-info">Modificar Propiedad</button>}
+                        @if (posicion.Id_Categoria_CA != 3 && posicion.Id_Categoria_CA != 4)
+                        {
+                            if (posicion.CanCuartos_C >= 1)
+                            {
+                                <i class="fas fa-bed fa-2x ">@posicion.CanCuartos_C</i>
+                            }
+                            if (posicion.CanGarage_C >= 1)
+                            {
+                                <i class="fas fa-warehouse fa-2x">@posicion.CanGarage_C</i>
+                            }
+                            if (posicion.CanBanos_C >= 1)
+                            {
+                                <i class="fas fa-toilet fa-2x">@posicion.CanBanos_C</i>
+                            }
 
-        @if (posicion.Estado_P == "Oculto")
-        {
-            using (Html.BeginForm("OcultarPropiedad", "Propiedad", FormMethod.Post))
-            {
-<input type="text" name="Estado" value="@posicion.Estado_P" style="display:none">
-                        <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-secondary">Mostrar Propiedad</button> }
-                }
-                else if (posicion.Estado_P != "Oculto")
-                {
-                    using (Html.BeginForm("OcultarPropiedad", "Propiedad", FormMethod.Post))
-                    {
-<input type="text" name="Estado" value="@posicion.Estado_P" style="display:none">
-                        <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-danger">Ocultar Propiedad</button>}
-                }
-    </div>
-</div> } }
+
+                        }
+                        <div class="mt-2"></div>
+                        <div class="row">
+                            <div class="col-lg-7">
+                                @using (Html.BeginForm("ModificarPropiedad", "Propiedad", FormMethod.Get))
+                                {
+
+                                    <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-info">Modificar</button>
+                                }
+                            </div>
+                            <div class="col-lg-4">
+                                @if (posicion.Estado_P == "Oculto")
+                                {
+                                    using (Html.BeginForm("OcultarPropiedad", "Propiedad", FormMethod.Post))
+                                    {
+                                        <input type="text" name="Estado" value="@posicion.Estado_P" style="display:none">
+                                        <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-secondary">Mostrar</button>
+                                    }
+                                }
+                                else if (posicion.Estado_P != "Oculto")
+                                {
+                                    using (Html.BeginForm("OcultarPropiedad", "Propiedad", FormMethod.Post))
+                                    {
+                                        <input type="text" name="Estado" value="@posicion.Estado_P" style="display:none">
+                                        <button id="Con" type="submit" name="idPropiedad" value="@posicion.Id_Propiedad_P" class="btn btn-danger">Ocultar</button>
+
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+            </div> }
+    }
 
 </div>
 
