@@ -287,6 +287,11 @@
     <Content Include="img\icono_estacionamiento.svg" />
     <Content Include="img\icono_wc.svg" />
     <Content Include="img\logo.svg" />
+    <Content Include="img\Logos\1.jpg" />
+    <Content Include="img\Logos\2.jpg" />
+    <Content Include="img\Logos\3.jpg" />
+    <Content Include="img\Logos\4.jpg" />
+    <Content Include="img\Logos\6.jpg" />
     <Content Include="img\Logos\Logo.png" />
     <Content Include="img\Logos\Sarafcys.jpeg" />
     <Content Include="img\Logos\Sarafcys2.jpeg" />

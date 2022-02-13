@@ -64,13 +64,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="~/img/Logos/Sarafcys.jpeg" class="d-block w-100" alt="..." style="height: 100%">
+                    <img src="~/img/Logos/6.jpg" class="d-block w-100" alt="..." style="height: 100%">
                 </div>
                 <div class="carousel-item">
-                    <img src="~/img/Logos/Sarafcys3.jpeg" class="d-block w-100" style="height: 100%" alt="...">
+                    <img src="~/img/Logos/2.jpg" class="d-block w-100" style="height: 100%" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="~/img/Logos/Sarafcys5.jpeg" class="d-block w-100" style="height: 100%" alt="...">
+                    <img src="~/img/Logos/1.jpg" class="d-block w-100" style="height: 100%" alt="...">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -177,7 +177,15 @@
                                                     <ul class="iconos-caracteristicas">
                                                         <li>
                                                             <img src="~/img/icono_wc.svg" alt="icono wc">
-                                                            <p>@propiedad.CanBanos_C</p>
+                                                            @if (@propiedad.CanBanos_C == 0)
+                                                            {
+                                                                <p>0</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>@propiedad.CanBanos_C</p>
+                                                            }
+
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -185,7 +193,15 @@
                                                     <ul class="iconos-caracteristicas">
                                                         <li>
                                                             <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
-                                                            <p>@propiedad.CanGarage_C</p>
+                                                            
+                                                            @if (@propiedad.CanGarage_C == 0)
+                                                            {
+                                                                <p>0</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>@propiedad.CanGarage_C</p>
+                                                            }
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -193,7 +209,15 @@
                                                     <ul class="iconos-caracteristicas">
                                                         <li>
                                                             <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
-                                                            <p>@propiedad.CanCuartos_C</p>
+                                                            
+                                                            @if (@propiedad.CanCuartos_C == 0)
+                                                            {
+                                                                <p>0</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>@propiedad.CanCuartos_C</p>
+                                                            }
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -201,7 +225,7 @@
 
                                             @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
                                             {
-                                                <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P" style="">Ver Propiedad</button>
+                                                <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P" style="background-color: #E0FFFF">Ver Propiedad</button>
                                             }
 
 
@@ -243,7 +267,14 @@
                                                     <ul class="iconos-caracteristicas">
                                                         <li>
                                                             <img src="~/img/icono_wc.svg" alt="icono wc">
-                                                            <p>@propiedad.CanBanos_C</p>
+                                                            @if (propiedad.CanBanos_C == 0)
+                                                            {
+                                                                <p>0</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>@propiedad.CanBanos_C</p>
+                                                            }
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -251,7 +282,14 @@
                                                     <ul class="iconos-caracteristicas">
                                                         <li>
                                                             <img src="~/img/icono_estacionamiento.svg" alt="icono autos">
-                                                            <p>@propiedad.CanGarage_C</p>
+                                                            @if (propiedad.CanGarage_C == 0)
+                                                            {
+                                                                <p>0</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>@propiedad.CanGarage_C</p>
+                                                            }
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -259,7 +297,14 @@
                                                     <ul class="iconos-caracteristicas">
                                                         <li>
                                                             <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
-                                                            <p>@propiedad.CanCuartos_C</p>
+                                                            @if (propiedad.CanCuartos_C == 0)
+                                                            {
+                                                                <p>0</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>@propiedad.CanCuartos_C</p>
+                                                            }
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -267,7 +312,7 @@
 
                                             @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
                                             {
-                                                <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P">Ver Propiedad</button>
+                                                <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P" style="background-color: #E0FFFF">Ver Propiedad</button>
                                             }
 
 
@@ -308,7 +353,7 @@
 
                                             @using (Html.BeginForm("Propiedad", "Index", FormMethod.Get))
                                             {
-                                                <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P">Ver Propiedad</button>
+                                                <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P" style="background-color: #E0FFFF">Ver Propiedad</button>
                                             }
 
 
@@ -330,11 +375,8 @@
 
         <section class="imagen-contacto">
             <div class="container contenido-contacto">
-                <h2>Encuentra la casa de tus sueños</h2>
                 <p>
-                    minima quasi illum pariatur, at totam in cumque aspernatur, praesentium porro vel placeat
-                    voluptatibus
-                    inventore
+                    Porque una decisión tan importante, debe ser tomada con sabiduría y experiencia dejenos guiarle somos Bienes Raíces.
                 </p>
                 <a href="~/Index/Propiedades" class="btn boton text-black" style="
     background-color: #E0FFFF;">VER PROPIEDADES</a>
@@ -537,49 +579,5 @@
 
     </footer>
 
-    <!--<footer class="bg-light text-center text-white">-->
-    <!-- Grid container -->
-    <!--<div class="container p-4 pb-0">-->
-    <!-- Section: Social media -->
-    <!--<section class="mb-4">-->
-    <!-- Facebook -->
-    <!--<a class="btn btn-primary btn-floating m-1"
-       style="background-color: #3b5998;"
-       href="#!"
-       role="button">
-        <i class="fab fa-facebook-f"></i>
-    </a>-->
-    <!-- Twitter -->
-    <!--<a class="btn btn-primary btn-floating m-1"
-       style="background-color: #55acee;"
-       href="#!"
-       role="button">
-        <i class="fab fa-twitter"></i>
-    </a>-->
-    <!-- Google -->
-    <!--<a class="btn btn-primary btn-floating m-1"
-       style="background-color:  #77f41a ;"
-       href="#!"
-       role="button">
-        <i class="fab fa-whatsapp"></i>
-    </a>-->
-    <!-- Instagram -->
-    <!--<a class="btn btn-primary btn-floating m-1"
-           style="background-color: #ac2bac;"
-           href="#!"
-           role="button">
-            <i class="fab fa-instagram"></i>
-        </a>
-    </section>-->
-    <!-- Section: Social media -->
-    <!--</div>-->
-    <!-- Grid container -->
-    <!-- Copyright -->
-    <!--<div class="text-center p-3" style=" background-color: rgb(45, 123, 190);">
-        © 2020 Copyright:
-        <a class="text-white" href="">Sorafcys</a>
-    </div>-->
-    <!-- Copyright -->
-    <!--</footer>-->
 </body>
 </html>
