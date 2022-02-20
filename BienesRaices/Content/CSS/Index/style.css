@@ -134,7 +134,7 @@ w-100 {
 }
 
 .imagen-contacto {
-    background-image: url('../../../img/encuentra.jpg');
+    background-image: url('../../../img/Logos/3.jpg');
     background-position: center center;
     background-size: cover;
     height: 40rem;
@@ -221,5 +221,5 @@ i.fas{
 
 /*BOTONES*/
 .boton {
-    background-color: #E0FFFF;
+    background-color: #E0FFFF!important;
 }

@@ -50,12 +50,18 @@
                     <p>Precio: <strong>@Model.TipoMoneda_P @Model.Precio</strong></p>
                     <p>Tipo: <strong>@Model.Nombre_CA</strong></p>
 
-
-                    <div class="col-12 iconos">
-                        <i class="fas fa-bed">@Model.CanCuartos_C</i>
-                        <i class="fas fa-warehouse">@Model.CanGarage_C</i>
-                        <i class="fas fa-toilet">@Model.CanBanos_C</i>
-                    </div>
+                    @if(Model.Id_Categoria_CA == 1 || Model.Id_Categoria_CA == 2)
+                    {
+                        <div class="col-12 iconos">
+                            <div class="row">
+                                <div class="col-3"><i class="fas fa-bed"> @Model.CanCuartos_C</i></div>
+                                <div class="col-3"><i class="fas fa-warehouse"> @Model.CanGarage_C</i></div>
+                                <div class="col-3"><i class="fas fa-toilet"> @Model.CanBanos_C</i></div>
+                            </div>
+                        </div>
+                    <p><strong>m²</strong> de la vivienda: <strong>@Model.MetrosCuadradosCasa_C</strong></p>
+                    }
+                    <p><strong>m²</strong> del lote: <strong>@Model.MetrosCuadradosLote_C</strong></p>
                     <p><strong>@Model.Descripcion_P</strong></p>
                     <p>@Model.NombreProvincia_L, @Model.NombreCanton_L, @Model.NombreCanton_L</p>
                     <p><span>@Model.DireccionExacta_L</span></p>
@@ -74,7 +80,7 @@
             <h1>Contacto</h1>
             <form method="post">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                         <div class="form-group">
                             <label for="">Nombre Completo</label>
                             <input type="text" class="form-control text-center" autocomplete="off" name="NombreCompleto_CO" value="" placeholder="Ingrese su nombre completo" />
@@ -89,7 +95,8 @@
                         </div>
                         
                     </div>
-                    <div class="col-4">
+                </div>
+                    <div class="col-12">
                         <div class="form-group">
                             <label for="">Comentarios</label>
                             <br />
@@ -99,7 +106,6 @@
                         <button type="submit" value="@Model.Id_Propiedad_P" class="btn btn-info" name="idPropiedad">Consultar Propiedad</button>
 
                     </div>
-                </div>
             </form>
 
         </div>
