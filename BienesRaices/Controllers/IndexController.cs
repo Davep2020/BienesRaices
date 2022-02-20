@@ -49,17 +49,51 @@ namespace BienesRaices.Controllers
         }
         #endregion
 
-        public ActionResult Propiedades(int? Precio02, int? CanCuato,int? CanBano,int ? CanGara,int? Cate,int? Id_Provincia_L, int? Id_Canton_L, int? Id_Distrito_L,string tipo)
+        public ActionResult Propiedades(int? precio0, int? precio01, int? Precio02, int? Precio03, int? CanCuato,int? CanBano,int ? CanGara,int? Cate,int? Id_Provincia_L, int? Id_Canton_L, int? Id_Distrito_L,string tipo)
         {
             CargarCategoria();
 
             List<MostrarPropiedad_Result> lista = new List<MostrarPropiedad_Result>();
-            lista = Model.MostrarPropiedad(Precio02, CanCuato, CanBano, CanGara, Cate, Id_Provincia_L, Id_Canton_L, Id_Distrito_L, tipo).ToList();
+            if (tipo == "¢")
+            {
+                if (Precio02 > Precio03)
+                {
+                    var resultado = "Debes agregar un precio final mayor al precio inicial.";
+                    Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+                    List<MostrarPropiedad_Result> listaS = new List<MostrarPropiedad_Result>();
+                    precio0 = 0;
+                    precio01 = 0;
+                    Precio02 = 0;
+                    Precio03 = 0;
+                    tipo = "";
+                    listaS = Model.MostrarPropiedad(Precio02, Precio03, CanCuato, CanBano, CanGara, Cate, Id_Provincia_L, Id_Canton_L, Id_Distrito_L, tipo).ToList();
+                    return View(listaS);
+                }
+                lista = Model.MostrarPropiedad(Precio02, Precio03, CanCuato, CanBano, CanGara, Cate, Id_Provincia_L, Id_Canton_L, Id_Distrito_L, tipo).ToList();
+                return View(lista);
+            }
+            else
+            {
+                if (precio0 > precio01)
+                {
+                    var resultado = "Debes agregar un precio final mayor al precio inicial.";
+                    Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+                    List<MostrarPropiedad_Result> listaS = new List<MostrarPropiedad_Result>();
+                    precio0 = 0;
+                    precio01 = 0;
+                    Precio02 = 0;
+                    Precio03 = 0;
+                    tipo = "";
+                    listaS = Model.MostrarPropiedad(Precio02, Precio03, CanCuato, CanBano, CanGara, Cate, Id_Provincia_L, Id_Canton_L, Id_Distrito_L, tipo).ToList();
+
+                    return View(listaS);
+                }
+                lista = Model.MostrarPropiedad(Precio02, Precio03, CanCuato, CanBano, CanGara, Cate, Id_Provincia_L, Id_Canton_L, Id_Distrito_L, tipo).ToList();
+                return View(lista);
+            }
 
 
- 
-
-            return View(lista);
+           
         }
 
         public ActionResult Propiedad(int idPropiedad)

@@ -229,13 +229,48 @@ namespace BienesRaices.Controllers
         #endregion
 
         #region Inicio
-        public ActionResult Inicio(int? precio02, int? CanCuato, int? CanBano, int? CanGara, int? Cate, string estado,int? Id_Provincia_L,int? Id_Canton_L, int? Id_Distrito_L, string tipo)
+        public ActionResult Inicio(int? precio0, int? precio01, int? precio02, int? precio03, int? CanCuato, int? CanBano, int? CanGara, int? Cate, string estado,int? Id_Provincia_L,int? Id_Canton_L, int? Id_Distrito_L, string tipo)
         {
             CargarCategoria();
 
+ 
             List<MostrarPropiedadAdmin_Result> lista = new List<MostrarPropiedadAdmin_Result>();
-            lista = Model.MostrarPropiedadAdmin(precio02, CanCuato, CanBano, CanGara, Cate, estado,Id_Provincia_L,Id_Canton_L,Id_Distrito_L, tipo).ToList();
+            if (tipo == "¢")
+            {
+                if (precio02 > precio03)
+                {
+                    var resultado = "Debes agregar un precio final mayor al precio inicial.";
+                    Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+                    List<MostrarPropiedadAdmin_Result> listaS = new List<MostrarPropiedadAdmin_Result>();
+                    precio0 = 0;
+                    precio01 = 0;
+                    precio02 = 0;
+                    precio03 = 0;
+                    tipo = "";
+                    listaS = Model.MostrarPropiedadAdmin(precio02, precio03, CanCuato, CanBano, CanGara, Cate, estado, Id_Provincia_L, Id_Canton_L, Id_Distrito_L, tipo).ToList();
 
+                    return View(listaS);
+                }
+                lista = Model.MostrarPropiedadAdmin(precio02, precio03, CanCuato, CanBano, CanGara, Cate, estado,Id_Provincia_L,Id_Canton_L,Id_Distrito_L, tipo).ToList();
+            }
+            else
+            {
+                if (precio0 > precio01)
+                {
+                    var resultado = "Debes agregar un precio final mayor al precio inicial.";
+                    Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
+                    List<MostrarPropiedadAdmin_Result> listaS = new List<MostrarPropiedadAdmin_Result>();
+                    precio0 = 0;
+                    precio01= 0;
+                    precio02 = 0;
+                    precio03 = 0;
+                    tipo = "";
+                    listaS = Model.MostrarPropiedadAdmin(precio02, precio03, CanCuato, CanBano, CanGara, Cate, estado, Id_Provincia_L, Id_Canton_L, Id_Distrito_L, tipo).ToList();
+
+                    return View(listaS);
+                }
+                lista = Model.MostrarPropiedadAdmin(precio0, precio01, CanCuato, CanBano, CanGara, Cate, estado, Id_Provincia_L, Id_Canton_L, Id_Distrito_L, tipo).ToList();
+            }
             return View(lista);
         }
         #endregion
@@ -297,6 +332,10 @@ namespace BienesRaices.Controllers
             CargarPrioridad();
             int cantRegistrosAfectados = 0;
             string resultado = "";
+            if (modelovista.Estado_P==null)
+            {
+                modelovista.Estado_P = Model.Propiedad_P.Where(a => a.Id_Propiedad_P == idpropiedad).FirstOrDefault().Estado_P; ;
+            }
             if (modelovista.Apartado == true)
             {
                 modelovista.Estado_P = "Apartado";

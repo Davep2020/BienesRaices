@@ -86,8 +86,10 @@ public partial class MostrarPropiedadID_Result
     public int IdPrioridad_Pri { get; set; }
 
     public string Nombre_Pri { get; set; }
-    public bool  Apartado { get; set; }
+        public bool Apartado { get; set; }
+        
 
     }
+
 
 }

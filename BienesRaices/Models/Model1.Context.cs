@@ -541,12 +541,125 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
     }
 
 
-    public virtual ObjectResult<MostrarPropiedadAdmin_Result> MostrarPropiedadAdmin(Nullable<int> precio02, Nullable<int> canCuato, Nullable<int> canBano, Nullable<int> canGara, Nullable<int> cate, string estado, Nullable<int> provincia, Nullable<int> canton, Nullable<int> distrito, string tipoMoneda)
+    public virtual ObjectResult<MostrarPropiedadID_Result> MostrarPropiedadID(Nullable<int> idPropiedad)
+    {
+
+        var idPropiedadParameter = idPropiedad.HasValue ?
+            new ObjectParameter("idPropiedad", idPropiedad) :
+            new ObjectParameter("idPropiedad", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadID_Result>("MostrarPropiedadID", idPropiedadParameter);
+    }
+
+
+    public virtual int FinalizarVentaEmpresa(Nullable<int> idPropiedad, string nombreCompleto, string telefono, string correo, string comentario)
+    {
+
+        var idPropiedadParameter = idPropiedad.HasValue ?
+            new ObjectParameter("idPropiedad", idPropiedad) :
+            new ObjectParameter("idPropiedad", typeof(int));
+
+
+        var nombreCompletoParameter = nombreCompleto != null ?
+            new ObjectParameter("NombreCompleto", nombreCompleto) :
+            new ObjectParameter("NombreCompleto", typeof(string));
+
+
+        var telefonoParameter = telefono != null ?
+            new ObjectParameter("Telefono", telefono) :
+            new ObjectParameter("Telefono", typeof(string));
+
+
+        var correoParameter = correo != null ?
+            new ObjectParameter("Correo", correo) :
+            new ObjectParameter("Correo", typeof(string));
+
+
+        var comentarioParameter = comentario != null ?
+            new ObjectParameter("Comentario", comentario) :
+            new ObjectParameter("Comentario", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FinalizarVentaEmpresa", idPropiedadParameter, nombreCompletoParameter, telefonoParameter, correoParameter, comentarioParameter);
+    }
+
+
+    public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
+    }
+
+
+    public virtual ObjectResult<MostrarPropiedad_Result> MostrarPropiedad(Nullable<int> precio02, Nullable<int> precio03, Nullable<int> canCuato, Nullable<int> canBano, Nullable<int> canGara, Nullable<int> cate, Nullable<int> provincia, Nullable<int> canton, Nullable<int> distrito, string tipoMoneda)
     {
 
         var precio02Parameter = precio02.HasValue ?
             new ObjectParameter("Precio02", precio02) :
             new ObjectParameter("Precio02", typeof(int));
+
+
+        var precio03Parameter = precio03.HasValue ?
+            new ObjectParameter("Precio03", precio03) :
+            new ObjectParameter("Precio03", typeof(int));
+
+
+        var canCuatoParameter = canCuato.HasValue ?
+            new ObjectParameter("CanCuato", canCuato) :
+            new ObjectParameter("CanCuato", typeof(int));
+
+
+        var canBanoParameter = canBano.HasValue ?
+            new ObjectParameter("CanBano", canBano) :
+            new ObjectParameter("CanBano", typeof(int));
+
+
+        var canGaraParameter = canGara.HasValue ?
+            new ObjectParameter("CanGara", canGara) :
+            new ObjectParameter("CanGara", typeof(int));
+
+
+        var cateParameter = cate.HasValue ?
+            new ObjectParameter("Cate", cate) :
+            new ObjectParameter("Cate", typeof(int));
+
+
+        var provinciaParameter = provincia.HasValue ?
+            new ObjectParameter("Provincia", provincia) :
+            new ObjectParameter("Provincia", typeof(int));
+
+
+        var cantonParameter = canton.HasValue ?
+            new ObjectParameter("Canton", canton) :
+            new ObjectParameter("Canton", typeof(int));
+
+
+        var distritoParameter = distrito.HasValue ?
+            new ObjectParameter("Distrito", distrito) :
+            new ObjectParameter("Distrito", typeof(int));
+
+
+        var tipoMonedaParameter = tipoMoneda != null ?
+            new ObjectParameter("TipoMoneda", tipoMoneda) :
+            new ObjectParameter("TipoMoneda", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedad_Result>("MostrarPropiedad", precio02Parameter, precio03Parameter, canCuatoParameter, canBanoParameter, canGaraParameter, cateParameter, provinciaParameter, cantonParameter, distritoParameter, tipoMonedaParameter);
+    }
+
+
+    public virtual ObjectResult<MostrarPropiedadAdmin_Result> MostrarPropiedadAdmin(Nullable<int> precio02, Nullable<int> precio03, Nullable<int> canCuato, Nullable<int> canBano, Nullable<int> canGara, Nullable<int> cate, string estado, Nullable<int> provincia, Nullable<int> canton, Nullable<int> distrito, string tipoMoneda)
+    {
+
+        var precio02Parameter = precio02.HasValue ?
+            new ObjectParameter("Precio02", precio02) :
+            new ObjectParameter("Precio02", typeof(int));
+
+
+        var precio03Parameter = precio03.HasValue ?
+            new ObjectParameter("Precio03", precio03) :
+            new ObjectParameter("Precio03", typeof(int));
 
 
         var canCuatoParameter = canCuato.HasValue ?
@@ -594,110 +707,7 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
             new ObjectParameter("TipoMoneda", typeof(string));
 
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadAdmin_Result>("MostrarPropiedadAdmin", precio02Parameter, canCuatoParameter, canBanoParameter, canGaraParameter, cateParameter, estadoParameter, provinciaParameter, cantonParameter, distritoParameter, tipoMonedaParameter);
-    }
-
-
-    public virtual ObjectResult<MostrarPropiedadID_Result> MostrarPropiedadID(Nullable<int> idPropiedad)
-    {
-
-        var idPropiedadParameter = idPropiedad.HasValue ?
-            new ObjectParameter("idPropiedad", idPropiedad) :
-            new ObjectParameter("idPropiedad", typeof(int));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadID_Result>("MostrarPropiedadID", idPropiedadParameter);
-    }
-
-
-    public virtual ObjectResult<MostrarPropiedad_Result> MostrarPropiedad(Nullable<int> precio02, Nullable<int> canCuato, Nullable<int> canBano, Nullable<int> canGara, Nullable<int> cate, Nullable<int> provincia, Nullable<int> canton, Nullable<int> distrito, string tipoMoneda)
-    {
-
-        var precio02Parameter = precio02.HasValue ?
-            new ObjectParameter("Precio02", precio02) :
-            new ObjectParameter("Precio02", typeof(int));
-
-
-        var canCuatoParameter = canCuato.HasValue ?
-            new ObjectParameter("CanCuato", canCuato) :
-            new ObjectParameter("CanCuato", typeof(int));
-
-
-        var canBanoParameter = canBano.HasValue ?
-            new ObjectParameter("CanBano", canBano) :
-            new ObjectParameter("CanBano", typeof(int));
-
-
-        var canGaraParameter = canGara.HasValue ?
-            new ObjectParameter("CanGara", canGara) :
-            new ObjectParameter("CanGara", typeof(int));
-
-
-        var cateParameter = cate.HasValue ?
-            new ObjectParameter("Cate", cate) :
-            new ObjectParameter("Cate", typeof(int));
-
-
-        var provinciaParameter = provincia.HasValue ?
-            new ObjectParameter("Provincia", provincia) :
-            new ObjectParameter("Provincia", typeof(int));
-
-
-        var cantonParameter = canton.HasValue ?
-            new ObjectParameter("Canton", canton) :
-            new ObjectParameter("Canton", typeof(int));
-
-
-        var distritoParameter = distrito.HasValue ?
-            new ObjectParameter("Distrito", distrito) :
-            new ObjectParameter("Distrito", typeof(int));
-
-
-        var tipoMonedaParameter = tipoMoneda != null ?
-            new ObjectParameter("TipoMoneda", tipoMoneda) :
-            new ObjectParameter("TipoMoneda", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedad_Result>("MostrarPropiedad", precio02Parameter, canCuatoParameter, canBanoParameter, canGaraParameter, cateParameter, provinciaParameter, cantonParameter, distritoParameter, tipoMonedaParameter);
-    }
-
-
-    public virtual int FinalizarVentaEmpresa(Nullable<int> idPropiedad, string nombreCompleto, string telefono, string correo, string comentario)
-    {
-
-        var idPropiedadParameter = idPropiedad.HasValue ?
-            new ObjectParameter("idPropiedad", idPropiedad) :
-            new ObjectParameter("idPropiedad", typeof(int));
-
-
-        var nombreCompletoParameter = nombreCompleto != null ?
-            new ObjectParameter("NombreCompleto", nombreCompleto) :
-            new ObjectParameter("NombreCompleto", typeof(string));
-
-
-        var telefonoParameter = telefono != null ?
-            new ObjectParameter("Telefono", telefono) :
-            new ObjectParameter("Telefono", typeof(string));
-
-
-        var correoParameter = correo != null ?
-            new ObjectParameter("Correo", correo) :
-            new ObjectParameter("Correo", typeof(string));
-
-
-        var comentarioParameter = comentario != null ?
-            new ObjectParameter("Comentario", comentario) :
-            new ObjectParameter("Comentario", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FinalizarVentaEmpresa", idPropiedadParameter, nombreCompletoParameter, telefonoParameter, correoParameter, comentarioParameter);
-    }
-
-
-    public virtual ObjectResult<MuestralosPedidos_Result> MuestralosPedidos()
-    {
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MuestralosPedidos_Result>("MuestralosPedidos");
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadAdmin_Result>("MostrarPropiedadAdmin", precio02Parameter, precio03Parameter, canCuatoParameter, canBanoParameter, canGaraParameter, cateParameter, estadoParameter, provinciaParameter, cantonParameter, distritoParameter, tipoMonedaParameter);
     }
 
 }

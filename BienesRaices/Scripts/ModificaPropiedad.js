@@ -7,6 +7,7 @@
         } else {
             $(this).attr('value', 'false');
         }
+
     });
     getData(
         "https://ubicaciones.paginasweb.cr/provincias.json",
@@ -27,7 +28,20 @@
             
         }
     );
+    var cate = $("#Id_Categoria_P").val();
 
+    if (cate == "1" || cate == "2") {
+        $("#CanBanos_C").show();
+        $("#CanGarage_C").show();
+        $("#CanCuartos_C").show();
+        $("#MetrosCuadradosCasa_C").show();
+    }
+    if (cate == "3" || cate == "4") {
+        $("#CanBanos_C").hide();
+        $("#CanGarage_C").hide();
+        $("#CanCuartos_C").hide();
+        $("#MetrosCuadradosCasa_C").hide();
+    }
 });
 
 function apartado() {
@@ -150,7 +164,7 @@ function mostrar(id) {
         $("#CanCuartos_C").show();
         $("#MetrosCuadradosCasa_C").show();
     }
-    if (id == "3") {
+    if (id == "3" || id == "4") {
         $("#CanBanos_C").hide();
         $("#CanGarage_C").hide();
         $("#CanCuartos_C").hide();
