@@ -217,9 +217,16 @@ i.fas{
     font-size: 25px;
     margin-right: 20px;
 }
-
+.bx {
+    border: 1px solid #00ff90
+}
 
 /*BOTONES*/
 .boton {
-    background-color: #E0FFFF!important;
+    background-color: #E0FFFF !important;
+}
+
+/*ERROR*/
+.error #NombreCompleto_CO-error {
+    color: red;
 }

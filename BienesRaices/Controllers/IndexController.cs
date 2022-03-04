@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using BienesRaices.Models;
 using PagedList;
+using System.Net.Mail;
+using Microsoft.Exchange.WebServices.Data;
 
 
 namespace BienesRaices.Controllers
@@ -110,6 +112,10 @@ namespace BienesRaices.Controllers
             string resultado = "";
             try
             {
+
+                Session["Correo"] = modelovista.Correo_CO;
+                Session["Nombre"] = modelovista.NombreCompleto_CO;
+
                 cantRegistrosAfectados = this.Model.IngresaPedido(
                     modelovista.NombreCompleto_CO,
                     modelovista.Telefono_CO,
@@ -128,6 +134,12 @@ namespace BienesRaices.Controllers
                 if (cantRegistrosAfectados > 0)
                 {
                     resultado += "Solicitud realizada";
+                    EnviarCorreoUsuario(idPropiedad, modelovista.NombreCompleto_CO, modelovista.Correo_CO);
+                    EnviarCorreoAdmi(idPropiedad, 
+                        modelovista.NombreCompleto_CO, 
+                        modelovista.Correo_CO,
+                        modelovista.Telefono_CO,
+                        modelovista.Comentario_CO);
                 }
                 else
                 {
@@ -155,5 +167,137 @@ namespace BienesRaices.Controllers
         {
             this.ViewBag.CargarImagenes = this.Model.MostrarCarruoselPropiedad(idPropiedad).ToList();
         }
+
+        #region Correos
+        void EnviarCorreoUsuario(int pIdPropiedad, string pNombre, string pCorreo)
+        {
+
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+            Microsoft.Exchange.WebServices.Data.ExchangeService service = new Microsoft.Exchange.WebServices.Data.ExchangeService(Microsoft.Exchange.WebServices.Data.ExchangeVersion.Exchange2010_SP2);
+            service.Credentials = new System.Net.NetworkCredential("info@bienesraicessarafcys.com", "puriscal2022");
+            service.Url = new Uri("https://outlook.office365.com/EWS/Exchange.asmx");
+            Microsoft.Exchange.WebServices.Data.EmailMessage emailMessage = new Microsoft.Exchange.WebServices.Data.EmailMessage(service);
+            emailMessage.Subject = "Información de la propiedad.";
+            emailMessage.From = new 
+                Microsoft.Exchange.WebServices.Data.EmailAddress("info@bienesraicessarafcys.com");
+
+            string Propiedad = Model.MuestralosPedidos().Where(s => s.Id_Propiedad_P == pIdPropiedad).FirstOrDefault().Nombre_P;
+            #region Cuerpo HTML
+            string cuerpoHTML = @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+                <html xmlns='http://www.w3.org/1999/xhtml'>
+                <head>
+                <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+                <title>Correo</title>
+                <style type='text/css'>
+                <!--
+                p.MsoNormal {
+                	margin: 0cm;
+                	margin-bottom: .0001pt;
+                	font-size: 9.0pt;
+                	font-family: 'Calibri', 'sans-serif';
+                }
+                -->
+                </style>
+                </head>
+                <body>
+                <div style='font-family:Arial, Helvetica, sans-serif'>
+                  <p> <strong>Solicitud de información: </strong></p>
+                  <p>A nombre de: " + pNombre + @"</p>
+                  <p>Estimado cliente, " + pNombre + @", su solicitud por la propiedad " + Propiedad + @" está siendo procesada, en breve un asesor se pondrá en contanto con usted.</p>
+                  <p>Gracias por preferirnos</p>
+                  <p style='font-size:9pt'>Por favor no responda este correo, este mensaje es generado por un sistema automático.</p>
+                 <p class='MsoNormal' style='text-align:center; color:green;font-size:9.0pt; '>'♻️<i> Cuidemos el Medio Ambiente, por favor, no imprima este correo electrónico si no es necesario.</i> ♻️'</p>
+                
+                </div>
+                <hr />
+                </body>
+                </html>";
+            #endregion
+            string mensaje = "";
+
+
+            emailMessage.Body = new 
+                Microsoft.Exchange.WebServices.Data.MessageBody(Microsoft.Exchange.WebServices.Data.BodyType.HTML, cuerpoHTML);
+
+            var lsMails = pCorreo.Replace(",", ";").Split(';');
+            foreach (var mail in lsMails)
+            {
+                try
+                {
+                    emailMessage.ToRecipients.Add(pCorreo);
+                }
+                catch (Exception e)
+                {
+                    mensaje += $"Ocurrió un error:{e.Message}";
+                }
+                finally
+                {
+                    Response.Write("<script>alert('Solicitud enviada con éxito.')</script>");
+                }
+            }
+            emailMessage.Send();
+        }
+
+        void EnviarCorreoAdmi(int pIdPropiedad, string pNombre, string pCorreo, string pTelefono, string pComentario)
+        {
+            string correoAdmi = "gerencia@bienesraicessarafcys.com";
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+            Microsoft.Exchange.WebServices.Data.ExchangeService service = new Microsoft.Exchange.WebServices.Data.ExchangeService(Microsoft.Exchange.WebServices.Data.ExchangeVersion.Exchange2010_SP2);
+            service.Credentials = new System.Net.NetworkCredential("info@bienesraicessarafcys.com", "puriscal2022");
+            service.Url = new Uri("https://outlook.office365.com/EWS/Exchange.asmx");
+            Microsoft.Exchange.WebServices.Data.EmailMessage emailMessage = new Microsoft.Exchange.WebServices.Data.EmailMessage(service);
+            emailMessage.Subject = "Nueva solicitud de propiedad.";
+            emailMessage.From = new
+                Microsoft.Exchange.WebServices.Data.EmailAddress("info@bienesraicessarafcys.com");
+
+            string Propiedad = Model.MuestralosPedidos().Where(s => s.Id_Propiedad_P == pIdPropiedad).FirstOrDefault().Nombre_P;
+            #region Cuerpo HTML
+            string cuerpoHTML = @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+                <html xmlns='http://www.w3.org/1999/xhtml'>
+                <head>
+                <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+                <title>Correo</title>
+                <style type='text/css'>
+                <!--
+                p.MsoNormal {
+                	margin: 0cm;
+                	margin-bottom: .0001pt;
+                	font-size: 9.0pt;
+                	font-family: 'Calibri', 'sans-serif';
+                }
+                -->
+                </style>
+                </head>
+                <body>
+                <div style='font-family:Arial, Helvetica, sans-serif'>
+                  <p> <strongNueva solicitud de información: </strong></p>
+                  <p>A nombre de: " + pNombre + @"</p>
+                  <p>Correo: " + pCorreo + @"</p>
+                  <p>Solicitud por la propiedad: " + Propiedad + @".</p>
+                  <p>Télefono: " + pTelefono + @".</p>
+                  <p>Comentario: " + pComentario + @".</p>
+                </div>
+                <hr />
+                </body>
+                </html>";
+            #endregion
+            string mensaje = "";
+
+
+            emailMessage.Body = new
+                Microsoft.Exchange.WebServices.Data.MessageBody(Microsoft.Exchange.WebServices.Data.BodyType.HTML, cuerpoHTML);
+
+                try
+                {
+                    emailMessage.ToRecipients.Add(correoAdmi);
+                }
+                catch (Exception e)
+                {
+                    mensaje += $"Ocurrió un error:{e.Message}";
+                }
+
+            emailMessage.Send();
+        }
+        #endregion
     }
 }

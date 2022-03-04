@@ -12,12 +12,6 @@
 
 
                 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                    @*Acomodar o borrar porque no siempre van a ser 3 img*@
-                    @*<div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>*@
                     <div class="carousel-inner">
                         @{
                             int i = 0;
@@ -46,9 +40,9 @@
         </div>
         <div class="col">
             <div class="propiedades">
-                <div class="row">
-                    <p>Precio: <strong>@Model.TipoMoneda_P @Model.Precio</strong></p>
-                    <p>Tipo: <strong>@Model.Nombre_CA</strong></p>
+                <div class="row bx">
+                    <p class="caracteristica">Precio: <strong>@Model.TipoMoneda_P @Model.Precio</strong></p>
+                    <p class="caracteristica">Tipo: <strong>@Model.Nombre_CA</strong></p>
 
                     @if(Model.Id_Categoria_CA == 1 || Model.Id_Categoria_CA == 2)
                     {
@@ -59,12 +53,12 @@
                                 <div class="col-3"><i class="fas fa-toilet"> @Model.CanBanos_C</i></div>
                             </div>
                         </div>
-                    <p><strong>m²</strong> de la vivienda: <strong>@Model.MetrosCuadradosCasa_C</strong></p>
+                    <p class="caracteristica"><strong>m²</strong> de la vivienda: <strong>@Model.MetrosCuadradosCasa_C</strong></p>
                     }
-                    <p><strong>m²</strong> del lote: <strong>@Model.MetrosCuadradosLote_C</strong></p>
-                    <p><strong>@Model.Descripcion_P</strong></p>
-                    <p>@Model.NombreProvincia_L, @Model.NombreCanton_L, @Model.NombreCanton_L</p>
-                    <p><span>@Model.DireccionExacta_L</span></p>
+                    <p class="caracteristica"><strong>m²</strong> del lote: <strong>@Model.MetrosCuadradosLote_C</strong></p>
+                    <p class="caracteristica"><strong>@Model.Descripcion_P</strong></p>
+                    <p class="caracteristica">@Model.NombreProvincia_L, @Model.NombreCanton_L, @Model.NombreCanton_L</p>
+                    <p class="caracteristica"><span>@Model.DireccionExacta_L</span></p>
                 </div>
             </div>
         </div>
@@ -78,20 +72,20 @@
         <div class="col-lg-10" style="text-align:center">
 
             <h1>Contacto</h1>
-            <form method="post">
+            <form method="post" id="formContact">
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
                             <label for="">Nombre Completo</label>
-                            <input type="text" class="form-control text-center" autocomplete="off" name="NombreCompleto_CO" value="" placeholder="Ingrese su nombre completo" />
+                            <input type="text" class="form-control text-center" autocomplete="off" name="NombreCompleto_CO" value="" placeholder="Ingrese su nombre completo" required/>
                         </div>
                         <div class="form-group">
                             <label for="">Teléfono</label>
-                            <input type="text" class="form-control text-center" name="Telefono_CO" value="" placeholder="Ingrese su teléfono" />
+                            <input type="number" class="form-control text-center" name="Telefono_CO" value="" placeholder="Ingrese su teléfono" required/>
                         </div>
                         <div class="form-group">
                             <label for="">Correo Electronico</label>
-                            <input type="email" class="form-control text-center" name="Correo_CO" value="" placeholder="Ingrese su correo Electronico " />
+                            <input type="email" class="form-control text-center" name="Correo_CO" value="" placeholder="Ingrese su correo Electronico " required/>
                         </div>
                         
                     </div>
@@ -100,12 +94,13 @@
                         <div class="form-group">
                             <label for="">Comentarios</label>
                             <br />
-                            <textarea class="form-control" name="Comentario_CO" rows="7"></textarea>
+                            <textarea class="form-control" name="Comentario_CO" rows="7" required></textarea>
                         </div>
                         <br />
                         <button type="submit" value="@Model.Id_Propiedad_P" class="btn btn-info" name="idPropiedad">Consultar Propiedad</button>
 
                     </div>
+                @Scripts.Render("~/Scripts/Validaciones/EnviarFormulario.js");
             </form>
 
         </div>
