@@ -370,7 +370,7 @@
                                     @using (Html.BeginForm("EliminarImagen", "Propiedad", FormMethod.Post))
                                     {
                                         <button id="Con" type="submit" name="Id_Imagen_I" value="@posicion.Id_Imagen_I" class="btn btn-info">Eliminar Imagen</button>
-                                        <input type="text" name="idPropiedad" value="@posicion.Id_Propiedad_I" hidden>
+                                        <input type="text" name="idPropiedad" value="@posicion.Id_Propiedad_I" id="idPropiedad" hidden>
                                     }
 
                                 </div>
@@ -401,7 +401,7 @@
                     <div class="col-lg-2  form-group">
 
                         <label>Cargar Imagen</label>
-                        <input class="form-control-file border" type="file" multiple id="Ruta_I" name="Ruta_I" required />
+                        <input class="form-control-file border" type="file" onchange="validarImagen()" multiple id="Ruta_I" size="1024" accept="image/jpeg,image/jpg,image/png" name="Ruta_I" required />
 
                     </div>
 
@@ -464,3 +464,14 @@
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3cOQNB4cQjQDSGWiB_nT2H2pEOuD3w60&callback=initMap" async defer></script>
 
+<script>
+    function validarImagen() {
+        var fileSize = $('#Ruta_I')[0].files[0].size;
+        var siezekiloByte = parseInt(fileSize / 1024);
+        if (siezekiloByte > $('#Ruta_I').attr('size')) {
+            alert("Imagen muy grande");
+            $("#Ruta_I").val("");
+            return false;
+        }
+    }
+</script>
