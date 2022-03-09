@@ -401,7 +401,7 @@
                     <div class="col-lg-2  form-group">
 
                         <label>Cargar Imagen</label>
-                        <input class="form-control-file border" type="file" onchange="validarImagen()" multiple id="Ruta_I" size="1024" accept="image/jpeg,image/jpg,image/png" name="Ruta_I" required />
+                        <input class="form-control-file border" type="file" onchange="validarImagen()" multiple id="Ruta_I" size="5046" accept="image/jpeg,image/jpg,image/png" name="Ruta_I" required />
 
                     </div>
 
@@ -467,7 +467,7 @@
 <script>
     function validarImagen() {
         var fileSize = $('#Ruta_I')[0].files[0].size;
-        var siezekiloByte = parseInt(fileSize / 1024);
+        var siezekiloByte = parseInt(fileSize / 5046);
         if (siezekiloByte > $('#Ruta_I').attr('size')) {
             alert("Imagen muy grande");
             $("#Ruta_I").val("");
