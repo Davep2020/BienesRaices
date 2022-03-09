@@ -15,7 +15,7 @@ namespace BienesRaices.Controllers
     public class HomeController : Controller
     {
         db_a3cb5b_webbienesraicesEntities Model = new db_a3cb5b_webbienesraicesEntities();
-        // GET: Index
+ 
 
 
         #region Mostrar tres propiedades en el index
