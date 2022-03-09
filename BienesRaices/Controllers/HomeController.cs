@@ -12,7 +12,7 @@ using Microsoft.Exchange.WebServices.Data;
 namespace BienesRaices.Controllers
 {
 
-    public class IndexController : Controller
+    public class HomeController : Controller
     {
         db_a3cb5b_webbienesraicesEntities Model = new db_a3cb5b_webbienesraicesEntities();
         // GET: Index
@@ -149,7 +149,7 @@ namespace BienesRaices.Controllers
             }
             Response.Write("<script language=javascript>alert('" + resultado + "')</script>");
 
-            return RedirectToAction("Propiedades","Index");
+            return RedirectToAction("Propiedades","Home");
 
         }
         void CargarCategoria()

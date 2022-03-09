@@ -56,7 +56,7 @@
                     <p class="caracteristica"><strong>m²</strong> de la vivienda: <strong>@Model.MetrosCuadradosCasa_C</strong></p>
                     }
                     <p class="caracteristica"><strong>m²</strong> del lote: <strong>@Model.MetrosCuadradosLote_C</strong></p>
-                    <p class="caracteristica"><strong>@Model.Descripcion_P</strong></p>
+                    <p class="caracteristica" @*style="height: 1000px;*@"><strong>@Model.Descripcion_P</strong></p>
                     <p class="caracteristica">@Model.NombreProvincia_L, @Model.NombreCanton_L, @Model.NombreCanton_L</p>
                     <p class="caracteristica"><span>@Model.DireccionExacta_L</span></p>
                 </div>
@@ -100,7 +100,7 @@
                         <button type="submit" value="@Model.Id_Propiedad_P" class="btn btn-info" name="idPropiedad">Consultar Propiedad</button>
 
                     </div>
-                @Scripts.Render("~/Scripts/Validaciones/EnviarFormulario.js");
+                @Scripts.Render("~/Scripts/Validaciones/EnviarFormulario.js")
             </form>
 
         </div>
