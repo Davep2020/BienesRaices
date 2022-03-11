@@ -50,9 +50,9 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
 
     public DbSet<Prioridad_Pri> Prioridad_Pri { get; set; }
 
-    public DbSet<Propiedad_P> Propiedad_P { get; set; }
-
     public DbSet<sysdiagrams> sysdiagrams { get; set; }
+
+    public DbSet<Propiedad_P> Propiedad_P { get; set; }
 
 
     public virtual int IngresaPedido(string nombreCompleto, string telefono, string correo, Nullable<int> idPropiedad, string estado, string comentario)
@@ -279,108 +279,6 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
     }
 
 
-    public virtual int IngresaPropiedad(string nombrePro, string descripcion, string precioPro, string provincia, string canton, string distrito, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string direccionExacta, Nullable<int> cantidadCuarto, Nullable<int> cantidadBano, Nullable<int> cantidadGarajes, Nullable<int> categoriaPro, string ruta, Nullable<int> metrosCasa, Nullable<int> metrosLote, Nullable<int> idPrioridad, string tipoMoneda)
-    {
-
-        var nombreProParameter = nombrePro != null ?
-            new ObjectParameter("NombrePro", nombrePro) :
-            new ObjectParameter("NombrePro", typeof(string));
-
-
-        var descripcionParameter = descripcion != null ?
-            new ObjectParameter("Descripcion", descripcion) :
-            new ObjectParameter("Descripcion", typeof(string));
-
-
-        var precioProParameter = precioPro != null ?
-            new ObjectParameter("PrecioPro", precioPro) :
-            new ObjectParameter("PrecioPro", typeof(string));
-
-
-        var provinciaParameter = provincia != null ?
-            new ObjectParameter("Provincia", provincia) :
-            new ObjectParameter("Provincia", typeof(string));
-
-
-        var cantonParameter = canton != null ?
-            new ObjectParameter("Canton", canton) :
-            new ObjectParameter("Canton", typeof(string));
-
-
-        var distritoParameter = distrito != null ?
-            new ObjectParameter("Distrito", distrito) :
-            new ObjectParameter("Distrito", typeof(string));
-
-
-        var idProvinciaParameter = idProvincia.HasValue ?
-            new ObjectParameter("idProvincia", idProvincia) :
-            new ObjectParameter("idProvincia", typeof(int));
-
-
-        var idCantonParameter = idCanton.HasValue ?
-            new ObjectParameter("idCanton", idCanton) :
-            new ObjectParameter("idCanton", typeof(int));
-
-
-        var idDistritoParameter = idDistrito.HasValue ?
-            new ObjectParameter("idDistrito", idDistrito) :
-            new ObjectParameter("idDistrito", typeof(int));
-
-
-        var direccionExactaParameter = direccionExacta != null ?
-            new ObjectParameter("DireccionExacta", direccionExacta) :
-            new ObjectParameter("DireccionExacta", typeof(string));
-
-
-        var cantidadCuartoParameter = cantidadCuarto.HasValue ?
-            new ObjectParameter("CantidadCuarto", cantidadCuarto) :
-            new ObjectParameter("CantidadCuarto", typeof(int));
-
-
-        var cantidadBanoParameter = cantidadBano.HasValue ?
-            new ObjectParameter("CantidadBano", cantidadBano) :
-            new ObjectParameter("CantidadBano", typeof(int));
-
-
-        var cantidadGarajesParameter = cantidadGarajes.HasValue ?
-            new ObjectParameter("CantidadGarajes", cantidadGarajes) :
-            new ObjectParameter("CantidadGarajes", typeof(int));
-
-
-        var categoriaProParameter = categoriaPro.HasValue ?
-            new ObjectParameter("CategoriaPro", categoriaPro) :
-            new ObjectParameter("CategoriaPro", typeof(int));
-
-
-        var rutaParameter = ruta != null ?
-            new ObjectParameter("Ruta", ruta) :
-            new ObjectParameter("Ruta", typeof(string));
-
-
-        var metrosCasaParameter = metrosCasa.HasValue ?
-            new ObjectParameter("MetrosCasa", metrosCasa) :
-            new ObjectParameter("MetrosCasa", typeof(int));
-
-
-        var metrosLoteParameter = metrosLote.HasValue ?
-            new ObjectParameter("MetrosLote", metrosLote) :
-            new ObjectParameter("MetrosLote", typeof(int));
-
-
-        var idPrioridadParameter = idPrioridad.HasValue ?
-            new ObjectParameter("IdPrioridad", idPrioridad) :
-            new ObjectParameter("IdPrioridad", typeof(int));
-
-
-        var tipoMonedaParameter = tipoMoneda != null ?
-            new ObjectParameter("TipoMoneda", tipoMoneda) :
-            new ObjectParameter("TipoMoneda", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IngresaPropiedad", nombreProParameter, descripcionParameter, precioProParameter, provinciaParameter, cantonParameter, distritoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, direccionExactaParameter, cantidadCuartoParameter, cantidadBanoParameter, cantidadGarajesParameter, categoriaProParameter, rutaParameter, metrosCasaParameter, metrosLoteParameter, idPrioridadParameter, tipoMonedaParameter);
-    }
-
-
     public virtual ObjectResult<MostrarReporte_Result> MostrarReporte()
     {
 
@@ -402,118 +300,6 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CargarImagenesModificar", idParameter, rutaParameter);
-    }
-
-
-    public virtual int ModificarPropiedad(Nullable<int> idPropi, string nombrePro, string precio, string estado, Nullable<int> categoria, string des, string nombreProvincia, string nombreCanton, string nombreDistrito, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string direccionExacta, Nullable<int> cuartos, Nullable<int> banos, Nullable<int> garajes, Nullable<int> metrosCasa, Nullable<int> metrosPropiedad, Nullable<int> idPrioridad, string tipoMoneda, string precioAntes)
-    {
-
-        var idPropiParameter = idPropi.HasValue ?
-            new ObjectParameter("idPropi", idPropi) :
-            new ObjectParameter("idPropi", typeof(int));
-
-
-        var nombreProParameter = nombrePro != null ?
-            new ObjectParameter("NombrePro", nombrePro) :
-            new ObjectParameter("NombrePro", typeof(string));
-
-
-        var precioParameter = precio != null ?
-            new ObjectParameter("Precio", precio) :
-            new ObjectParameter("Precio", typeof(string));
-
-
-        var estadoParameter = estado != null ?
-            new ObjectParameter("Estado", estado) :
-            new ObjectParameter("Estado", typeof(string));
-
-
-        var categoriaParameter = categoria.HasValue ?
-            new ObjectParameter("Categoria", categoria) :
-            new ObjectParameter("Categoria", typeof(int));
-
-
-        var desParameter = des != null ?
-            new ObjectParameter("Des", des) :
-            new ObjectParameter("Des", typeof(string));
-
-
-        var nombreProvinciaParameter = nombreProvincia != null ?
-            new ObjectParameter("NombreProvincia", nombreProvincia) :
-            new ObjectParameter("NombreProvincia", typeof(string));
-
-
-        var nombreCantonParameter = nombreCanton != null ?
-            new ObjectParameter("NombreCanton", nombreCanton) :
-            new ObjectParameter("NombreCanton", typeof(string));
-
-
-        var nombreDistritoParameter = nombreDistrito != null ?
-            new ObjectParameter("NombreDistrito", nombreDistrito) :
-            new ObjectParameter("NombreDistrito", typeof(string));
-
-
-        var idProvinciaParameter = idProvincia.HasValue ?
-            new ObjectParameter("IdProvincia", idProvincia) :
-            new ObjectParameter("IdProvincia", typeof(int));
-
-
-        var idCantonParameter = idCanton.HasValue ?
-            new ObjectParameter("IdCanton", idCanton) :
-            new ObjectParameter("IdCanton", typeof(int));
-
-
-        var idDistritoParameter = idDistrito.HasValue ?
-            new ObjectParameter("IdDistrito", idDistrito) :
-            new ObjectParameter("IdDistrito", typeof(int));
-
-
-        var direccionExactaParameter = direccionExacta != null ?
-            new ObjectParameter("DireccionExacta", direccionExacta) :
-            new ObjectParameter("DireccionExacta", typeof(string));
-
-
-        var cuartosParameter = cuartos.HasValue ?
-            new ObjectParameter("Cuartos", cuartos) :
-            new ObjectParameter("Cuartos", typeof(int));
-
-
-        var banosParameter = banos.HasValue ?
-            new ObjectParameter("Banos", banos) :
-            new ObjectParameter("Banos", typeof(int));
-
-
-        var garajesParameter = garajes.HasValue ?
-            new ObjectParameter("Garajes", garajes) :
-            new ObjectParameter("Garajes", typeof(int));
-
-
-        var metrosCasaParameter = metrosCasa.HasValue ?
-            new ObjectParameter("MetrosCasa", metrosCasa) :
-            new ObjectParameter("MetrosCasa", typeof(int));
-
-
-        var metrosPropiedadParameter = metrosPropiedad.HasValue ?
-            new ObjectParameter("MetrosPropiedad", metrosPropiedad) :
-            new ObjectParameter("MetrosPropiedad", typeof(int));
-
-
-        var idPrioridadParameter = idPrioridad.HasValue ?
-            new ObjectParameter("idPrioridad", idPrioridad) :
-            new ObjectParameter("idPrioridad", typeof(int));
-
-
-        var tipoMonedaParameter = tipoMoneda != null ?
-            new ObjectParameter("TipoMoneda", tipoMoneda) :
-            new ObjectParameter("TipoMoneda", typeof(string));
-
-
-        var precioAntesParameter = precioAntes != null ?
-            new ObjectParameter("PrecioAntes", precioAntes) :
-            new ObjectParameter("PrecioAntes", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarPropiedad", idPropiParameter, nombreProParameter, precioParameter, estadoParameter, categoriaParameter, desParameter, nombreProvinciaParameter, nombreCantonParameter, nombreDistritoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, direccionExactaParameter, cuartosParameter, banosParameter, garajesParameter, metrosCasaParameter, metrosPropiedadParameter, idPrioridadParameter, tipoMonedaParameter, precioAntesParameter);
     }
 
 
@@ -708,6 +494,220 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarPropiedadAdmin_Result>("MostrarPropiedadAdmin", precio02Parameter, precio03Parameter, canCuatoParameter, canBanoParameter, canGaraParameter, cateParameter, estadoParameter, provinciaParameter, cantonParameter, distritoParameter, tipoMonedaParameter);
+    }
+
+
+    public virtual int IngresaPropiedad(string nombrePro, string descripcion, string precioPro, string provincia, string canton, string distrito, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string direccionExacta, Nullable<int> cantidadCuarto, Nullable<int> cantidadBano, Nullable<int> cantidadGarajes, Nullable<int> categoriaPro, string ruta, Nullable<int> metrosCasa, Nullable<int> metrosLote, Nullable<int> idPrioridad, string tipoMoneda)
+    {
+
+        var nombreProParameter = nombrePro != null ?
+            new ObjectParameter("NombrePro", nombrePro) :
+            new ObjectParameter("NombrePro", typeof(string));
+
+
+        var descripcionParameter = descripcion != null ?
+            new ObjectParameter("Descripcion", descripcion) :
+            new ObjectParameter("Descripcion", typeof(string));
+
+
+        var precioProParameter = precioPro != null ?
+            new ObjectParameter("PrecioPro", precioPro) :
+            new ObjectParameter("PrecioPro", typeof(string));
+
+
+        var provinciaParameter = provincia != null ?
+            new ObjectParameter("Provincia", provincia) :
+            new ObjectParameter("Provincia", typeof(string));
+
+
+        var cantonParameter = canton != null ?
+            new ObjectParameter("Canton", canton) :
+            new ObjectParameter("Canton", typeof(string));
+
+
+        var distritoParameter = distrito != null ?
+            new ObjectParameter("Distrito", distrito) :
+            new ObjectParameter("Distrito", typeof(string));
+
+
+        var idProvinciaParameter = idProvincia.HasValue ?
+            new ObjectParameter("idProvincia", idProvincia) :
+            new ObjectParameter("idProvincia", typeof(int));
+
+
+        var idCantonParameter = idCanton.HasValue ?
+            new ObjectParameter("idCanton", idCanton) :
+            new ObjectParameter("idCanton", typeof(int));
+
+
+        var idDistritoParameter = idDistrito.HasValue ?
+            new ObjectParameter("idDistrito", idDistrito) :
+            new ObjectParameter("idDistrito", typeof(int));
+
+
+        var direccionExactaParameter = direccionExacta != null ?
+            new ObjectParameter("DireccionExacta", direccionExacta) :
+            new ObjectParameter("DireccionExacta", typeof(string));
+
+
+        var cantidadCuartoParameter = cantidadCuarto.HasValue ?
+            new ObjectParameter("CantidadCuarto", cantidadCuarto) :
+            new ObjectParameter("CantidadCuarto", typeof(int));
+
+
+        var cantidadBanoParameter = cantidadBano.HasValue ?
+            new ObjectParameter("CantidadBano", cantidadBano) :
+            new ObjectParameter("CantidadBano", typeof(int));
+
+
+        var cantidadGarajesParameter = cantidadGarajes.HasValue ?
+            new ObjectParameter("CantidadGarajes", cantidadGarajes) :
+            new ObjectParameter("CantidadGarajes", typeof(int));
+
+
+        var categoriaProParameter = categoriaPro.HasValue ?
+            new ObjectParameter("CategoriaPro", categoriaPro) :
+            new ObjectParameter("CategoriaPro", typeof(int));
+
+
+        var rutaParameter = ruta != null ?
+            new ObjectParameter("Ruta", ruta) :
+            new ObjectParameter("Ruta", typeof(string));
+
+
+        var metrosCasaParameter = metrosCasa.HasValue ?
+            new ObjectParameter("MetrosCasa", metrosCasa) :
+            new ObjectParameter("MetrosCasa", typeof(int));
+
+
+        var metrosLoteParameter = metrosLote.HasValue ?
+            new ObjectParameter("MetrosLote", metrosLote) :
+            new ObjectParameter("MetrosLote", typeof(int));
+
+
+        var idPrioridadParameter = idPrioridad.HasValue ?
+            new ObjectParameter("IdPrioridad", idPrioridad) :
+            new ObjectParameter("IdPrioridad", typeof(int));
+
+
+        var tipoMonedaParameter = tipoMoneda != null ?
+            new ObjectParameter("TipoMoneda", tipoMoneda) :
+            new ObjectParameter("TipoMoneda", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IngresaPropiedad", nombreProParameter, descripcionParameter, precioProParameter, provinciaParameter, cantonParameter, distritoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, direccionExactaParameter, cantidadCuartoParameter, cantidadBanoParameter, cantidadGarajesParameter, categoriaProParameter, rutaParameter, metrosCasaParameter, metrosLoteParameter, idPrioridadParameter, tipoMonedaParameter);
+    }
+
+
+    public virtual int ModificarPropiedad(Nullable<int> idPropi, string nombrePro, string precio, string estado, Nullable<int> categoria, string des, string nombreProvincia, string nombreCanton, string nombreDistrito, Nullable<int> idProvincia, Nullable<int> idCanton, Nullable<int> idDistrito, string direccionExacta, Nullable<int> cuartos, Nullable<int> banos, Nullable<int> garajes, Nullable<int> metrosCasa, Nullable<int> metrosPropiedad, Nullable<int> idPrioridad, string tipoMoneda, string precioAntes)
+    {
+
+        var idPropiParameter = idPropi.HasValue ?
+            new ObjectParameter("idPropi", idPropi) :
+            new ObjectParameter("idPropi", typeof(int));
+
+
+        var nombreProParameter = nombrePro != null ?
+            new ObjectParameter("NombrePro", nombrePro) :
+            new ObjectParameter("NombrePro", typeof(string));
+
+
+        var precioParameter = precio != null ?
+            new ObjectParameter("Precio", precio) :
+            new ObjectParameter("Precio", typeof(string));
+
+
+        var estadoParameter = estado != null ?
+            new ObjectParameter("Estado", estado) :
+            new ObjectParameter("Estado", typeof(string));
+
+
+        var categoriaParameter = categoria.HasValue ?
+            new ObjectParameter("Categoria", categoria) :
+            new ObjectParameter("Categoria", typeof(int));
+
+
+        var desParameter = des != null ?
+            new ObjectParameter("Des", des) :
+            new ObjectParameter("Des", typeof(string));
+
+
+        var nombreProvinciaParameter = nombreProvincia != null ?
+            new ObjectParameter("NombreProvincia", nombreProvincia) :
+            new ObjectParameter("NombreProvincia", typeof(string));
+
+
+        var nombreCantonParameter = nombreCanton != null ?
+            new ObjectParameter("NombreCanton", nombreCanton) :
+            new ObjectParameter("NombreCanton", typeof(string));
+
+
+        var nombreDistritoParameter = nombreDistrito != null ?
+            new ObjectParameter("NombreDistrito", nombreDistrito) :
+            new ObjectParameter("NombreDistrito", typeof(string));
+
+
+        var idProvinciaParameter = idProvincia.HasValue ?
+            new ObjectParameter("IdProvincia", idProvincia) :
+            new ObjectParameter("IdProvincia", typeof(int));
+
+
+        var idCantonParameter = idCanton.HasValue ?
+            new ObjectParameter("IdCanton", idCanton) :
+            new ObjectParameter("IdCanton", typeof(int));
+
+
+        var idDistritoParameter = idDistrito.HasValue ?
+            new ObjectParameter("IdDistrito", idDistrito) :
+            new ObjectParameter("IdDistrito", typeof(int));
+
+
+        var direccionExactaParameter = direccionExacta != null ?
+            new ObjectParameter("DireccionExacta", direccionExacta) :
+            new ObjectParameter("DireccionExacta", typeof(string));
+
+
+        var cuartosParameter = cuartos.HasValue ?
+            new ObjectParameter("Cuartos", cuartos) :
+            new ObjectParameter("Cuartos", typeof(int));
+
+
+        var banosParameter = banos.HasValue ?
+            new ObjectParameter("Banos", banos) :
+            new ObjectParameter("Banos", typeof(int));
+
+
+        var garajesParameter = garajes.HasValue ?
+            new ObjectParameter("Garajes", garajes) :
+            new ObjectParameter("Garajes", typeof(int));
+
+
+        var metrosCasaParameter = metrosCasa.HasValue ?
+            new ObjectParameter("MetrosCasa", metrosCasa) :
+            new ObjectParameter("MetrosCasa", typeof(int));
+
+
+        var metrosPropiedadParameter = metrosPropiedad.HasValue ?
+            new ObjectParameter("MetrosPropiedad", metrosPropiedad) :
+            new ObjectParameter("MetrosPropiedad", typeof(int));
+
+
+        var idPrioridadParameter = idPrioridad.HasValue ?
+            new ObjectParameter("idPrioridad", idPrioridad) :
+            new ObjectParameter("idPrioridad", typeof(int));
+
+
+        var tipoMonedaParameter = tipoMoneda != null ?
+            new ObjectParameter("TipoMoneda", tipoMoneda) :
+            new ObjectParameter("TipoMoneda", typeof(string));
+
+
+        var precioAntesParameter = precioAntes != null ?
+            new ObjectParameter("PrecioAntes", precioAntes) :
+            new ObjectParameter("PrecioAntes", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarPropiedad", idPropiParameter, nombreProParameter, precioParameter, estadoParameter, categoriaParameter, desParameter, nombreProvinciaParameter, nombreCantonParameter, nombreDistritoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, direccionExactaParameter, cuartosParameter, banosParameter, garajesParameter, metrosCasaParameter, metrosPropiedadParameter, idPrioridadParameter, tipoMonedaParameter, precioAntesParameter);
     }
 
 }

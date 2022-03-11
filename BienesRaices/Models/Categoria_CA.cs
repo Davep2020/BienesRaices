@@ -18,21 +18,9 @@ using System;
 public partial class Categoria_CA
 {
 
-    public Categoria_CA()
-    {
-
-        this.Propiedad_P = new HashSet<Propiedad_P>();
-
-    }
-
-
     public int Id_Categoria_CA { get; set; }
 
     public string Nombre_CA { get; set; }
-
-
-
-    public virtual ICollection<Propiedad_P> Propiedad_P { get; set; }
 
 }
 

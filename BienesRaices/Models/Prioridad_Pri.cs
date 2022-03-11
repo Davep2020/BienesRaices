@@ -18,21 +18,9 @@ using System;
 public partial class Prioridad_Pri
 {
 
-    public Prioridad_Pri()
-    {
-
-        this.Propiedad_P = new HashSet<Propiedad_P>();
-
-    }
-
-
     public int IdPrioridad_Pri { get; set; }
 
     public string Nombre_Pri { get; set; }
-
-
-
-    public virtual ICollection<Propiedad_P> Propiedad_P { get; set; }
 
 }
 

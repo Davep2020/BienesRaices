@@ -56,15 +56,11 @@ public partial class Propiedad_P
 
     public virtual ICollection<Caracteristicas_C> Caracteristicas_C { get; set; }
 
-    public virtual Categoria_CA Categoria_CA { get; set; }
-
     public virtual ICollection<Contacto_CO> Contacto_CO { get; set; }
 
     public virtual ICollection<Imagen_I> Imagen_I { get; set; }
 
     public virtual ICollection<Localizacion_L> Localizacion_L { get; set; }
-
-    public virtual Prioridad_Pri Prioridad_Pri { get; set; }
 
 }
 
