@@ -260,18 +260,6 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
     }
 
 
-    public virtual ObjectResult<MostrarTresPropiedades_Result> MostrarTresPropiedades(Nullable<int> idCategoria)
-    {
-
-        var idCategoriaParameter = idCategoria.HasValue ?
-            new ObjectParameter("IdCategoria", idCategoria) :
-            new ObjectParameter("IdCategoria", typeof(int));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarTresPropiedades_Result>("MostrarTresPropiedades", idCategoriaParameter);
-    }
-
-
     public virtual ObjectResult<MuestraPrioridad_Result> MuestraPrioridad()
     {
 
@@ -708,6 +696,18 @@ public partial class db_a3cb5b_webbienesraicesEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarPropiedad", idPropiParameter, nombreProParameter, precioParameter, estadoParameter, categoriaParameter, desParameter, nombreProvinciaParameter, nombreCantonParameter, nombreDistritoParameter, idProvinciaParameter, idCantonParameter, idDistritoParameter, direccionExactaParameter, cuartosParameter, banosParameter, garajesParameter, metrosCasaParameter, metrosPropiedadParameter, idPrioridadParameter, tipoMonedaParameter, precioAntesParameter);
+    }
+
+
+    public virtual ObjectResult<MostrarTresPropiedades_Result> MostrarTresPropiedades(Nullable<int> idCategoria)
+    {
+
+        var idCategoriaParameter = idCategoria.HasValue ?
+            new ObjectParameter("IdCategoria", idCategoria) :
+            new ObjectParameter("IdCategoria", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MostrarTresPropiedades_Result>("MostrarTresPropiedades", idCategoriaParameter);
     }
 
 }

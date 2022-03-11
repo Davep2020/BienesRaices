@@ -157,8 +157,6 @@
                 @{
                     foreach (BienesRaices.Models.MostrarTresPropiedades_Result propiedad in this.ViewBag.MostrarCasas)
                     {
-
-
                         <div class="col-sm-4">
 
                             <div class="card-deck">
@@ -228,16 +226,11 @@
                                                 <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P" style="background-color: #E0FFFF">Ver Propiedad</button>
                                             }
 
-
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
-
                         </div>
-
                     }
                 }
             </div>
@@ -247,7 +240,6 @@
                 @{
                     foreach (BienesRaices.Models.MostrarTresPropiedades_Result propiedad in this.ViewBag.MostrarAlquiler)
                     {
-
 
                         <div class="col-sm-4">
 
@@ -315,16 +307,11 @@
                                                 <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P" style="background-color: #E0FFFF">Ver Propiedad</button>
                                             }
 
-
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
-
                         </div>
-
                     }
                 }
             </div>
@@ -333,11 +320,8 @@
             <div class="row">
                 @{
                     foreach (BienesRaices.Models.MostrarTresPropiedades_Result propiedad in this.ViewBag.MostrarTerrenos)
-                    {
-
-
+                    {  
                         <div class="col-sm-4">
-
                             <div class="card-deck">
                                 <div class="card">
                                     @*FALTA LLAMAR LA IMG*@
@@ -350,22 +334,16 @@
 
                                         <div class="container">
 
-
                                             @using (Html.BeginForm("Propiedad", "Home", FormMethod.Get))
                                             {
                                                 <button id="Con" type="submit" name="idPropiedad" class="btn boton text-black" value="@propiedad.Id_Propiedad_P" style="background-color: #E0FFFF">Ver Propiedad</button>
                                             }
 
-
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
-
                         </div>
-
                     }
                 }
             </div>
@@ -705,9 +683,9 @@
                 <div class="menu col-lg-4">
                     <h3>Redes <span>sociales</span></h3>
                     <nav class="redes-sociales ">
-                        <a href="https://www.facebook.com/Bienes-Ra%C3%ADces-Sarafcys-101331108726582"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                        <a href="https://wa.me/87809574"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                        <a href="mailto:info@bienesraicessarafcys.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                        <a target="_blank" href="https://www.facebook.com/Bienes-Ra%C3%ADces-Sarafcys-101331108726582"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a target="_blank" href="https://wa.link/w5z4qi"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a target="_blank" href="mailto:info@bienesraicessarafcys.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
                     </nav>
                 </div>
             </div>
