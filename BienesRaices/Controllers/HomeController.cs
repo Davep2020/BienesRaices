@@ -240,7 +240,7 @@ namespace BienesRaices.Controllers
 
         void EnviarCorreoAdmi(int pIdPropiedad, string pNombre, string pCorreo, string pTelefono, string pComentario)
         {
-            string correoAdmi = "gerencia@bienesraicessarafcys.com";
+            string correoAdmi = "info@bienesraicessarafcys.com";
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
             Microsoft.Exchange.WebServices.Data.ExchangeService service = new Microsoft.Exchange.WebServices.Data.ExchangeService(Microsoft.Exchange.WebServices.Data.ExchangeVersion.Exchange2010_SP2);
             service.Credentials = new System.Net.NetworkCredential("info@bienesraicessarafcys.com", "puriscal2022");
