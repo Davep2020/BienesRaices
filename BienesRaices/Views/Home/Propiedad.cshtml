@@ -4,64 +4,65 @@
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
 }
 
-<div class="container">
+<div class="contenedor con-sidebar">
+
+    <div class="carrousel">
     <h3 class="text-center mb-5">@Model.Nombre_P</h3>
-            <div class="">
 
 
-                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        @{
-                            int i = 0;
-                            foreach (BienesRaices.Models.MostrarCarruoselPropiedad_Result imagen in this.ViewBag.CargarImagenes)
-                            {
-                                i++;
-                                var active = i == 1 ? "active" : "";
-                                <div class="carousel-item @active" data-bs-interval="10000" style="height: 0px">
-                                    <img src="~/images/@imagen.Ruta_I" class="w-100" style="max-height: 350px" alt="...">
-                                </div>
-                            }
-                        }
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-
-            </div><!-- fin col-lg-4 -->
-    <div class="row">
-        <div class="col col-lg-12">
-            <div class="propiedades">
-                <div class="row bx">
-                    <p class="caracteristica">Precio: <strong>@Model.TipoMoneda_P @Model.Precio</strong></p>
-                    <p class="caracteristica">Tipo: <strong>@Model.Nombre_CA</strong></p>
-
-                    @if(Model.Id_Categoria_CA == 1 || Model.Id_Categoria_CA == 2)
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @{
+                    int i = 0;
+                    foreach (BienesRaices.Models.MostrarCarruoselPropiedad_Result imagen in this.ViewBag.CargarImagenes)
                     {
-                        <div class="col-12 iconos">
-                            <div class="row">
-                                <div class="col-3"><i class="fas fa-bed"> @Model.CanCuartos_C</i></div>
-                                <div class="col-3"><i class="fas fa-warehouse"> @Model.CanGarage_C</i></div>
-                                <div class="col-3"><i class="fas fa-toilet"> @Model.CanBanos_C</i></div>
-                            </div>
+                        i++;
+                        var active = i == 1 ? "active" : "";
+                        <div class="carousel-item @active" data-bs-interval="10000" style="height: 0px">
+                            <img src="~/images/@imagen.Ruta_I" class="w-100" style="max-height: 350px" alt="...">
                         </div>
-                    <p class="caracteristica"><strong>m²</strong> de la vivienda: <strong>@Model.MetrosCuadradosCasa_C</strong></p>
                     }
-                    <p class="caracteristica"><strong>m²</strong> del lote: <strong>@Model.MetrosCuadradosLote_C</strong></p>
-                    <p class="caracteristica" @*style="height: 1000px;*@"><strong>@Model.Descripcion_P</strong></p>
-                    <p class="caracteristica">@Model.NombreProvincia_L, @Model.NombreCanton_L, @Model.NombreDistrito_L</p>
-                    <p class="caracteristica"><span>@Model.DireccionExacta_L</span></p>
-                </div>
+                }
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="asides">
+        <div class="propiedades">
+            <div class="row bx">
+                <p class="caracteristica">Precio: <strong>@Model.TipoMoneda_P @Model.Precio</strong></p>
+                <p class="caracteristica">Tipo: <strong>@Model.Nombre_CA</strong></p>
+
+                @if (Model.Id_Categoria_CA == 1 || Model.Id_Categoria_CA == 2)
+                {
+                    <div class="col-12 iconos">
+                        <div class="row">
+                            <div class="col-3"><i class="fas fa-bed"> @Model.CanCuartos_C</i></div>
+                            <div class="col-3"><i class="fas fa-warehouse"> @Model.CanGarage_C</i></div>
+                            <div class="col-3"><i class="fas fa-toilet"> @Model.CanBanos_C</i></div>
+                        </div>
+                    </div>
+                    <p class="caracteristica"><strong>m²</strong> de la vivienda: <strong>@Model.MetrosCuadradosCasa_C</strong></p>
+                }
+                <p class="caracteristica"><strong>m²</strong> del lote: <strong>@Model.MetrosCuadradosLote_C</strong></p>
+                <p class="caracteristica" @*style="height: 1000px;*@><strong>@Model.Descripcion_P</strong></p>
+                <p class="caracteristica">@Model.NombreProvincia_L, @Model.NombreCanton_L, @Model.NombreDistrito_L</p>
+                <p class="caracteristica"><span>@Model.DireccionExacta_L</span></p>
             </div>
         </div>
     </div>
 </div>
+
 
 <div style="margin-bottom: 50px"></div>
 <div class="container">

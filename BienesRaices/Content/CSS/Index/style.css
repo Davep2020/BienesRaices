@@ -43,6 +43,29 @@
     margin-top: 15px;
 }
 
+.contenedor {
+    max-width: 1200px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .con-sidebar {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        column-gap: 4rem;
+    }
+
+    .asides {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    carrousel {
+        grid-column: 2 / 3;
+    }
+}
+
 .navbar-nav a{
     font-size: 18px;
     text-transform: uppercase;
